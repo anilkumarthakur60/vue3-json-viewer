@@ -195,8 +195,10 @@
   <JsonViewer
     :data="jsonData"
     :level="0"
-    :darkMode="true"
+    :darkMode="false"
   />
+
+  <pre>{{ jsonData }}</pre>
 </template>
 
 <style>

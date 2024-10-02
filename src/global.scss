@@ -1,164 +1,172 @@
-$json-viewer-font-family: 'Courier New', Courier, monospace;
-$json-viewer-font-size: 14px;
-$dark-mode-color: #f8f8f2;
-$light-mode-color: #282c34;
-$dark-mode-bg-color: #282c34;
-$light-mode-bg-color: #f8f8f2;
-$key-dark-mode-color: #d19a66;
-$key-light-mode-color: #8d6e63;
-$string-dark-mode-color: #98c379;
-$string-light-mode-color: #388e3c;
-$number-dark-mode-color: #d19a66;
-$number-light-mode-color: #f57c00;
-$boolean-dark-mode-color: #56b6c2;
-$boolean-light-mode-color: #0288d1;
-$null-dark-mode-color: #9cdcfe;
-$null-light-mode-color: #00acc1;
-$date-dark-mode-color: #e5c07b;
-$date-light-mode-color: #fbc02d;
-$regexp-dark-mode-color: #c678dd;
-$regexp-light-mode-color: #7b1fa2;
-$toggle-dark-mode-color: #61dafb;
-$toggle-light-mode-color: #1976d2;
-$border-dark-mode-color: #444;
-$border-light-mode-color: #bdbdbd;
-
-.json-viewer-dark,
-.json-viewer-light {
-  font-family: $json-viewer-font-family;
-  font-size: $json-viewer-font-size;
-  padding: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.json-viewer-dark {
-  color: $dark-mode-color;
-  background-color: $dark-mode-bg-color;
-}
-
-.json-viewer-light {
-  color: $light-mode-color;
-  background-color: $light-mode-bg-color;
-}
-
-span {
-  cursor: pointer;
-}
-
-.key {
-  font-weight: bold;
-}
-
-.key-dark {
-  color: $key-dark-mode-color;
-}
-
-.key-light {
-  color: $key-light-mode-color;
-}
-
-.string-value {
-  color: $string-dark-mode-color;
-}
-
-.string-value-light {
-  color: $string-light-mode-color;
-}
-
-.number-value {
-  color: $number-dark-mode-color;
-}
-
-.number-value-light {
-  color: $number-light-mode-color;
-}
-
-.boolean-value {
-  color: $boolean-dark-mode-color;
-}
-
-.boolean-value-light {
-  color: $boolean-light-mode-color;
-}
-
-.null-value {
-  color: $null-dark-mode-color;
-}
-
-.null-value-light {
-  color: $null-light-mode-color;
-}
-
-.date-value {
-  color: $date-dark-mode-color;
-}
-
-.date-value-light {
-  color: $date-light-mode-color;
-}
-
-.regexp-value {
-  color: $regexp-dark-mode-color;
-}
-
-.regexp-value-light {
-  color: $regexp-light-mode-color;
-}
-
-.toggle-btn {
-  cursor: pointer;
-}
-
-.toggle-btn-dark {
-  color: $toggle-dark-mode-color;
-}
-
-.toggle-btn-light {
-  color: $toggle-light-mode-color;
-}
-
-.type-label {
-  font-style: italic;
-  margin-left: 5px;
-}
-
-.node-children {
-  margin-left: 20px;
-  padding-left: 10px;
-}
-
-.node-children-dark {
-  border-left: 1px dashed $border-dark-mode-color;
-}
-
-.node-children-light {
-  border-left: 1px dashed $border-light-mode-color;
-}
-
-.leaf-node {
-  padding: 2px 0;
-  display: flex;
-  align-items: center;
-}
-
-.copy-icon {
-  cursor: pointer;
-  width: 12px;
-  height: 12px;
-}
-
-.copy-icon-dark {
-  color: $toggle-dark-mode-color;
-}
-
-.copy-icon-light {
-  color: $toggle-light-mode-color;
-}
-
-.margin-lr-5 {
-  margin-left: 5px;
-  margin-right: 5px;
-}
+//$json-viewer-font-family: 'Courier New', Courier, monospace;
+//$json-viewer-font-size: 14px;
+//$dark-mode-color: #f8f8f2;
+//$light-mode-color: #282c34;
+//$dark-mode-bg-color: #282c34;
+//$light-mode-bg-color: #f8f8f2;
+//$key-dark-mode-color: #d19a66;
+//$key-light-mode-color: #8d6e63;
+//$string-dark-mode-color: #98c379;
+//$string-light-mode-color: #388e3c;
+//$number-dark-mode-color: #d19a66;
+//$number-light-mode-color: #f57c00;
+//$boolean-dark-mode-color: #56b6c2;
+//$boolean-light-mode-color: #0288d1;
+//$null-dark-mode-color: #9cdcfe;
+//$null-light-mode-color: #00acc1;
+//$date-dark-mode-color: #e5c07b;
+//$date-light-mode-color: #fbc02d;
+//$regexp-dark-mode-color: #c678dd;
+//$regexp-light-mode-color: #7b1fa2;
+//$toggle-dark-mode-color: #61dafb;
+//$toggle-light-mode-color: #1976d2;
+//$border-dark-mode-color: #444;
+//$border-light-mode-color: #bdbdbd;
+//
+//.json-viewer-dark,
+//.json-viewer-light {
+//  font-family: $json-viewer-font-family;
+//  font-size: $json-viewer-font-size;
+//  padding: 15px;
+//  width: 100%;
+//  box-sizing: border-box;
+//  border-radius: 8px;
+//  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//}
+//
+//.json-viewer-dark {
+//  color: $dark-mode-color;
+//  background-color: $dark-mode-bg-color;
+//}
+//
+//.json-viewer-light {
+//  color: $light-mode-color;
+//  background-color: $light-mode-bg-color;
+//}
+//
+//span {
+//  cursor: pointer;
+//}
+//
+//.key {
+//  font-weight: bold;
+//}
+//
+//.key-dark {
+//  color: $key-dark-mode-color;
+//}
+//
+//.key-light {
+//  color: $key-light-mode-color;
+//}
+//
+//.string-value {
+//  color: $string-dark-mode-color;
+//}
+//
+//.string-value-light {
+//  color: $string-light-mode-color;
+//}
+//
+//.number-value {
+//  color: $number-dark-mode-color;
+//}
+//
+//.number-value-light {
+//  color: $number-light-mode-color;
+//}
+//
+//.boolean-value {
+//  color: $boolean-dark-mode-color;
+//}
+//
+//.boolean-value-light {
+//  color: $boolean-light-mode-color;
+//}
+//
+//.null-value {
+//  color: $null-dark-mode-color;
+//}
+//
+//.null-value-light {
+//  color: $null-light-mode-color;
+//}
+//
+//.date-value {
+//  color: $date-dark-mode-color;
+//}
+//
+//.date-value-light {
+//  color: $date-light-mode-color;
+//}
+//
+//.regexp-value {
+//  color: $regexp-dark-mode-color;
+//}
+//
+//.regexp-value-light {
+//  color: $regexp-light-mode-color;
+//}
+//
+//.toggle-btn {
+//  cursor: pointer;
+//}
+//
+//.toggle-btn-dark {
+//  color: $toggle-dark-mode-color;
+//}
+//
+//.toggle-btn-light {
+//  color: $toggle-light-mode-color;
+//}
+//
+//.type-label {
+//  font-style: italic;
+//  margin-left: 5px;
+//}
+//
+//.node-children {
+//  margin-left: 20px;
+//  padding-left: 10px;
+//}
+//
+//.node-children-dark {
+//  border-left: 1px dashed $border-dark-mode-color;
+//}
+//
+//.node-children-light {
+//  border-left: 1px dashed $border-light-mode-color;
+//}
+//
+//.leaf-node {
+//  padding: 2px 0;
+//  display: flex;
+//  align-items: center;
+//}
+//
+//.copy-icon {
+//  cursor: pointer;
+//  width: 12px;
+//  height: 12px;
+//}
+//
+//.copy-icon-dark {
+//  color: $toggle-dark-mode-color;
+//}
+//
+//.copy-icon-light {
+//  color: $toggle-light-mode-color;
+//}
+//
+//.margin-lr-5 {
+//  margin-left: 5px;
+//  margin-right: 5px;
+//}
+//
+//.height10 {
+//  height: 10px;
+//}
+//
+//.width10 {
+//  width: 10px;
+//}
