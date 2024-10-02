@@ -2,7 +2,7 @@
   import Moment from 'moment';
   import './global.scss';
 
-  import JsonNode from './JsonNode.vue';
+  import JsonViewer from './JsonViewer.vue';
   const jsonData = {
     name: 'John',
     age: 30,
@@ -192,7 +192,7 @@
 </script>
 
 <template>
-  <JsonNode
+  <JsonViewer
     :data="jsonData"
     :level="0"
     :darkMode="true"
