@@ -1,1 +1,25 @@
-{}
+{
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "semi": true,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "printWidth": 80,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "useTabs": false,
+  "htmlWhitespaceSensitivity": "strict",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "vueIndentScriptAndStyle": true,
+  "proseWrap": "preserve",
+  "singleAttributePerLine": true,
+  "overrides": [
+    {
+      "files": "*.vue",
+      "options": {
+        "parser": "vue"
+      }
+    }
+  ]
+}

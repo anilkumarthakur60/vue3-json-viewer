@@ -1,4 +1,4 @@
-$json-viewer-font-family: "Courier New", Courier, monospace;
+$json-viewer-font-family: 'Courier New', Courier, monospace;
 $json-viewer-font-size: 14px;
 $dark-mode-color: #f8f8f2;
 $light-mode-color: #282c34;
@@ -30,8 +30,8 @@ $border-light-mode-color: #bdbdbd;
   padding: 15px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 8px; /* Add rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .json-viewer-dark {
@@ -49,63 +49,63 @@ span {
 }
 
 .key {
-  font-weight: bold; /* Make keys bold */
+  font-weight: bold;
 }
 
 .key-dark {
-  color: $key-dark-mode-color; /* Key color for dark mode */
+  color: $key-dark-mode-color;
 }
 
 .key-light {
-  color: $key-light-mode-color; /* Key color for light mode */
+  color: $key-light-mode-color;
 }
 
 .string-value {
-  color: $string-dark-mode-color; /* Green for strings */
+  color: $string-dark-mode-color;
 }
 
 .string-value-light {
-  color: $string-light-mode-color; /* Green for strings in light mode */
+  color: $string-light-mode-color;
 }
 
 .number-value {
-  color: $number-dark-mode-color; /* Orange for numbers */
+  color: $number-dark-mode-color;
 }
 
 .number-value-light {
-  color: $number-light-mode-color; /* Orange for numbers in light mode */
+  color: $number-light-mode-color;
 }
 
 .boolean-value {
-  color: $boolean-dark-mode-color; /* Blue for booleans */
+  color: $boolean-dark-mode-color;
 }
 
 .boolean-value-light {
-  color: $boolean-light-mode-color; /* Blue for booleans in light mode */
+  color: $boolean-light-mode-color;
 }
 
 .null-value {
-  color: $null-dark-mode-color; /* Light blue for null */
+  color: $null-dark-mode-color;
 }
 
 .null-value-light {
-  color: $null-light-mode-color; /* Light blue for null in light mode */
+  color: $null-light-mode-color;
 }
 
 .date-value {
-  color: $date-dark-mode-color; /* Yellow for dates */
+  color: $date-dark-mode-color;
 }
 
 .date-value-light {
-  color: $date-light-mode-color; /* Yellow for dates in light mode */
+  color: $date-light-mode-color;
 }
 
 .regexp-value {
-  color: $regexp-dark-mode-color; /* Purple for regexps */
+  color: $regexp-dark-mode-color;
 }
 
 .regexp-value-light {
-  color: $regexp-light-mode-color; /* Purple for regexps in light mode */
+  color: $regexp-light-mode-color;
 }
 
 .toggle-btn {
@@ -113,48 +113,48 @@ span {
 }
 
 .toggle-btn-dark {
-  color: $toggle-dark-mode-color; /* Light blue for toggle in dark mode */
+  color: $toggle-dark-mode-color;
 }
 
 .toggle-btn-light {
-  color: $toggle-light-mode-color; /* Light blue for toggle in light mode */
+  color: $toggle-light-mode-color;
 }
 
 .type-label {
   font-style: italic;
-  margin-left: 5px; /* Add margin for better spacing */
+  margin-left: 5px;
 }
 
 .node-children {
-  margin-left: 20px; /* Increase the margin for nested objects */
-  padding-left: 10px; /* Add padding for better spacing */
+  margin-left: 20px;
+  padding-left: 10px;
 }
 
 .node-children-dark {
-  border-left: 1px dashed $border-dark-mode-color; /* Add dashed border for nested objects in dark mode */
+  border-left: 1px dashed $border-dark-mode-color;
 }
 
 .node-children-light {
-  border-left: 1px dashed $border-light-mode-color; /* Add dashed border for nested objects in light mode */
+  border-left: 1px dashed $border-light-mode-color;
 }
 
 .leaf-node {
   padding: 2px 0;
-  display: flex; /* Use flex for better alignment */
-  align-items: center; /* Center align items */
+  display: flex;
+  align-items: center;
 }
 
 .copy-icon {
-  margin-left: 10px; /* Add margin for better spacing */
-  cursor: pointer; /* Pointer cursor */
-  width: 12px; /* Increase icon width */
-  height: 12px; /* Increase icon height */
+  margin-left: 10px;
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
 }
 
 .copy-icon-dark {
-  color: $toggle-dark-mode-color; /* Light blue color for dark mode */
+  color: $toggle-dark-mode-color;
 }
 
 .copy-icon-light {
-  color: $toggle-light-mode-color; /* Light blue color for light mode */
+  color: $toggle-light-mode-color;
 }
