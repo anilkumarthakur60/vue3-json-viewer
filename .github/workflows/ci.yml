@@ -33,7 +33,7 @@ jobs:
       - run: npm run build
 
       - name: Run Prettier format check
-        run: bun run check
+        run: npm run check
 
       - name: Upload build artifacts
         if: ${{ success() }}
