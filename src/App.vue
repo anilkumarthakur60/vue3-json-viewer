@@ -176,7 +176,7 @@ const jsonData = {
     sibling1: true,
     sibling2: false,
     sibling3: null,
-    isString: (value) => {
+    isString: (value: any) => {
       if (typeof value === "string") {
         return "string";
       } else {
