@@ -14,24 +14,29 @@
           darkMode ? 'toggle-btn-dark' : 'toggle-btn-light',
         ]"
         @click="toggle"
-        >{{ expanded ? '-' : '+' }}</span
+        >{{ expanded ? '−' : '+' }}</span
       >
       <span
         :style="{ color: getBracketColor(level) }"
         class="type-label"
         @click="toggle"
-        >{{ parentKey }}: {</span
+        >{{ parentKey }} {</span
+      >
+      <span
+        v-if="level !== 0"
+        :style="{ color: getBracketColor(level) }"
+        class="key-count margin-lr-5"
+        @click="toggle"
+        >{{ Object.keys(props.data).length }} ...</span
       >
       <DocumentDuplicateIcon
-        :class="['copy-icon', darkMode ? 'copy-icon-dark' : 'copy-icon-light']"
+        :class="[
+          'copy-icon margin-lr-5',
+          darkMode ? 'copy-icon-dark' : 'copy-icon-light',
+        ]"
         @click="copyNode"
       />
-      <span
-        :style="{ color: getBracketColor(level) }"
-        class="key-count"
-        @click="toggle"
-        >({{ Object.keys(props.data).length }}...)</span
-      >
+
       <div
         v-show="expanded"
         :class="[
@@ -48,12 +53,12 @@
           :parentKey="key"
         />
       </div>
+
       <span
-        :style="{
-          color: getBracketColor(level),
-          marginLeft: level * 12 + 'px',
-        }"
-        class="type-label"
+        :class="[
+          'toggle-btn',
+          darkMode ? 'toggle-btn-dark' : 'toggle-btn-light',
+        ]"
         @click="toggle"
         >},</span
       >
@@ -66,23 +71,26 @@
           darkMode ? 'toggle-btn-dark' : 'toggle-btn-light',
         ]"
         @click="toggle"
-        >{{ expanded ? '-' : '+' }}</span
+        >{{ expanded ? '−' : '+' }}</span
       >
       <span
         :style="{ color: getBracketColor(level) }"
         class="type-label"
         @click="toggle"
-        >{{ parentKey }} [
+        >{{ parentKey }}
         <span
           :style="{ color: getBracketColor(level) }"
           class="key-count"
           @click="toggle"
-          >({{ Object.keys(props.data).length }}...)</span
         >
-        ]</span
-      >
+          [{{ Object.keys(props.data).length }}]...</span
+        >
+      </span>
       <DocumentDuplicateIcon
-        :class="['copy-icon', darkMode ? 'copy-icon-dark' : 'copy-icon-light']"
+        :class="[
+          'copy-icon margin-lr-5',
+          darkMode ? 'copy-icon-dark' : 'copy-icon-light',
+        ]"
         @click="copyNode"
       />
       <div
@@ -98,7 +106,7 @@
           :darkMode="darkMode"
           :data="item"
           :level="level + 1"
-          :parentKey="index"
+          :parentKey="`${parentKey}[${index}]`"
         />
       </div>
     </div>
@@ -112,11 +120,14 @@
         >{{ parentKey }}</span
       >:
       <span :class="[valueClass, darkMode ? 'value-dark' : 'value-light']">
-        {{ displayDataType }} {{ displayValue }}</span
-      >
+        {{ displayValue }}
+      </span>
       <DocumentDuplicateIcon
         v-if="isCopyable"
-        :class="['copy-icon', darkMode ? 'copy-icon-dark' : 'copy-icon-light']"
+        :class="[
+          'copy-icon margin-lr-5',
+          darkMode ? 'copy-icon-dark' : 'copy-icon-light',
+        ]"
         @click="copyNode"
       />
     </div>
@@ -145,7 +156,7 @@
     },
   });
 
-  const expanded = ref(false);
+  const expanded = ref(true);
 
   onMounted(() => {
     if (props.level === 0) {

@@ -145,7 +145,6 @@ span {
 }
 
 .copy-icon {
-  margin-left: 10px;
   cursor: pointer;
   width: 12px;
   height: 12px;
@@ -157,4 +156,9 @@ span {
 
 .copy-icon-light {
   color: $toggle-light-mode-color;
+}
+
+.margin-lr-5 {
+  margin-left: 5px;
+  margin-right: 5px;
 }
