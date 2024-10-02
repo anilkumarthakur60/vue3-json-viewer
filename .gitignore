@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vscode
+.idea
+package-lock.json
+bun.lockb
+yarn.lock
+
