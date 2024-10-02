@@ -20,6 +20,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
     "node-sass": "^9.0.0",
+    "prettier": "3.3.3",
     "sass-embedded": "^1.79.4",
     "sass-loader": "^16.0.2",
     "typescript": "^5.5.3",

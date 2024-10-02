@@ -1,5 +1,4 @@
-
-$json-viewer-font-family: 'Courier New', Courier, monospace;
+$json-viewer-font-family: "Courier New", Courier, monospace;
 $json-viewer-font-size: 14px;
 $dark-mode-color: #f8f8f2;
 $light-mode-color: #282c34;
@@ -24,7 +23,8 @@ $toggle-light-mode-color: #1976d2;
 $border-dark-mode-color: #444;
 $border-light-mode-color: #bdbdbd;
 
-.json-viewer-dark, .json-viewer-light {
+.json-viewer-dark,
+.json-viewer-light {
   font-family: $json-viewer-font-family;
   font-size: $json-viewer-font-size;
   padding: 15px;
@@ -47,7 +47,6 @@ $border-light-mode-color: #bdbdbd;
 span {
   cursor: pointer;
 }
-
 
 .key {
   font-weight: bold; /* Make keys bold */
@@ -148,8 +147,8 @@ span {
 .copy-icon {
   margin-left: 10px; /* Add margin for better spacing */
   cursor: pointer; /* Pointer cursor */
-  width: 16px; /* Increase icon width */
-  height: 16px; /* Increase icon height */
+  width: 12px; /* Increase icon width */
+  height: 12px; /* Increase icon height */
 }
 
 .copy-icon-dark {
