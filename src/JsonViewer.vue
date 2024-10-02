@@ -14,7 +14,7 @@
           darkMode ? 'toggle-btn-dark' : 'toggle-btn-light',
         ]"
         @click="toggle"
-        >{{ expanded ? '−' : '+' }}</span
+        >{{ expanded ? '-' : '+' }}</span
       >
       <span
         :style="{ color: getBracketColor(level) }"
@@ -71,7 +71,7 @@
           darkMode ? 'toggle-btn-dark' : 'toggle-btn-light',
         ]"
         @click="toggle"
-        >{{ expanded ? '−' : '+' }}</span
+        >{{ expanded ? '-' : '+' }}</span
       >
       <span
         :style="{ color: getBracketColor(level) }"
