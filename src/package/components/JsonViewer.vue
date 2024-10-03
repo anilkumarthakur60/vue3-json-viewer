@@ -211,7 +211,7 @@
     ChevronDownIcon,
     ChevronRightIcon,
   } from '@heroicons/vue/24/solid';
-  import { JsonViewerProps } from './types/jsonViewerTypes';
+  import { JsonViewerProps } from '../types/jsonViewerTypes';
   const props = withDefaults(defineProps<JsonViewerProps>(), {
     data: () => {},
     level: 0,

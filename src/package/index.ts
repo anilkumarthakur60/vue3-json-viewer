@@ -1,8 +1,8 @@
 import { App } from 'vue';
 import { JsonViewerProps } from './types/jsonViewerTypes';
-import { useJsonViewer } from './hooks/useJsonViewer';
-import './global.scss';
-import JsonViewer from './JsonViewer.vue';
+import './style/global.scss';
+import JsonViewer from './components/JsonViewer.vue';
+
 const jsonViewerPlugin = {
   install(app: App) {
     app.component('JsonViewer', JsonViewer);
@@ -12,6 +12,5 @@ const jsonViewerPlugin = {
   },
 };
 
-export { jsonViewerPlugin, useJsonViewer };
-
+export { jsonViewerPlugin as default, JsonViewer };
 export type { JsonViewerProps };

@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import Moment from 'moment';
-  import './package/global.scss';
+  import './package/style/global.scss';
 
-  import JsonViewer from './package/JsonViewer.vue';
   import { ref } from 'vue';
   const jsonData = {
     name: 'John Doe',
