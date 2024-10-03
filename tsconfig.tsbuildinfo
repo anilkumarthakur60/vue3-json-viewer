@@ -1,1 +1,0 @@
-{"root":["./src/index.ts","./src/shims-vue.d.ts","./src/vite-env.d.ts","./src/hooks/usejsonviewer.ts","./src/types/jsonviewertypes.ts","./src/app.vue","./src/jsonviewer.vue"],"version":"5.6.2"}
