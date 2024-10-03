@@ -1,194 +1,83 @@
 <script setup lang="ts">
   import Moment from 'moment';
-  import './global.scss';
+  import './package/global.scss';
 
-  import JsonViewer from './JsonViewer.vue';
+  import JsonViewer from './package/JsonViewer.vue';
   import { ref } from 'vue';
   const jsonData = {
-    name: 'John',
+    name: 'John Doe',
     age: 30,
-    city: 'New York',
     isActive: true,
-    hobbies: [
-      {
-        name: 'reading',
-        details: {
-          genre: 'fiction',
-          favoriteBooks: ['1984', 'Brave New World', 'Fahrenheit 451'],
-          readingTime: 'evening',
-        },
-      },
-      {
-        name: 'traveling',
-        details: {
-          countriesVisited: ['France', 'Japan', 'Australia'],
-          favoriteCities: ['Paris', 'Tokyo', 'Sydney'],
-          travelFrequency: 'twice a year',
-        },
-      },
-      {
-        name: 'swimming',
-        details: {
-          style: 'freestyle',
-          bestTimes: {
-            '50m': '30s',
-            '100m': '1m 10s',
-          },
-          trainingSchedule: ['Monday', 'Wednesday', 'Friday'],
-        },
-      },
-    ],
+    hobbies: ['reading', 'traveling', 'swimming', 'coding'],
     address: {
       street: '123 Main St',
       city: 'New York',
-      zipCode: '10001',
+      state: 'NY',
+      zip: '10001',
       coordinates: {
         lat: 40.7128,
         lng: -74.006,
-        history: {
-          logins: [new Date(), new Date()],
-          actions: ['login', 'update'],
-        },
       },
-      nearbyPlaces: [
-        {
-          name: 'Central Park',
-          type: 'park',
-          distance: '2 miles',
-        },
-        {
-          name: 'Metropolitan Museum of Art',
-          type: 'museum',
-          distance: '3 miles',
-        },
-      ],
     },
     contact: {
-      email: 'john@example.com',
+      email: 'john.doe@example.com',
       phone: '123-456-7890',
-      social: {
-        twitter: '@john',
-        facebook: 'facebook.com/john',
-        instagram: 'instagram.com/john',
+      emergencyContact: {
+        name: 'Jane Doe',
+        phone: '987-654-3210',
       },
-      emergencyContacts: [
-        {
-          name: 'Alice',
-          relation: 'sister',
-          phone: '321-654-0987',
-        },
-        {
-          name: 'Bob',
-          relation: 'friend',
-          phone: '654-321-9870',
-        },
-      ],
     },
+    education: [
+      {
+        degree: 'B.Sc. Computer Science',
+        institution: 'University of XYZ',
+        year: 2012,
+      },
+      {
+        degree: 'M.Sc. Software Engineering',
+        institution: 'University of ABC',
+        year: 2014,
+      },
+    ],
+    workExperience: [
+      { company: 'Tech Corp', position: 'Software Engineer', years: 3 },
+      { company: 'Innovate Ltd', position: 'Senior Developer', years: 2 },
+    ],
     scores: [
-      {
-        subject: 'Math',
-        score: 95,
-        date: new Date(),
-      },
-      {
-        subject: 'English',
-        score: 82,
-        date: new Date(),
-      },
-      {
-        subject: 'Science',
-        score: 75,
-        date: new Date(),
-      },
-      {
-        subject: 'History',
-        score: 88,
-        date: new Date(),
-      },
+      { subject: 'Math', score: 95 },
+      { subject: 'English', score: 82 },
+      { subject: 'Science', score: 88 },
     ],
     metadata: {
       createdAt: new Date(),
       updatedAt: new Date(),
-      tags: ['user', 'admin'],
-      history: {
-        logins: [new Date(), new Date()],
-        actions: ['login', 'update'],
-      },
-      permissions: {
-        read: true,
-        write: false,
-        execute: true,
-      },
+      tags: ['user', 'admin', 'developer'],
     },
     preferences: {
       notifications: true,
       theme: 'dark',
-      layout: {
-        sidebar: true,
-        grid: false,
-      },
       language: 'en',
-      accessibility: {
-        highContrast: false,
-        textToSpeech: true,
-      },
     },
     friends: [
-      {
-        name: 'Jane',
-        age: 28,
-        city: 'Los Angeles',
-        contact: {
-          email: 'jane@example.com',
-          phone: '987-654-3210',
-        },
-        hobbies: ['hiking', 'photography'],
-      },
-      {
-        name: 'Mike',
-        age: 32,
-        city: 'Chicago',
-        contact: {
-          email: 'mike@example.com',
-          phone: '456-789-0123',
-        },
-        hobbies: ['gaming', 'cooking'],
-      },
-      {
-        name: 'Sara',
-        age: 25,
-        city: 'Miami',
-        contact: {
-          email: 'sara@example.com',
-          phone: '321-987-6540',
-        },
-        hobbies: ['dancing', 'painting'],
-      },
+      { name: 'Jane', age: 28, relationship: 'sister' },
+      { name: 'Mike', age: 32, relationship: 'colleague' },
     ],
-    additionalInfo: null,
+    additionalInfo: 'Some additional information about John Doe.',
     string: 'this is a test string',
     integer: 42,
-    empty_array: [],
-    empty_object: {},
-    array: [1, 2, 3, 'test'],
+    array: [1, 2, 3, 'test', { key: 'value' }],
     float: -2.757,
     undefined_var: undefined,
-    parent: {
-      sibling1: true,
-      sibling2: false,
-      sibling3: null,
-      isString: (value: any) => {
-        if (typeof value === 'string') {
-          return 'string';
-        } else {
-          return 'other';
-        }
-      },
-    },
-    string_number: '1234',
     date: new Date(),
-    moment: Moment(),
     regexp: /[0-9]/gi,
+    moment: Moment(),
+    empty: {},
+    emptyArray: [],
+    emptyString: '',
+    emptyNumber: 0,
+    emptyNull: null,
+    emptyUndefined: undefined,
+    emptyObject: {},
   };
 
   const isDarkMode = ref(true);

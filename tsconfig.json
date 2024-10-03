@@ -25,8 +25,12 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "./src/index.ts"],
-  "exclude": ["src/stories/**/*", "src/main.ts", "src/router"],
+  "include": [
+    "src/package/**/*.ts",
+    "src/package/**/*.tsx",
+    "src/package/**/*.vue"
+  ],
+  "exclude": ["src/**/*", "!src/package/**/*"],
   "references": [
     {
       "path": "./tsconfig.node.json"

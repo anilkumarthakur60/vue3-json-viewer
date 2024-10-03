@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     copyPublicDir: false,
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'src/package/index.ts'),
       name: '@anilkumarthakur/vue3-json-viewer',
       fileName: (format) => `index.${format}.js`,
     },

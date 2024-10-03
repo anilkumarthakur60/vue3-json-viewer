@@ -1,6 +1,6 @@
 {
   "name": "@anilkumarthakur/vue3-json-viewer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -59,7 +59,7 @@
     "sass": "^1.77.4",
     "sass-loader": "^16.0.0",
     "start-server-and-test": "^2.0.3",
-    "typescript": "^5.4.5",
+    "typescript": "^5.6.2",
     "vite": "^5.2.12",
     "vite-plugin-dts": "^4.0.1",
     "vite-plugin-vue-devtools": "^7.2.1",

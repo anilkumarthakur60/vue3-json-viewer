@@ -6,7 +6,7 @@
     }"
     :style="{ marginLeft: level * 10 + 'px', padding: '2px 0' }"
   >
-    <div v-if="isObject && !isRegExp">
+    <div v-if="isObject && !isRegExp && !isDate">
       <span
         class="cursor-pointer"
         @click="toggle"
@@ -32,8 +32,10 @@
         <span
           :style="{ color: getBracketColor(level) }"
           class="type-label"
-          >{{ parentKey }}: {</span
-        >
+          >{{ parentKey }}
+          <span v-if="level !== 0"> :</span>
+          {
+        </span>
         <span
           v-if="!expanded"
           class="preview"
@@ -177,7 +179,7 @@
         }}</span
         >:
         <span :class="[valueClass, darkMode ? 'value-dark' : 'value-light']">
-          {{ displayValue }}
+          {{ data }}
         </span>
       </span>
       <DocumentDuplicateIcon
@@ -240,14 +242,7 @@
         typeof props.data,
       ) && props.data !== null,
   );
-  const displayValue = computed<string | number | boolean | object | null>(
-    () => {
-      if (typeof props.data === 'string') return `"${props.data}"`;
-      if (props.data instanceof Date) return props.data.toISOString();
-      if (props.data instanceof RegExp) return props.data.toString();
-      return props.data;
-    },
-  );
+
   const valueClass = computed<string>(() => {
     if (typeof props.data === 'string') return 'string-value';
     if (typeof props.data === 'number') return 'number-value';
@@ -299,8 +294,10 @@
     if (Array.isArray(value)) return '[...]';
     if (typeof value === 'object') return '{...}';
     if (value instanceof RegExp) return value.toString();
+    if (value instanceof Date) return value.toISOString();
     return String(value);
   }
+  const isDate = computed<boolean>(() => props.data instanceof Date);
 </script>
 
 <style lang="scss"></style>
