@@ -6,7 +6,7 @@
     }"
     :style="{ marginLeft: level * 10 + 'px', padding: '2px 0' }"
   >
-    <div v-if="isObject">
+    <div v-if="isObject && !isRegExp">
       <span
         class="cursor-pointer"
         @click="toggle"
@@ -32,7 +32,7 @@
         <span
           :style="{ color: getBracketColor(level) }"
           class="type-label"
-          >{{ parentKey }} {</span
+          >{{ parentKey }}: {</span
         >
         <span
           v-if="!expanded"
@@ -79,7 +79,7 @@
         ]"
       >
         <JsonViewer
-          v-for="(value, key) in props.data"
+          v-for="(value, key) in data"
           :key="key"
           :darkMode="darkMode"
           :data="value"
@@ -123,7 +123,7 @@
         <span
           :style="{ color: getBracketColor(level) }"
           class="type-label"
-          >{{ parentKey }}
+          >{{ parentKey }}:
           <span
             :style="{ color: getBracketColor(level) }"
             class="key-count cursor-pointer"
@@ -158,7 +158,7 @@
         ]"
       >
         <JsonViewer
-          v-for="(item, index) in props.data"
+          v-for="(item, index) in data"
           :key="index"
           :darkMode="darkMode"
           :data="item"
@@ -229,13 +229,16 @@
     () =>
       typeof props.data === 'object' &&
       !Array.isArray(props.data) &&
-      props.data !== null,
+      props.data !== null &&
+      !(props.data instanceof RegExp),
   );
   const isArray = computed<boolean>(() => Array.isArray(props.data));
+  const isRegExp = computed<boolean>(() => props.data instanceof RegExp);
   const isCopyable = computed<boolean>(
     () =>
-      ['string', 'number', 'boolean', 'object'].includes(typeof props.data) &&
-      props.data !== null,
+      ['string', 'number', 'boolean', 'object', 'regexp'].includes(
+        typeof props.data,
+      ) && props.data !== null,
   );
   const displayValue = computed<string | number | boolean | object | null>(
     () => {
@@ -254,20 +257,6 @@
     if (props.data instanceof RegExp) return 'regexp-value';
     return '';
   });
-
-  // const displayDataType = computed<string>(() => {
-  //   if (typeof props.data === 'string') return 'string';
-  //   if (typeof props.data === 'number') return 'number';
-  //   if (typeof props.data === 'boolean') return 'boolean';
-  //   if (props.data === null) return 'null';
-  //   if (props.data instanceof Date) return 'date';
-  //   if (props.data instanceof RegExp) return 'regexp';
-  //   if (Array.isArray(props.data)) return 'array';
-  //   if (typeof props.data === 'function') return 'function';
-  //   if (typeof props.data === 'undefined') return 'undefined';
-  //   if (typeof props.data === 'object') return 'object';
-  //   return 'unknown';
-  // });
 
   function toggle(): void {
     expanded.value = !expanded.value;
@@ -309,6 +298,7 @@
     if (typeof value === 'number' || typeof value === 'boolean') return value;
     if (Array.isArray(value)) return '[...]';
     if (typeof value === 'object') return '{...}';
+    if (value instanceof RegExp) return value.toString();
     return String(value);
   }
 </script>
