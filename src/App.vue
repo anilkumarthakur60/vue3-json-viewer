@@ -186,7 +186,7 @@
     },
     string_number: '1234',
     date: new Date(),
-    // moment: Moment(),
+    moment: Moment(),
     regexp: /[0-9]/gi,
   };
 </script>

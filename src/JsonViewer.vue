@@ -37,6 +37,10 @@
         <span
           v-if="!expanded"
           class="preview"
+          :class="{
+            'preview-dark': darkMode,
+            'preview-light': !darkMode,
+          }"
           >{{ collapsedPreview }}</span
         >
 
@@ -56,10 +60,14 @@
         @click.stop="copyNode"
       />
       <transition name="fade">
-        <div
+        <span
           v-if="copySuccess"
           class="copy-tooltip"
-          >Copied!</div
+          :class="{
+            'copy-tooltip-dark': darkMode,
+            'copy-tooltip-light': !darkMode,
+          }"
+          >Copied!</span
         >
       </transition>
 
@@ -132,10 +140,14 @@
         @click="copyNode"
       />
       <transition name="fade">
-        <div
+        <span
           v-if="copySuccess"
           class="copy-tooltip"
-          >Copied!</div
+          :class="{
+            'copy-tooltip-dark': darkMode,
+            'copy-tooltip-light': !darkMode,
+          }"
+          >Copied!</span
         >
       </transition>
       <div
@@ -177,10 +189,14 @@
         @click="copyNode"
       />
       <transition name="fade">
-        <div
+        <span
           v-if="copySuccess"
           class="copy-tooltip"
-          >Copied!</div
+          :class="{
+            'copy-tooltip-dark': darkMode,
+            'copy-tooltip-light': !darkMode,
+          }"
+          >Copied!</span
         >
       </transition>
     </div>
@@ -221,12 +237,14 @@
       ['string', 'number', 'boolean', 'object'].includes(typeof props.data) &&
       props.data !== null,
   );
-  const displayValue = computed<string | number | boolean | object>(() => {
-    if (typeof props.data === 'string') return `"${props.data}"`;
-    if (props.data instanceof Date) return props.data.toISOString();
-    if (props.data instanceof RegExp) return props.data.toString();
-    return props.data;
-  });
+  const displayValue = computed<string | number | boolean | object | null>(
+    () => {
+      if (typeof props.data === 'string') return `"${props.data}"`;
+      if (props.data instanceof Date) return props.data.toISOString();
+      if (props.data instanceof RegExp) return props.data.toString();
+      return props.data;
+    },
+  );
   const valueClass = computed<string>(() => {
     if (typeof props.data === 'string') return 'string-value';
     if (typeof props.data === 'number') return 'number-value';
@@ -236,19 +254,20 @@
     if (props.data instanceof RegExp) return 'regexp-value';
     return '';
   });
-  const displayDataType = computed<string>(() => {
-    if (typeof props.data === 'string') return 'string';
-    if (typeof props.data === 'number') return 'number';
-    if (typeof props.data === 'boolean') return 'boolean';
-    if (props.data === null) return 'null';
-    if (props.data instanceof Date) return 'date';
-    if (props.data instanceof RegExp) return 'regexp';
-    if (Array.isArray(props.data)) return 'array';
-    if (typeof props.data === 'function') return 'function';
-    if (typeof props.data === 'undefined') return 'undefined';
-    if (typeof props.data === 'object') return 'object';
-    return 'unknown';
-  });
+
+  // const displayDataType = computed<string>(() => {
+  //   if (typeof props.data === 'string') return 'string';
+  //   if (typeof props.data === 'number') return 'number';
+  //   if (typeof props.data === 'boolean') return 'boolean';
+  //   if (props.data === null) return 'null';
+  //   if (props.data instanceof Date) return 'date';
+  //   if (props.data instanceof RegExp) return 'regexp';
+  //   if (Array.isArray(props.data)) return 'array';
+  //   if (typeof props.data === 'function') return 'function';
+  //   if (typeof props.data === 'undefined') return 'undefined';
+  //   if (typeof props.data === 'object') return 'object';
+  //   return 'unknown';
+  // });
 
   function toggle(): void {
     expanded.value = !expanded.value;
@@ -296,38 +315,30 @@
 
 <style lang="scss">
   .preview {
-    color: #999;
     margin-left: 5px;
     font-style: italic;
   }
 
   .preview-dark {
-    color: #999;
+    color: #ccc;
   }
 
   .preview-light {
-    color: #999;
+    color: #333;
   }
 
   .copy-tooltip {
-    position: absolute;
-    background: #333;
-    color: #fff;
-    padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
-    top: -25px;
-    right: 0;
   }
-
   .copy-tooltip-dark {
-    background: #333;
-    color: #fff;
+    background-color: #444;
+    color: #f8f8f2;
   }
 
   .copy-tooltip-light {
-    background: #eee;
-    color: #000;
+    background-color: #f8f8f2;
+    color: #282c34;
   }
 
   .fade-enter-active,

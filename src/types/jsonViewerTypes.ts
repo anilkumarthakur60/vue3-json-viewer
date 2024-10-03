@@ -1,5 +1,5 @@
 export interface JsonViewerProps {
-  data?:
+  data:
     | Object
     | Array<any>
     | string
@@ -7,7 +7,8 @@ export interface JsonViewerProps {
     | boolean
     | Function
     | Date
-    | RegExp;
+    | RegExp
+    | null;
   level?: number;
   parentKey?: string | number;
   darkMode?: boolean;
