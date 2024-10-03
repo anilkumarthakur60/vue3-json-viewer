@@ -3,6 +3,7 @@
   import './global.scss';
 
   import JsonViewer from './JsonViewer.vue';
+  import { ref } from 'vue';
   const jsonData = {
     name: 'John',
     age: 30,
@@ -189,13 +190,19 @@
     moment: Moment(),
     regexp: /[0-9]/gi,
   };
+
+  const isDarkMode = ref(false);
+  const toggleDarkMode = () => {
+    isDarkMode.value = !isDarkMode.value;
+  };
 </script>
 
 <template>
+  <button @click="toggleDarkMode">Toggle Dark Mode</button>
   <JsonViewer
     :data="jsonData"
     :level="0"
-    :darkMode="false"
+    :darkMode="isDarkMode"
   />
 
   <pre>{{ jsonData }}</pre>

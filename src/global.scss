@@ -121,7 +121,7 @@ $border-light-mode-color: #bdbdbd;
 
 .type-label {
   font-style: italic;
-  margin-left: 5px;
+  // margin-left: 5px;
 }
 
 .node-children {
@@ -181,4 +181,44 @@ $border-light-mode-color: #bdbdbd;
 .node-header {
   display: flex;
   align-items: center;
+}
+.preview {
+  margin-left: 5px;
+  font-style: italic;
+}
+
+.preview-dark {
+  color: #ccc;
+}
+
+.preview-light {
+  color: #333;
+}
+
+.copy-tooltip {
+  border-radius: 4px;
+  font-size: 12px;
+}
+.copy-tooltip-dark {
+  background-color: #444;
+  color: #f8f8f2;
+  padding: 5px;
+}
+
+.copy-tooltip-light {
+  background-color: #f8f8f2;
+  color: #282c34;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.copy-icon:hover {
+  opacity: 0.7;
 }
