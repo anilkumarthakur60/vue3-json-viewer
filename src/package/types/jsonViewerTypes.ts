@@ -8,8 +8,7 @@ export interface JsonViewerProps {
     | Function
     | Date
     | RegExp
-    | null
-    | undefined;
+    | null;
   level: number;
   parentKey?: string | number;
   darkMode?: boolean;

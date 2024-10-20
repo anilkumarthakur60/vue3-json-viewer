@@ -205,13 +205,20 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { computed, defineProps, onMounted, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import {
     DocumentDuplicateIcon,
     ChevronDownIcon,
     ChevronRightIcon,
   } from '@heroicons/vue/24/solid';
-  import { JsonViewerProps } from '../types/jsonViewerTypes';
+
+  interface JsonViewerProps {
+    data: any;
+    level: number;
+    parentKey?: string | number;
+    darkMode?: boolean;
+  }
+
   const props = withDefaults(defineProps<JsonViewerProps>(), {
     data: () => {},
     level: 0,
@@ -299,5 +306,3 @@
   }
   const isDate = computed<boolean>(() => props.data instanceof Date);
 </script>
-
-<style lang="scss"></style>

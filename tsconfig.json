@@ -25,11 +25,7 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/package/**/*.ts",
-    "src/package/**/*.tsx",
-    "src/package/**/*.vue"
-  ],
+  "include": ["src/package/**/*"],
   "references": [
     {
       "path": "./tsconfig.node.json"

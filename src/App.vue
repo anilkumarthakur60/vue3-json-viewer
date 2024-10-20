@@ -3,7 +3,7 @@
   import './package/style/global.scss';
 
   import { ref } from 'vue';
-  import { JsonViewer } from './package';
+  import { ViewJson, JsonViewer } from './package/components';
   const jsonData = {
     name: 'John Doe',
     age: 30,
@@ -88,10 +88,15 @@
 
 <template>
   <button @click="toggleDarkMode">Toggle Dark Mode</button>
-  <JsonViewer
+  <ViewJson
     :data="jsonData"
     :level="1"
     :darkMode="isDarkMode"
+  />
+  <JsonViewer
+    :darkMode="isDarkMode"
+    :data="jsonData"
+    :level="1"
   />
 
   <pre>{{ jsonData }}</pre>

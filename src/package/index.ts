@@ -1,16 +1,14 @@
-// import { App } from 'vue';
+import { App } from 'vue';
 import { JsonViewerProps } from './types/jsonViewerTypes';
-import './style/global.scss';
-import JsonViewer from './components/JsonViewer.vue';
-import { useJsonViewer } from './hooks/useJsonViewer.ts';
+import './package/style/global.scss';
+import { ViewJson, JsonViewer } from './components';
+import { useJsonViewer } from './hooks/useJsonViewer';
 
-// const jsonViewerPlugin = {
-//   install(app: App) {
-//     app.component('JsonViewer', JsonViewer);
-//     app.provide('JsonViewer', {
-//       darkMode: true,
-//     });
-//   },
-// };
-export { JsonViewer, useJsonViewer };
+const jsonViewerPlugin = {
+  install(app: App) {
+    app.component('JsonViewer', JsonViewer);
+    app.component('JsonView', ViewJson);
+  },
+};
+export { JsonViewer, useJsonViewer, jsonViewerPlugin, ViewJson };
 export type { JsonViewerProps };
