@@ -21,7 +21,7 @@
   <JsonViewer
     :darkMode="darkMode"
     :data="data"
-    :level="1"
+    :level="level"
   />
 </template>
 

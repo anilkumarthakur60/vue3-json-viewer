@@ -90,13 +90,13 @@
   <button @click="toggleDarkMode">Toggle Dark Mode</button>
   <ViewJson
     :data="jsonData"
-    :level="1"
+    :level="0"
     :darkMode="isDarkMode"
   />
   <JsonViewer
     :darkMode="isDarkMode"
     :data="jsonData"
-    :level="1"
+    :level="0"
   />
 
   <pre>{{ jsonData }}</pre>
