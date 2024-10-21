@@ -12,4 +12,13 @@ export interface JsonViewerProps {
   level: number;
   parentKey?: string | number;
   darkMode?: boolean;
+  expanded?: boolean;
+}
+
+export interface NestedComponentProps {
+  data: any;
+  level: number;
+  parentKey?: string | number;
+  darkMode?: boolean;
+  expanded?: boolean;
 }
