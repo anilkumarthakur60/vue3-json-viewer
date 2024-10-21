@@ -354,9 +354,9 @@
     ChevronDownIcon,
     ChevronRightIcon,
   } from '@heroicons/vue/24/solid';
-  import { NestedComponentProps } from '../types/jsonViewerTypes';
+  import { JsonViewerProps } from '../types/jsonViewerTypes';
 
-  const props = withDefaults(defineProps<NestedComponentProps>(), {
+  const props = withDefaults(defineProps<JsonViewerProps>(), {
     data: () => {},
     level: 0,
     parentKey: '',
