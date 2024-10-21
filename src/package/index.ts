@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import { JsonViewerProps } from './types/jsonViewerTypes';
+import { JsonViewerProps, NestedComponentProps } from './types/jsonViewerTypes';
 import { NestedComponent, JsonViewer } from './components';
 import useJsonViewer from './hooks/useJsonViewer';
 
@@ -10,4 +10,4 @@ const jsonViewerPlugin = {
   },
 };
 export { JsonViewer, useJsonViewer, jsonViewerPlugin, NestedComponent };
-export type { JsonViewerProps };
+export type { JsonViewerProps, NestedComponentProps };

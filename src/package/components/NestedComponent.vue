@@ -33,7 +33,7 @@
           :style="{ color: getBracketColor(level) }"
           class="type-label"
           >{{ parentKey }}
-          <span v-if="level !== 0"> :</span>
+          <span v-if="level !== 0">:</span>
           {
         </span>
         <span
@@ -126,8 +126,7 @@
         <span
           :style="{ color: getBracketColor(level) }"
           class="type-label"
-          >{{ parentKey }}:
-          <span
+          >{{ parentKey }}:<span
             :style="{ color: getBracketColor(level) }"
             class="key-count cursor-pointer"
           >

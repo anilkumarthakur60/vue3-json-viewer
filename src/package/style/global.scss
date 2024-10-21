@@ -1,4 +1,4 @@
-$json-viewer-font-family: 'Courier New', Courier, monospace;
+$json-viewer-font-family: 'Fira Code', 'Courier New', Courier, monospace;
 $json-viewer-font-size: 14px;
 $dark-mode-color: #f8f8f2;
 $light-mode-color: #282c34;
@@ -27,7 +27,7 @@ $border-light-mode-color: #bdbdbd;
 .json-viewer-light {
   font-family: $json-viewer-font-family;
   font-size: $json-viewer-font-size;
-  padding: 15px;
+  padding: 5px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 8px;
@@ -125,8 +125,8 @@ $border-light-mode-color: #bdbdbd;
 }
 
 .node-children {
-  margin-left: 10px;
-  padding-left: 10px;
+  margin-left: 5px;
+  padding-left: 5px;
 }
 
 .node-children-dark {
@@ -138,7 +138,7 @@ $border-light-mode-color: #bdbdbd;
 }
 
 .leaf-node {
-  padding: 2px 0;
+  padding: 1px 0;
   display: flex;
   align-items: center;
 }
