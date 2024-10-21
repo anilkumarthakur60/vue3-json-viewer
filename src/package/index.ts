@@ -1,6 +1,5 @@
 import { App } from 'vue';
 import { JsonViewerProps } from './types/jsonViewerTypes';
-import './package/style/global.scss';
 import { ViewJson, JsonViewer } from './components';
 import { useJsonViewer } from './hooks/useJsonViewer';
 
