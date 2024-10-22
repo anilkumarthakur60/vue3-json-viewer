@@ -15,25 +15,22 @@ npm install @anilkumarthakur/vue3-json-viewer
 To use the package, import the `JsonViewer` component and use it in your template:
 
 ```vue
-
 <template>
-  <JsonViewer
-      :data="jsonData"
-  />
+  <JsonViewer :data="jsonData" />
   //level , expanded and darkMode are optional props
   <JsonViewer
-      :data="jsonData"
-      :level="0"
-      :expanded="true"
-      :darkMode="true"
+    :data="jsonData"
+    :level="0"
+    :expanded="true"
+    :darkMode="true"
   />
 </template>
 <script setup>
-  import {ref} from 'vue';
-  import {JsonViewer} from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css'
-  
-  import Moment from "moment";
+  import { ref } from 'vue';
+  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
+  import '@anilkumarthakur/vue3-json-viewer/styles.css';
+
+  import Moment from 'moment';
 
   const jsonData = {
     name: 'John Doe',
@@ -63,7 +60,7 @@ To use the package, import the `JsonViewer` component and use it in your templat
         longitude: -74.006,
       },
     },
-    mixedArray: [1, 2, 3, 'test', {property: 'value'}],
+    mixedArray: [1, 2, 3, 'test', { property: 'value' }],
     temperature: -2.757,
     currentDate: new Date(),
     regexPattern: /[0-9]/gi,
@@ -96,7 +93,7 @@ To use the package, import the `JsonViewer` component and use it in your templat
       true,
       null,
       undefined,
-      {property: 'value'},
+      { property: 'value' },
       [1, 2, 3],
       new Date(),
       /regex/,
