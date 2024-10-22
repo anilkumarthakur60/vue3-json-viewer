@@ -107,3 +107,6 @@ To use the package, import the `JsonViewer` component and use it in your templat
 ```
 
 //demo is available in the src/App.vue file also at https://vue3-json-viewer.vercel.app/
+
+
+
