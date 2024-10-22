@@ -4,7 +4,6 @@
 
   import { ref } from 'vue';
   import { JsonViewer } from './package/components';
-  import { RecaptchaV3 } from '@anilkumarthakur/vue3-recaptcha';
   const jsonData = {
     name: 'John Doe',
     age: 30,
@@ -93,7 +92,6 @@
   />
 
   <pre>{{ jsonData }}</pre>
-  <RecaptchaV3 />
 </template>
 
 <style>
