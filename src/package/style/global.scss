@@ -1,4 +1,4 @@
-$json-viewer-font-family: 'Courier New', Courier, monospace;
+$json-viewer-font-family: 'Fira Code', 'Courier New', Courier, monospace;
 $json-viewer-font-size: 14px;
 $dark-mode-color: #f8f8f2;
 $light-mode-color: #282c34;
@@ -27,7 +27,7 @@ $border-light-mode-color: #bdbdbd;
 .json-viewer-light {
   font-family: $json-viewer-font-family;
   font-size: $json-viewer-font-size;
-  padding: 15px;
+  padding: 5px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 8px;
@@ -44,12 +44,8 @@ $border-light-mode-color: #bdbdbd;
   background-color: $light-mode-bg-color;
 }
 
-span {
+.cursor-pointer {
   cursor: pointer;
-}
-
-.key {
-  font-weight: bold;
 }
 
 .key-dark {
@@ -122,12 +118,12 @@ span {
 
 .type-label {
   font-style: italic;
-  margin-left: 5px;
+  // margin-left: 5px;
 }
 
 .node-children {
-  margin-left: 20px;
-  padding-left: 10px;
+  margin-left: 5px;
+  padding-left: 5px;
 }
 
 .node-children-dark {
@@ -139,9 +135,17 @@ span {
 }
 
 .leaf-node {
-  padding: 2px 0;
+  padding: 1px 0;
   display: flex;
   align-items: center;
+}
+
+.leaf-node-dark {
+  background-color: $dark-mode-bg-color;
+}
+
+.leaf-node-light {
+  background-color: $light-mode-bg-color;
 }
 
 .copy-icon {
@@ -161,4 +165,57 @@ span {
 .margin-lr-5 {
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.height10 {
+  height: 10px;
+}
+
+.width10 {
+  width: 10px;
+}
+
+.node-header {
+  display: flex;
+  align-items: center;
+}
+.preview {
+  margin-left: 5px;
+  font-style: italic;
+}
+
+.preview-dark {
+  color: #ccc;
+}
+
+.preview-light {
+  color: #333;
+}
+
+.copy-tooltip {
+  border-radius: 4px;
+  font-size: 12px;
+}
+.copy-tooltip-dark {
+  background-color: #444;
+  color: #f8f8f2;
+  padding: 5px;
+}
+
+.copy-tooltip-light {
+  background-color: #f8f8f2;
+  color: #282c34;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.copy-icon:hover {
+  opacity: 0.7;
 }

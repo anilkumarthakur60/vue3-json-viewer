@@ -31,3 +31,6 @@ yarn.lock
 
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
+tsconfig.tsbuildinfo
+vite.config.d.ts
+vite.config.js
