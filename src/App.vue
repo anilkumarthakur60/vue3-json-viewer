@@ -59,21 +59,6 @@
     sampleFunction: function () {
       return 'This is a function';
     },
-    diverseArray: [
-      'string',
-      123,
-      true,
-      null,
-      undefined,
-      { property: 'value' },
-      [1, 2, 3],
-      new Date(),
-      /regex/,
-      Moment().format('YYYY-MM-DD'),
-      function () {
-        return 'Array function';
-      },
-    ],
   };
 
   const isDarkMode = ref(true);
