@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue';
-import { JsonViewerProps } from '../package/types/jsonViewerTypes';
+import { JsonViewerProps } from '../package';
 
 export default function useJsonViewer(props: JsonViewerProps) {
   const expanded = ref(false);
