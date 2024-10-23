@@ -82,7 +82,7 @@
     :data="jsonData"
     :level="0"
     :key="computedExpanded"
-    :expanded="true"
+    :expanded="isExpanded"
     :darkMode="isDarkMode"
   />
 
