@@ -1,4 +1,5 @@
 # Vue 3 JSON Viewer
+
 To install the package, run the following command:
 
 ```bash
@@ -6,17 +7,17 @@ To install the package, run the following command:
 npm install @anilkumarthakur/vue3-json-viewer
 ```
 
-```bash 
+```bash
 # For yarn
   yarn add @anilkumarthakur/vue3-json-viewer
 ```
 
-```bash 
+```bash
 # For bun
   bun add @anilkumarthakur/vue3-json-viewer
 ```
 
-```bash 
+````bash
 # For pnpm
 pnpm add @anilkumarthakur/vue3-json-viewer
 
@@ -118,6 +119,6 @@ To use the package, import the `JsonViewer` component and use it in your templat
 </template>
 
 
-```
+````
 
 //demo is available in the src/App.vue file also at https://vue3-json-viewer.vercel.app/
