@@ -15,23 +15,11 @@ npm install @anilkumarthakur/vue3-json-viewer
 To use the package, import the `JsonViewer` component and use it in your template:
 
 ```vue
-<template>
-  <JsonViewer :data="jsonData" />
-  //level , expanded and darkMode are optional props
-  <JsonViewer
-    :data="jsonData"
-    :level="0"
-    :expanded="true"
-    :darkMode="true"
-  />
-</template>
-<script setup>
+<script setup lang="ts">
   import { ref } from 'vue';
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
   import Moment from 'moment';
-
   const jsonData = {
     name: 'John Doe',
     age: 30,
@@ -87,26 +75,23 @@ To use the package, import the `JsonViewer` component and use it in your templat
     sampleFunction: function () {
       return 'This is a function';
     },
-    diverseArray: [
-      'string',
-      123,
-      true,
-      null,
-      undefined,
-      { property: 'value' },
-      [1, 2, 3],
-      new Date(),
-      /regex/,
-      Moment().format('YYYY-MM-DD'),
-      function () {
-        return 'Array function';
-      },
-    ],
+  };
+
+  const isDarkMode = ref(true);
+  const toggleDarkMode = () => {
+    isDarkMode.value = !isDarkMode.value;
   };
 </script>
+
+<template>
+  <button @click="toggleDarkMode">Toggle Dark Mode</button>
+  <JsonViewer
+    :data="jsonData"
+    :level="0"
+    :expanded="true"
+    :darkMode="isDarkMode"
+  />
+</template>
 ```
 
 //demo is available in the src/App.vue file also at https://vue3-json-viewer.vercel.app/
-
-
-
