@@ -4,7 +4,7 @@
       'json-viewer-dark': darkMode && level === 0,
       'json-viewer-light': !darkMode && level === 0,
     }"
-    :style="{ marginLeft: level * 10 + 'px', padding: '2px 0' }"
+    :style="{ marginLeft: (level as number) * 10 + 'px', padding: '2px 0' }"
   >
     <div v-if="isObject && !isRegExp && !isDate && !isMap && !isSet">
       <span
@@ -30,7 +30,7 @@
           class="margin-lr-5 height10 width10"
         />
         <span
-          :style="{ color: getBracketColor(level) }"
+          :style="{ color: getBracketColor(level as number) }"
           class="type-label"
           >{{ parentKey }}
           <span v-if="level !== 0">:</span>
@@ -48,7 +48,7 @@
 
         <span
           v-if="level !== 0"
-          :style="{ color: getBracketColor(level) }"
+          :style="{ color: getBracketColor(level as number) }"
           class="key-count margin-lr-5 cursor-pointer"
           >{{ Object.keys(data as object).length }} ...</span
         >
@@ -85,7 +85,7 @@
           :key="key"
           :darkMode="darkMode"
           :data="value"
-          :level="level + 1"
+          :level="(level as number) + 1"
           :parentKey="key"
           :expanded="expanded"
         />
@@ -124,10 +124,10 @@
           class="margin-lr-5 height10 width10"
         />
         <span
-          :style="{ color: getBracketColor(level) }"
+          :style="{ color: getBracketColor(level as number) }"
           class="type-label"
           >{{ parentKey }}:<span
-            :style="{ color: getBracketColor(level) }"
+            :style="{ color: getBracketColor(level as number) }"
             class="key-count cursor-pointer"
           >
             [{{ (data as unknown[]).length }}]...</span
@@ -164,7 +164,7 @@
           :key="index"
           :darkMode="darkMode"
           :data="item"
-          :level="level + 1"
+          :level="(level as number) + 1"
           :parentKey="`${parentKey}[${index}]`"
           :expanded="expanded"
         />
@@ -194,11 +194,11 @@
           class="margin-lr-5 height10 width10"
         />
         <span
-          :style="{ color: getBracketColor(level) }"
+          :style="{ color: getBracketColor(level as number) }"
           class="type-label"
           >{{ parentKey }}:
           <span
-            :style="{ color: getBracketColor(level) }"
+            :style="{ color: getBracketColor(level as number) }"
             class="key-count cursor-pointer"
           >
             [Map]</span
@@ -235,7 +235,7 @@
           :key="key"
           :darkMode="darkMode"
           :data="value"
-          :level="level + 1"
+          :level="(level as number) + 1"
           :parentKey="key"
           :expanded="expanded"
         />
@@ -265,11 +265,11 @@
           class="margin-lr-5 height10 width10"
         />
         <span
-          :style="{ color: getBracketColor(level) }"
+          :style="{ color: getBracketColor(level as number) }"
           class="type-label"
           >{{ parentKey }}:
           <span
-            :style="{ color: getBracketColor(level) }"
+            :style="{ color: getBracketColor(level as number) }"
             class="key-count cursor-pointer"
           >
             [Set]</span
@@ -306,7 +306,7 @@
           :key="index"
           :darkMode="darkMode"
           :data="item"
-          :level="level + 1"
+          :level="(level as number) + 1"
           :parentKey="`${parentKey}[${index}]`"
           :expanded="expanded"
         />
