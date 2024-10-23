@@ -2,7 +2,7 @@
   import Moment from 'moment';
   import './package/style/global.scss';
 
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import { JsonViewer } from './package/components';
   const jsonData = {
     name: 'John Doe',
@@ -65,13 +65,23 @@
   const toggleDarkMode = () => {
     isDarkMode.value = !isDarkMode.value;
   };
+  const isExpanded = ref(true);
+  const toggleExpanded = () => {
+    isExpanded.value = !isExpanded.value;
+  };
+
+  const computedExpanded = computed(() => {
+    return isExpanded.value ? 'expanded' : 'collapsed';
+  });
 </script>
 
 <template>
   <button @click="toggleDarkMode">Toggle Dark Mode</button>
+  <button @click="toggleExpanded">Toggle Expanded</button>
   <JsonViewer
     :data="jsonData"
     :level="0"
+    :key="computedExpanded"
     :expanded="true"
     :darkMode="isDarkMode"
   />

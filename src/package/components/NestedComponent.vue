@@ -31,7 +31,7 @@
         />
         <span
           :style="{ color: getBracketColor(level as number) }"
-          class="type-label"
+          class="type-label key"
           >{{ parentKey }}
           <span v-if="level !== 0">:</span>
           {
@@ -49,7 +49,7 @@
         <span
           v-if="level !== 0"
           :style="{ color: getBracketColor(level as number) }"
-          class="key-count margin-lr-5 cursor-pointer"
+          class="key key-count margin-lr-5 cursor-pointer"
           >{{ Object.keys(data as object).length }} ...</span
         >
       </span>
@@ -125,10 +125,10 @@
         />
         <span
           :style="{ color: getBracketColor(level as number) }"
-          class="type-label"
+          class="key type-label"
           >{{ parentKey }}:<span
             :style="{ color: getBracketColor(level as number) }"
-            class="key-count cursor-pointer"
+            class="key key-count cursor-pointer"
           >
             [{{ (data as unknown[]).length }}]...</span
           >
@@ -195,11 +195,11 @@
         />
         <span
           :style="{ color: getBracketColor(level as number) }"
-          class="type-label"
+          class="key type-label"
           >{{ parentKey }}:
           <span
             :style="{ color: getBracketColor(level as number) }"
-            class="key-count cursor-pointer"
+            class="key key-count cursor-pointer"
           >
             [Map]</span
           >
@@ -266,11 +266,11 @@
         />
         <span
           :style="{ color: getBracketColor(level as number) }"
-          class="type-label"
+          class="key type-label"
           >{{ parentKey }}:
           <span
             :style="{ color: getBracketColor(level as number) }"
-            class="key-count cursor-pointer"
+            class="key key-count cursor-pointer"
           >
             [Set]</span
           >
@@ -321,7 +321,9 @@
           parentKey
         }}</span
         >:
-        <span :class="[valueClass, darkMode ? 'value-dark' : 'value-light']">
+        <span
+          :class="['key', valueClass, darkMode ? 'value-dark' : 'value-light']"
+        >
           {{ data }}
         </span>
       </span>
