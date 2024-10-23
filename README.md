@@ -1,14 +1,27 @@
 # Vue 3 JSON Viewer
-
-This project demonstrates how to use the `@anilkumarthakur/vue3-json-viewer` package to display JSON data in a Vue 3 application.
-
-## Installation
-
 To install the package, run the following command:
 
 ```bash
+# For npm
 npm install @anilkumarthakur/vue3-json-viewer
 ```
+
+```bash 
+# For yarn
+  yarn add @anilkumarthakur/vue3-json-viewer
+```
+
+```bash 
+# For bun
+  bun add @anilkumarthakur/vue3-json-viewer
+```
+
+```bash 
+# For pnpm
+pnpm add @anilkumarthakur/vue3-json-viewer
+
+
+
 
 ## Usage
 
@@ -16,7 +29,7 @@ To use the package, import the `JsonViewer` component and use it in your templat
 
 ```vue
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
   import Moment from 'moment';
@@ -81,17 +94,30 @@ To use the package, import the `JsonViewer` component and use it in your templat
   const toggleDarkMode = () => {
     isDarkMode.value = !isDarkMode.value;
   };
+
+  const isExpanded = ref(true);
+  const toggleExpanded = () => {
+    isExpanded.value = !isExpanded.value;
+  };
+
+  const computedExpanded = computed(() => {
+    return isExpanded.value ? 'expanded' : 'collapsed';
+  });
 </script>
 
 <template>
   <button @click="toggleDarkMode">Toggle Dark Mode</button>
+  <button @click="toggleExpanded">Toggle Expanded</button>
   <JsonViewer
-    :data="jsonData"
-    :level="0"
-    :expanded="true"
-    :darkMode="isDarkMode"
+      :data="jsonData"
+      :level="0"
+      :key="computedExpanded"
+      :expanded="isExpanded"
+      :darkMode="isDarkMode"
   />
 </template>
+
+
 ```
 
 //demo is available in the src/App.vue file also at https://vue3-json-viewer.vercel.app/
