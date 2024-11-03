@@ -1,6 +1,6 @@
 {
   "name": "@anilkumarthakur/vue3-json-viewer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -22,6 +22,30 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "vue3",
+    "json",
+    "viewer",
+    "json-viewer",
+    "vue-json-viewer",
+    "vue3-json-viewer",
+    "dark-mode",
+    "light-mode",
+    "collapsible",
+    "expandable",
+    "typescript",
+    "customizable",
+    "responsive",
+    "tree-view",
+    "json-tree",
+    "syntax-highlighting",
+    "nested-objects",
+    "data-visualization",
+    "developer-tools",
+    "json-formatter",
+    "json-parser",
+    "vue-component"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
