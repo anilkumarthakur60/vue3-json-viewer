@@ -38,5 +38,5 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run tests
+      - name: Run Build
         run: npm run build
