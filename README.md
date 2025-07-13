@@ -5,8 +5,8 @@ This plugin provides a Vue 3 component for rendering and interacting with JSON d
 ## Features
 
 - **Dark Mode**: Toggle between light and dark themes for better visibility.
-- **Expandable/Collapsible Objects**: Easily manage the visibility of deeply nested data.
 - **Reusability**: Customize the viewer using props for various use cases.
+- **Expandable/Collapsible Objects**: Easily manage the visibility of deeply nested data.
 - **Highly Configurable**: Control expanded state, dark mode, and data rendering.
 
 ## Installation
