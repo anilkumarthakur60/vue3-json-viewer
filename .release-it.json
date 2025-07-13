@@ -2,8 +2,7 @@
   "$schema": "https://unpkg.com/release-it/schema/release-it.json",
   "github": {
     "release": true,
-    "releaseName": "Release ${version}",
-    "releaseNotes": "generate-notes"
+    "releaseName": "Release ${version}"
   },
   "npm": {
     "publish": true,
