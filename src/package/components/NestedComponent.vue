@@ -324,7 +324,7 @@
         <span
           :class="['key', valueClass, darkMode ? 'value-dark' : 'value-light']"
         >
-          {{ data }}
+          {{ formatDisplayValue(data) }}
         </span>
       </span>
       <DocumentDuplicateIcon
@@ -453,10 +453,22 @@
   });
 
   function formatValue(value: any) {
+    if (value === null) return 'null';
+    if (value === undefined) return 'undefined';
     if (typeof value === 'string') return `"${value}"`;
     if (typeof value === 'number' || typeof value === 'boolean') return value;
     if (Array.isArray(value)) return '[...]';
     if (typeof value === 'object') return '{...}';
+    if (value instanceof RegExp) return value.toString();
+    if (value instanceof Date) return value.toISOString();
+    return String(value);
+  }
+
+  function formatDisplayValue(value: any) {
+    if (value === null) return 'null';
+    if (value === undefined) return 'undefined';
+    if (typeof value === 'string') return `"${value}"`;
+    if (typeof value === 'number' || typeof value === 'boolean') return value;
     if (value instanceof RegExp) return value.toString();
     if (value instanceof Date) return value.toISOString();
     return String(value);

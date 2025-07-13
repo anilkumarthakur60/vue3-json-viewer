@@ -1,0 +1,70 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "command": "pnpm install",
+      "name": "Installing Dependencies"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "dev": {
+      "name": "dev",
+      "command": "pnpm run dev",
+      "runAtStart": true
+    },
+    "build": {
+      "name": "build",
+      "command": "pnpm build"
+    },
+    "build1": {
+      "name": "build1",
+      "command": "pnpm build1"
+    },
+    "preview": {
+      "name": "preview",
+      "command": "pnpm preview"
+    },
+    "format": {
+      "name": "pnpm",
+      "command": "pnpm format"
+    },
+    "check": {
+      "name": "check",
+      "command": "pnpm check"
+    },
+    "test": {
+      "name": "test",
+      "command": "pnpm test"
+    },
+    "test:unit": {
+      "name": "test:unit",
+      "command": "pnpm test:unit"
+    },
+    "test:e2e": {
+      "name": "test:e2e",
+      "command": "pnpm test:e2e"
+    },
+    "test:e2e:dev": {
+      "name": "test:e2e:dev",
+      "command": "pnpm test:e2e:dev"
+    },
+    "build-only": {
+      "name": "build-only",
+      "command": "pnpm build-only"
+    },
+    "type-check": {
+      "name": "type-check",
+      "command": "pnpm type-check"
+    },
+    "lint": {
+      "name": "lint",
+      "command": "pnpm lint"
+    },
+    "build:preview": {
+      "name": "build:preview",
+      "command": "pnpm build:preview"
+    }
+  }
+}
