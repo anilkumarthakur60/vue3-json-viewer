@@ -61,7 +61,8 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\" --fix",
     "build:preview": "vite build --config vite.config.prod.ts",
-    "release": "release-it"
+    "release": "release-it",
+    "commit": "cz"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.1",
@@ -75,7 +76,9 @@
     "@vue/eslint-config-typescript": "^14.4.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "commitizen": "^4.3.1",
     "cypress": "^14.0.2",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.20.0",
     "eslint-plugin-cypress": "^5.1.0",
     "eslint-plugin-vue": "^10.0.0",
@@ -97,5 +100,10 @@
   "peerDependencies": {
     "@heroicons/vue": "^2.1.5",
     "vue": "^3.4.37"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
