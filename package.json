@@ -89,7 +89,7 @@
     "vite-plugin-dts": "^4.5.0",
     "vite-plugin-vue-devtools": "^7.7.1",
     "vitest": "^3.0.5",
-    "vue-tsc": "^2.2.0"
+    "vue-tsc": "^3.0.1"
   },
   "peerDependencies": {
     "@heroicons/vue": "^2.1.5",
