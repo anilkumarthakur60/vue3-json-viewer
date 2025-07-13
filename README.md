@@ -165,6 +165,94 @@ const jsonData = {
 };
 ```
 
+## Development
+
+### Prerequisites
+
+- Node.js (v20.19.0 or >=22.12.0)
+- npm, yarn, pnpm, or bun
+
+### Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repository-url>
+   cd vue3-json-viewer
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+### Conventional Commits
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. The following commit types are supported:
+
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `build`: Changes that affect the build system or external dependencies
+- `ci`: Changes to our CI configuration files and scripts
+- `chore`: Other changes that don't modify src or test files
+- `revert`: Reverts a previous commit
+
+**Example commit messages:**
+
+```bash
+git commit -m "feat: add dark mode support"
+git commit -m "fix: resolve JSON parsing error"
+git commit -m "docs: update README with new examples"
+git commit -m "style: format code with prettier"
+```
+
+### Pre-commit Hooks
+
+The project uses Husky to run pre-commit hooks that:
+
+- Run lint-staged to format and lint staged files
+- Validate commit messages using commitlint
+
+### Automated Releases
+
+The project uses [release-it](https://github.com/release-it/release-it) for automated releases. To create a new release:
+
+1. **Make your changes and commit them using conventional commits**
+2. **Run the release command:**
+   ```bash
+   npm run release
+   ```
+
+This will:
+
+- Determine the next version based on conventional commits
+- Update the CHANGELOG.md file
+- Create a git tag
+- Push to GitHub
+- Publish to npm
+
+**Release workflow:**
+
+```bash
+# Make changes
+git add .
+git commit -m "feat: add new feature"
+
+# Create release
+npm run release
+```
+
 ## Demo
 
 For a live demo, check out the [example on Vercel](https://vue3-json-viewer.vercel.app/) or explore the demo in `src/App.vue` of the repository.
