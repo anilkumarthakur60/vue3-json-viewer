@@ -34,6 +34,7 @@
     "collapsible",
     "expandable",
     "typescript",
+    "tsx",
     "customizable",
     "responsive",
     "tree-view",
@@ -44,7 +45,9 @@
     "developer-tools",
     "json-formatter",
     "json-parser",
-    "vue-component"
+    "vue-component",
+    "composition-api",
+    "modern-vue"
   ],
   "scripts": {
     "dev": "vite",
@@ -90,6 +93,7 @@
     "sass": "^1.92.1",
     "sass-loader": "^16.0.5",
     "start-server-and-test": "^2.1.0",
+    "terser": "^5.44.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.5",
     "vite-plugin-dts": "^4.5.4",
@@ -100,6 +104,11 @@
   "peerDependencies": {
     "@heroicons/vue": "^2.1.5",
     "vue": "^3.4.37"
+  },
+  "peerDependenciesMeta": {
+    "@heroicons/vue": {
+      "optional": false
+    }
   },
   "config": {
     "commitizen": {

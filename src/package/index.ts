@@ -1,13 +1,59 @@
-import { App } from 'vue';
-import { JsonViewerProps } from './types/jsonViewerTypes';
+import type { App, Plugin } from 'vue';
+import {
+  JsonViewerProps,
+  NestedComponentProps,
+  JsonValue,
+  JsonObject,
+  JsonArray,
+  ThemeMode,
+  JsonViewerTheme,
+  defaultDarkTheme,
+  defaultLightTheme,
+} from './types/jsonViewerTypes';
 import { NestedComponent, JsonViewer } from './components';
-import '../package/style/global.scss';
+import {
+  useJsonViewer,
+  type UseJsonViewerReturn,
+} from '../hooks/useJsonViewer';
+import './style/global.scss';
 
-const jsonViewerPlugin = {
-  install(app: App) {
-    app.component('JsonViewer', JsonViewer);
-    app.component('NestedComponent', NestedComponent);
-  },
+// Plugin installation function
+const install = (app: App): void => {
+  app.component('JsonViewer', JsonViewer);
+  app.component('NestedComponent', NestedComponent);
 };
-export { JsonViewer, jsonViewerPlugin, NestedComponent };
-export type { JsonViewerProps };
+
+// Create plugin object
+const jsonViewerPlugin: Plugin = {
+  install,
+};
+
+// Named exports for individual components
+export { JsonViewer, NestedComponent };
+
+// Composable export
+export { useJsonViewer };
+
+// Plugin export
+export { jsonViewerPlugin };
+export default jsonViewerPlugin;
+
+// Type exports
+export type {
+  JsonViewerProps,
+  NestedComponentProps,
+  JsonValue,
+  JsonObject,
+  JsonArray,
+  ThemeMode,
+  JsonViewerTheme,
+  UseJsonViewerReturn,
+};
+
+// Theme exports
+export { defaultDarkTheme, defaultLightTheme };
+
+// Auto-install when used via script tag
+if (typeof window !== 'undefined' && (window as any).Vue) {
+  install((window as any).Vue);
+}
