@@ -4,7 +4,7 @@ import {
   JsonValue,
   defaultDarkTheme,
   defaultLightTheme,
-} from '../package/types/jsonViewerTypes';
+} from '../types/jsonViewerTypes';
 
 export interface UseJsonViewerReturn {
   expanded: Ref<boolean>;

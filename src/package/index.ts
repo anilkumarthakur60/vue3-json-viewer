@@ -11,10 +11,7 @@ import {
   defaultLightTheme,
 } from './types/jsonViewerTypes';
 import { NestedComponent, JsonViewer } from './components';
-import {
-  useJsonViewer,
-  type UseJsonViewerReturn,
-} from '../hooks/useJsonViewer';
+import { useJsonViewer, type UseJsonViewerReturn } from './hooks/useJsonViewer';
 import './style/global.scss';
 
 // Plugin installation function

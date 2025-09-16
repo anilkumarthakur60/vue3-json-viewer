@@ -12,8 +12,7 @@ const NestedComponent = defineComponent<NestedComponentProps>({
     data: {
       required: true,
       validator: (value: any) => {
-        // In test environment, be more lenient to avoid warnings
-        if (process.env.NODE_ENV === 'test' || process.env.VITEST) {
+        if (import.meta.env.NODE_ENV === 'test' || import.meta.env.VITEST) {
           return true;
         }
         return value !== undefined;

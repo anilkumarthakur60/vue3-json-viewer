@@ -203,8 +203,9 @@ describe('Package Index', () => {
       // The import at the top of the file already validates this works in test environment
       expect(() => {
         // Auto-install code should not throw in non-browser environments
-        if (typeof window !== 'undefined' && (window as any).Vue) {
-          jsonViewerPlugin.install((window as any).Vue);
+        const Vue = typeof window !== 'undefined' ? (window as any).Vue : null;
+        if (Vue && jsonViewerPlugin.install) {
+          jsonViewerPlugin.install(Vue);
         }
       }).not.toThrow();
     });

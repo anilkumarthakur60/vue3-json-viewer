@@ -444,9 +444,12 @@ import '@anilkumarthakur/vue3-json-viewer/styles.css'
   :expanded="true" 
 />`,
 
-    cdn: `<!-- Include via CDN -->
-<script src="https://unpkg.com/vue@3"><\/script>
-<script src="https://unpkg.com/@anilkumarthakur/vue3-json-viewer"><\/script>
+    cdn:
+      `<!-- Include via CDN -->
+<script src="https://unpkg.com/vue@3"><` +
+      `/script>
+<script src="https://unpkg.com/@anilkumarthakur/vue3-json-viewer"><` +
+      `/script>
 <link rel="stylesheet" href="https://unpkg.com/@anilkumarthakur/vue3-json-viewer/dist/index.css">
 
 <script>
@@ -461,7 +464,8 @@ createApp({
     }
   }
 }).mount('#app');
-<\/script>`,
+<` +
+      `/script>`,
 
     esm: `// ES Module import
 import { JsonViewer, useJsonViewer } from '@anilkumarthakur/vue3-json-viewer'
