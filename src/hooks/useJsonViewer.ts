@@ -62,10 +62,10 @@ export function useJsonViewer(props: JsonViewerProps): UseJsonViewerReturn {
     if (typeof value === 'string') return `"${value}"`;
     if (typeof value === 'number' || typeof value === 'boolean')
       return String(value);
+    if (value instanceof Date) return (value as Date).toISOString();
+    if (value instanceof RegExp) return (value as RegExp).toString();
     if (Array.isArray(value)) return '[...]';
     if (typeof value === 'object') return '{...}';
-    if (value instanceof RegExp) return (value as RegExp).toString();
-    if (value instanceof Date) return (value as Date).toISOString();
     return String(value);
   };
 

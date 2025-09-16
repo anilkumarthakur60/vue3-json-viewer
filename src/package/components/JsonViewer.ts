@@ -7,32 +7,33 @@ export default defineComponent<JsonViewerProps>({
   props: {
     data: {
       type: [Object, Array, String, Number, Boolean],
-      default: () => ({})
+      default: () => ({}),
     },
     level: {
       type: Number,
-      default: 0
+      default: 0,
     },
     parentKey: {
       type: [String, Number],
-      default: ''
+      default: '',
     },
     darkMode: {
       type: Boolean,
-      default: true
+      default: true,
     },
     expanded: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup(props) {
-    return () => h(NestedComponent, {
-      darkMode: props.darkMode,
-      data: props.data,
-      level: props.level,
-      expanded: props.expanded,
-      parentKey: props.parentKey
-    });
-  }
+    return () =>
+      h(NestedComponent, {
+        darkMode: props.darkMode,
+        data: props.data,
+        level: props.level,
+        expanded: props.expanded,
+        parentKey: props.parentKey,
+      });
+  },
 });
