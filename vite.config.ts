@@ -3,25 +3,36 @@ import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import path from 'path';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-// import { viteStaticCopy } from 'vite-plugin-static-copy'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    dts(),
-    // viteStaticCopy({
-    //   targets: [
-    //     { src: 'src/package/global.scss', dest: '' }
-    //   ]
-    // })
+    dts({
+      insertTypesEntry: true,
+      outDir: 'dist',
+      include: ['src/index.ts', 'src/components/**/*', 'src/types/**/*'],
+      exclude: [
+        'src/App.vue',
+        'src/main.ts',
+        'src/**/*.spec.ts',
+        'src/**/*.test.ts',
+      ],
+    }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   build: {
     copyPublicDir: false,
     lib: {
-      entry: path.resolve(__dirname, 'src/package/index.ts'),
-      name: '@anilkumarthakur/vue3-json-viewer',
+      entry: path.resolve(__dirname, 'src/index.ts'),
+      name: 'Vue3JsonViewer',
       fileName: (format) => `index.${format}.js`,
+      formats: ['es', 'umd'],
     },
     rollupOptions: {
       external: ['vue'],
@@ -29,14 +40,15 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
+        exports: 'named',
       },
     },
     sourcemap: true,
     emptyOutDir: true,
-    cssCodeSplit: true,
+    cssCodeSplit: false,
   },
   server: {
-    host: '0.0.0.0', // Allows access from the local network
-    port: 3000, // You can change this to any port number you prefer
+    host: '0.0.0.0',
+    port: 3001,
   },
 });
