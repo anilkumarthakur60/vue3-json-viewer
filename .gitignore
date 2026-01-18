@@ -20,3 +20,4 @@ yarn.lock
 pnpm-lock.yaml
 npm-shrinkwrap.json
 package-lock.json
+docs/.vitepress/cache

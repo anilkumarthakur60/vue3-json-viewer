@@ -12,8 +12,13 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       outDir: 'dist',
-      include: ['src/**/*.ts', 'src/**/*.vue'],
-      exclude: ['src/**/*.spec.ts', 'src/**/*.test.ts'],
+      include: ['src/index.ts', 'src/components/**/*', 'src/types/**/*'],
+      exclude: [
+        'src/App.vue',
+        'src/main.ts',
+        'src/**/*.spec.ts',
+        'src/**/*.test.ts',
+      ],
     }),
   ],
   resolve: {

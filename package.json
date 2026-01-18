@@ -7,11 +7,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AKT/vue3-json-viewer"
+    "url": "https://github.com/anilkumarthakur60/vue3-json-viewer"
   },
-  "homepage": "https://github.com/AKT/vue3-json-viewer#readme",
+  "homepage": "https://github.com/anilkumarthakur60/vue3-json-viewer#readme",
   "bugs": {
-    "url": "https://github.com/AKT/vue3-json-viewer/issues"
+    "url": "https://github.com/anilkumarthakur60/vue3-json-viewer/issues"
   },
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -73,7 +73,10 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\" --fix",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.5",
@@ -101,6 +104,7 @@
     "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0",
     "vite-plugin-vue-devtools": "^8.0.5",
+    "vitepress": "^1.6.4",
     "vitest": "^4.0.6",
     "vue-tsc": "^3.0.1"
   },
