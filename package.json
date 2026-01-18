@@ -1,6 +1,6 @@
 {
   "name": "@anilkumarthakur/vue3-json-viewer",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "A beautiful, customizable JSON viewer component for Vue 3 with TypeScript support, dark/light mode, expand/collapse controls, and syntax highlighting.",
   "author": "Anil Kumar Thakur",
