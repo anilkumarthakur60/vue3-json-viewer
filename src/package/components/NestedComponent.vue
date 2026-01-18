@@ -145,7 +145,7 @@
           :parentKey="String(key)"
           :level="level + 1"
           :darkMode="darkMode"
-          :expanded="isExpanded"
+          :expanded="props.expanded"
           :isArrayItem="false"
           :isLast="index === objectSize - 1"
         />
@@ -255,7 +255,7 @@
           :parentKey="''"
           :level="level + 1"
           :darkMode="darkMode"
-          :expanded="isExpanded"
+          :expanded="props.expanded"
           :isArrayItem="true"
           :isLast="index === arrayLength - 1"
         />
@@ -373,12 +373,13 @@
     }
   });
 
-  // Watch for changes to the expanded prop
+  // Watch for changes to the expanded prop - cascade to all children
   watch(
     () => props.expanded,
     (newValue) => {
       isExpanded.value = newValue;
     },
+    { immediate: true },
   );
 
   function expandAll() {
