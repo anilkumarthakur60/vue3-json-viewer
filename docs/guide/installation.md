@@ -18,6 +18,10 @@ yarn add @anilkumarthakur/vue3-json-viewer
 pnpm add @anilkumarthakur/vue3-json-viewer
 ```
 
+```bash [bun]
+bun add @anilkumarthakur/vue3-json-viewer
+```
+
 :::
 
 ## Importing Styles

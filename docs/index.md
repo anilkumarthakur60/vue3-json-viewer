@@ -37,6 +37,12 @@ features:
     details: Color-coded nesting levels make it easy to navigate deep structures.
 ---
 
+## Preview
+
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="/images/demo.png" alt="Vue3 JSON Viewer Demo" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</div>
+
 ## Quick Start
 
 ### Installation
