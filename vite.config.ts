@@ -18,6 +18,8 @@ export default defineConfig({
         'src/main.ts',
         'src/**/*.spec.ts',
         'src/**/*.test.ts',
+        'src/nuxt.ts',
+        'src/runtime/**/*',
       ],
     }),
   ],
