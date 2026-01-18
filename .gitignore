@@ -19,4 +19,11 @@ bun.lockb
 yarn.lock
 pnpm-lock.yaml
 npm-shrinkwrap.json
+
+# Vite cache
+.vitepress/
+!docs/.vitepress/theme/
+
+# VitePress
 docs/.vitepress/cache
+docs/.vitepress/dist
