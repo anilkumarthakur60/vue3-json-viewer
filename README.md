@@ -9,6 +9,10 @@ This plugin provides a Vue 3 component for rendering and interacting with JSON d
 - **Reusability**: Customize the viewer using props for various use cases.
 - **Highly Configurable**: Control expanded state, dark mode, and data rendering.
 
+## Demo
+
+![Vue3 JSON Viewer Demo](./public/images/demo.png)
+
 ## Installation
 
 Install the package using your preferred package manager:
