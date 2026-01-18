@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+
+# Source code
+src/
+example/
+docs/
+
+# Configuration files
+vite.config.ts
+vite.config.prod.ts
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+eslint.config.js
+vitest.config.ts
+vercel.json
+
+# Development & build
+.vite/
+.env
+.env.*
+.git/
+.gitignore
+.github/
+
+# Documentation
+docs/
+CONTRIBUTING.md
+NUXT_SUPPORT.md
+
+# Testing
+cypress/
+*.test.ts
+*.spec.ts
+
+# Editor & system files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Other
+.npmrc
+.prettierrc
+.prettierignore
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+npm-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.log
+.turbo/
+.cache/
+*.tsbuildinfo
+
+# Hidden files (except .gitkeep)
+.*
+!.npmignore

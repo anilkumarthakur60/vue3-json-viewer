@@ -22,7 +22,7 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     },
-    "./styles.css": "./dist/style.css"
+    "./styles.css": "./dist/vue3-json-viewer.css"
   },
   "sideEffects": [
     "*.css",
@@ -30,35 +30,39 @@
   ],
   "files": [
     "dist",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
+    "vue",
     "vue3",
+    "vue 3",
+    "vue-component",
+    "typescript",
     "json",
-    "viewer",
     "json-viewer",
-    "vue-json-viewer",
-    "vue3-json-viewer",
-    "dark-mode",
-    "light-mode",
+    "json-tree",
+    "json-tree-view",
+    "json-renderer",
+    "json-formatter",
+    "json-pretty",
+    "tree-view",
+    "object-viewer",
+    "data-viewer",
+    "debugging",
+    "developer-tools",
+    "expand-collapse",
     "collapsible",
     "expandable",
-    "typescript",
-    "customizable",
-    "responsive",
-    "tree-view",
-    "json-tree",
-    "syntax-highlighting",
+    "nested-json",
     "nested-objects",
-    "data-visualization",
-    "developer-tools",
-    "json-formatter",
-    "json-parser",
-    "vue-component"
+    "dark-mode",
+    "light-mode",
+    "theming",
+    "syntax-highlighting",
+    "copy-to-clipboard"
   ],
   "scripts": {
     "dev": "vite",
