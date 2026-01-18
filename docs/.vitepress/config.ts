@@ -1,6 +1,8 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+
+  base: '/vue3-json-viewer/',
   title: 'Vue3 JSON Viewer',
   description:
     'A beautiful, customizable JSON viewer component for Vue 3 with TypeScript support',
