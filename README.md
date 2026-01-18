@@ -33,6 +33,8 @@ pnpm add @anilkumarthakur/vue3-json-viewer
 
 ## Setup
 
+### Vue 3 (SPA)
+
 Import and use the `JsonViewer` component in your Vue 3 application:
 
 1. **Import the Stylesheet**  
@@ -87,6 +89,50 @@ Import and use the `JsonViewer` component in your Vue 3 application:
      />
    </template>
    ```
+
+### Nuxt 3 & Nuxt 4
+
+For **Nuxt 3** and **Nuxt 4**, add the module to your `nuxt.config.ts`:
+
+```typescript
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['@anilkumarthakur/vue3-json-viewer/nuxt'],
+
+  // Optional: Configure the module
+  jsonViewer: {
+    autoImport: true, // Auto-import components globally
+  },
+});
+```
+
+Then use the component directly in your templates without importing:
+
+```vue
+<template>
+  <div>
+    <JsonViewer
+      :data="{ name: 'John', age: 30 }"
+      :darkMode="true"
+    />
+  </div>
+</template>
+```
+
+Or import manually if needed:
+
+```vue
+<script setup>
+  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
+</script>
+
+<template>
+  <JsonViewer
+    :data="{ name: 'John', age: 30 }"
+    :darkMode="true"
+  />
+</template>
+```
 
 ## Props
 

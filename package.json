@@ -22,7 +22,11 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     },
-    "./styles.css": "./dist/style.css"
+    "./styles.css": "./dist/style.css",
+    "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
+      "import": "./dist/nuxt.es.js"
+    }
   },
   "sideEffects": [
     "*.css",
@@ -79,6 +83,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "@nuxt/kit": "^4.0.0",
     "@rushstack/eslint-patch": "^1.15.0",
     "@tsconfig/node20": "^20.1.8",
     "@types/jsdom": "^27.0.0",
