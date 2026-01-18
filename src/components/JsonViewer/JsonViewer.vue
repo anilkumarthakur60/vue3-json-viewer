@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-  import { JsonViewerProps } from '../types/jsonViewerTypes';
+  import type { JsonViewerProps } from '../../types';
   import NestedComponent from './NestedComponent.vue';
 
   withDefaults(defineProps<JsonViewerProps>(), {
-    data: () => {},
+    data: () => ({}),
     level: 0,
     parentKey: '',
     darkMode: true,
-    expanded: false,
+    expanded: true,
   });
 </script>
 

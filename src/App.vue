@@ -2,7 +2,7 @@
   import Moment from 'moment';
 
   import { computed, ref } from 'vue';
-  import { JsonViewer } from './package/components';
+  import { JsonViewer } from './components';
   const jsonData = {
     name: 'John Doe',
     age: 30,

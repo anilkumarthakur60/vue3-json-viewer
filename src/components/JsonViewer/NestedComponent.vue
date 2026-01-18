@@ -139,7 +139,7 @@
         :style="{ borderColor: getBracketColor(level) + '40' }"
       >
         <NestedComponent
-          v-for="(value, key, index) in data"
+          v-for="(value, key, index) in data as Record<string, JsonValue>"
           :key="key"
           :data="value"
           :parentKey="String(key)"
@@ -249,7 +249,7 @@
         :style="{ borderColor: getBracketColor(level) + '40' }"
       >
         <NestedComponent
-          v-for="(item, index) in data"
+          v-for="(item, index) in data as JsonValue[]"
           :key="index"
           :data="item"
           :parentKey="''"
@@ -343,18 +343,9 @@
 
 <script setup lang="ts">
   import { computed, ref, onMounted, watch } from 'vue';
+  import type { JsonValue, NestedComponentProps } from '../../types';
 
-  interface Props {
-    data: any;
-    parentKey?: string;
-    level?: number;
-    darkMode?: boolean;
-    expanded?: boolean;
-    isArrayItem?: boolean;
-    isLast?: boolean;
-  }
-
-  const props = withDefaults(defineProps<Props>(), {
+  const props = withDefaults(defineProps<NestedComponentProps>(), {
     parentKey: '',
     level: 0,
     darkMode: true,
@@ -363,10 +354,10 @@
     isLast: true,
   });
 
-  const isExpanded = ref(props.expanded);
-  const copySuccess = ref(false);
+  const isExpanded = ref<boolean>(props.expanded ?? true);
+  const copySuccess = ref<boolean>(false);
 
-  onMounted(() => {
+  onMounted((): void => {
     // Always expand root level
     if (props.level === 0) {
       isExpanded.value = true;
@@ -376,26 +367,26 @@
   // Watch for changes to the expanded prop - cascade to all children
   watch(
     () => props.expanded,
-    (newValue) => {
-      isExpanded.value = newValue;
+    (newValue: boolean | undefined): void => {
+      isExpanded.value = newValue ?? true;
     },
     { immediate: true },
   );
 
-  function expandAll() {
+  function expandAll(): void {
     if (props.level === 0) {
       isExpanded.value = true;
     }
   }
 
-  function collapseAll() {
+  function collapseAll(): void {
     if (props.level === 0) {
       isExpanded.value = false;
     }
   }
 
-  const isObject = computed(
-    () =>
+  const isObject = computed<boolean>(
+    (): boolean =>
       props.data !== null &&
       typeof props.data === 'object' &&
       !Array.isArray(props.data) &&
@@ -403,25 +394,27 @@
       !(props.data instanceof RegExp),
   );
 
-  const isArray = computed(() => Array.isArray(props.data));
-  const isDate = computed(() => props.data instanceof Date);
-  const isRegExp = computed(() => props.data instanceof RegExp);
+  const isArray = computed<boolean>((): boolean => Array.isArray(props.data));
+  const isDate = computed<boolean>((): boolean => props.data instanceof Date);
+  const isRegExp = computed<boolean>(
+    (): boolean => props.data instanceof RegExp,
+  );
 
-  const isEmpty = computed(() => {
-    if (isArray.value) return (props.data as any[]).length === 0;
+  const isEmpty = computed<boolean>((): boolean => {
+    if (isArray.value) return (props.data as JsonValue[]).length === 0;
     if (isObject.value) return Object.keys(props.data as object).length === 0;
     return false;
   });
 
-  const objectSize = computed(() =>
+  const objectSize = computed<number>((): number =>
     isObject.value ? Object.keys(props.data as object).length : 0,
   );
 
-  const arrayLength = computed(() =>
-    isArray.value ? (props.data as any[]).length : 0,
+  const arrayLength = computed<number>((): number =>
+    isArray.value ? (props.data as JsonValue[]).length : 0,
   );
 
-  const formattedValue = computed(() => {
+  const formattedValue = computed<string>((): string => {
     const val = props.data;
     if (val === null) return 'null';
     if (val === undefined) return 'undefined';
@@ -433,7 +426,7 @@
     return String(val);
   });
 
-  const valueClass = computed(() => {
+  const valueClass = computed<string>((): string => {
     const val = props.data;
 
     if (val === null || val === undefined)
@@ -452,7 +445,7 @@
     return props.darkMode ? 'jv-value-dark' : 'jv-value-light';
   });
 
-  function toggle() {
+  function toggle(): void {
     isExpanded.value = !isExpanded.value;
   }
 
@@ -471,7 +464,7 @@
       if (Array.isArray(val)) {
         return val.length === 0 ? '#9399b2' : '#89b4fa'; // Gray for empty, Blue for array
       }
-      if (typeof val === 'object') {
+      if (typeof val === 'object' && val !== null) {
         return Object.keys(val).length === 0 ? '#9399b2' : '#f5c2e7'; // Gray for empty, Pink for object
       }
       return '#cdd6f4'; // Default
@@ -486,7 +479,7 @@
       if (Array.isArray(val)) {
         return val.length === 0 ? '#868e96' : '#1971c2'; // Gray for empty, Blue for array
       }
-      if (typeof val === 'object') {
+      if (typeof val === 'object' && val !== null) {
         return Object.keys(val).length === 0 ? '#868e96' : '#c2255c'; // Gray for empty, Pink for object
       }
       return '#343a40'; // Default
@@ -495,7 +488,7 @@
 
   // Rainbow colors for brackets (based on level)
   function getBracketColor(level: number): string {
-    const darkColors = [
+    const darkColors: string[] = [
       '#f38ba8', // Red
       '#fab387', // Peach
       '#f9e2af', // Yellow
@@ -503,7 +496,7 @@
       '#89dceb', // Sky
       '#cba6f7', // Mauve
     ];
-    const lightColors = [
+    const lightColors: string[] = [
       '#e03131', // Red
       '#e8590c', // Orange
       '#f59f00', // Yellow
@@ -512,14 +505,14 @@
       '#7048e8', // Purple
     ];
     const colors = props.darkMode ? darkColors : lightColors;
-    return colors[level % colors.length];
+    return colors[level % colors.length] ?? colors[0] ?? '#cdd6f4';
   }
 
-  function copyToClipboard() {
+  function copyToClipboard(): void {
     const text = JSON.stringify(props.data, null, 2);
-    navigator.clipboard.writeText(text).then(() => {
+    navigator.clipboard.writeText(text).then((): void => {
       copySuccess.value = true;
-      setTimeout(() => {
+      setTimeout((): void => {
         copySuccess.value = false;
       }, 1500);
     });
