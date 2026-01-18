@@ -84,7 +84,10 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/anilkumarthakur60/vue3-json-viewer' },
+      {
+        icon: 'github',
+        link: 'https://github.com/anilkumarthakur60/vue3-json-viewer',
+      },
       {
         icon: 'npm',
         link: 'https://www.npmjs.com/package/@anilkumarthakur/vue3-json-viewer',
@@ -101,7 +104,8 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/anilkumarthakur60/vue3-json-viewer/edit/main/docs/:path',
+      pattern:
+        'https://github.com/anilkumarthakur60/vue3-json-viewer/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
   },
