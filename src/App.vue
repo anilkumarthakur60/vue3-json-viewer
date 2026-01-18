@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import Moment from 'moment';
-  import './package/style/global.scss';
 
   import { computed, ref } from 'vue';
   import { JsonViewer } from './package/components';
