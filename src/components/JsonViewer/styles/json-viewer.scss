@@ -1,0 +1,376 @@
+/**
+ * Vue3 JSON Viewer - Styles
+ * 
+ * Main stylesheet for the JSON Viewer component
+ */
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+// Dark mode colors (Catppuccin-inspired)
+$dark-bg-start: #1e1e2e;
+$dark-bg-end: #2d2d3f;
+$dark-text: #cdd6f4;
+$dark-blue: #89b4fa;
+$dark-green: #a6e3a1;
+$dark-peach: #fab387;
+$dark-yellow: #f9e2af;
+$dark-pink: #f38ba8;
+$dark-teal: #94e2d5;
+$dark-purple: #cba6f7;
+$dark-object-pink: #f5c2e7;
+$dark-gray: #9399b2;
+$dark-sky: #89dceb;
+
+// Light mode colors
+$light-bg-start: #f8f9fa;
+$light-bg-end: #e9ecef;
+$light-text: #343a40;
+$light-blue: #1971c2;
+$light-green: #2f9e44;
+$light-orange: #e8590c;
+$light-yellow: #f59f00;
+$light-red: #e03131;
+$light-teal: #0c8599;
+$light-purple: #7048e8;
+$light-object-pink: #c2255c;
+$light-gray: #868e96;
+$light-cyan: #1098ad;
+
+// ============================================================================
+// Base Styles
+// ============================================================================
+
+.jv-node {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Menlo', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.jv-root {
+  padding: 16px;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.jv-dark {
+  background: linear-gradient(135deg, $dark-bg-start 0%, $dark-bg-end 100%);
+  color: $dark-text;
+}
+
+.jv-light {
+  background: linear-gradient(135deg, $light-bg-start 0%, $light-bg-end 100%);
+  color: $light-text;
+}
+
+// ============================================================================
+// Root Controls
+// ============================================================================
+
+.jv-root-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.jv-control-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &-dark {
+    background: rgba($dark-blue, 0.1);
+    border-color: rgba($dark-blue, 0.3);
+    color: $dark-blue;
+
+    &:hover {
+      background: rgba($dark-blue, 0.2);
+      border-color: rgba($dark-blue, 0.5);
+    }
+  }
+
+  &-light {
+    background: rgba($light-blue, 0.1);
+    border-color: rgba($light-blue, 0.3);
+    color: $light-blue;
+
+    &:hover {
+      background: rgba($light-blue, 0.2);
+      border-color: rgba($light-blue, 0.5);
+    }
+  }
+}
+
+// ============================================================================
+// Layout
+// ============================================================================
+
+.jv-item {
+  margin-left: 0;
+}
+
+.jv-children {
+  margin-left: 20px;
+  padding-left: 12px;
+  border-left: 2px solid;
+}
+
+.jv-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 2px 0;
+  position: relative;
+
+  &:hover .jv-copy-btn {
+    opacity: 1;
+  }
+}
+
+// ============================================================================
+// Key Styles
+// ============================================================================
+
+.jv-key {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.jv-clickable {
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.jv-colon {
+  margin-right: 4px;
+}
+
+// ============================================================================
+// Type Badges
+// ============================================================================
+
+.jv-type-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.jv-type-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.jv-type-object {
+  background: rgba($dark-object-pink, 0.2);
+  color: $dark-object-pink;
+
+  .jv-light & {
+    background: rgba($light-object-pink, 0.1);
+    color: $light-object-pink;
+  }
+}
+
+.jv-type-array {
+  background: rgba($dark-blue, 0.2);
+  color: $dark-blue;
+
+  .jv-light & {
+    background: rgba($light-blue, 0.1);
+    color: $light-blue;
+  }
+}
+
+// ============================================================================
+// Toggle & Brackets
+// ============================================================================
+
+.jv-toggle {
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &-dark {
+    color: $dark-text;
+  }
+
+  &-light {
+    color: #495057;
+  }
+}
+
+.jv-bracket {
+  font-weight: 600;
+
+  &-dark {
+    color: $dark-text;
+  }
+
+  &-light {
+    color: #495057;
+  }
+}
+
+// ============================================================================
+// Count Badge
+// ============================================================================
+
+.jv-count {
+  margin-left: 8px;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &-dark {
+    background: rgba($dark-blue, 0.15);
+    color: $dark-blue;
+  }
+
+  &-light {
+    background: rgba($light-blue, 0.1);
+    color: $light-blue;
+  }
+}
+
+// ============================================================================
+// Value Colors
+// ============================================================================
+
+.jv-string {
+  &-dark {
+    color: $dark-green;
+  }
+
+  &-light {
+    color: $light-green;
+  }
+}
+
+.jv-number {
+  &-dark {
+    color: $dark-peach;
+  }
+
+  &-light {
+    color: $light-orange;
+  }
+}
+
+.jv-boolean {
+  &-dark {
+    color: $dark-yellow;
+  }
+
+  &-light {
+    color: $light-yellow;
+  }
+}
+
+.jv-null {
+  font-style: italic;
+
+  &-dark {
+    color: $dark-pink;
+  }
+
+  &-light {
+    color: $light-red;
+  }
+}
+
+.jv-date {
+  &-dark {
+    color: $dark-teal;
+  }
+
+  &-light {
+    color: $light-teal;
+  }
+}
+
+.jv-regexp {
+  &-dark {
+    color: $dark-purple;
+  }
+
+  &-light {
+    color: $light-purple;
+  }
+}
+
+.jv-comma {
+  color: inherit;
+  opacity: 0.6;
+}
+
+// ============================================================================
+// Copy Button
+// ============================================================================
+
+.jv-copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s;
+  background: transparent;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &-dark {
+    color: $dark-blue;
+
+    &:hover {
+      background: rgba($dark-blue, 0.15);
+    }
+  }
+
+  &-light {
+    color: $light-blue;
+
+    &:hover {
+      background: rgba($light-blue, 0.1);
+    }
+  }
+}
+
+.jv-primitive {
+  .jv-copy-btn {
+    opacity: 0;
+  }
+
+  &:hover .jv-copy-btn {
+    opacity: 1;
+  }
+}
