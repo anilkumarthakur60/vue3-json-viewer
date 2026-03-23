@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches: ['**']
@@ -8,11 +7,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
   pages: write
   id-token: write
 
-# ✅ Cancel older runs of THIS workflow on the same branch/ref
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -28,21 +27,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-
       - name: Install dependencies
         run: npm ci
         env:
           CI: true
-
       - name: Build project
         run: npm run build
-
       - name: Upload coverage report
         if: success()
         uses: actions/upload-artifact@v4
@@ -58,22 +53,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
       - name: Install dependencies
         run: npm ci
-
       - name: Build with VitePress
         run: npm run docs:build
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
