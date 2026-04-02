@@ -27,6 +27,7 @@ type JsonValue =
   | undefined
   | Date
   | RegExp
+  | ((...args: unknown[]) => unknown)
   | JsonObject
   | JsonArray;
 ```
