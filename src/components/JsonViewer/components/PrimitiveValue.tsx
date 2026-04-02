@@ -39,7 +39,10 @@ export default defineComponent({
         <div class="jv-item jv-primitive">
           <div class="jv-row">
             {showKey && (
-              <span class="jv-key" style={{ color: props.keyColor }}>
+              <span
+                class="jv-key"
+                style={{ color: props.keyColor }}
+              >
                 "{props.parentKey}"
               </span>
             )}
@@ -48,7 +51,10 @@ export default defineComponent({
               {formatValue(props.data)}
             </span>
             {!props.isLast && <span class="jv-comma">,</span>}
-            <CopyButton darkMode={props.darkMode} data={props.data} />
+            <CopyButton
+              darkMode={props.darkMode}
+              data={props.data}
+            />
           </div>
         </div>
       );

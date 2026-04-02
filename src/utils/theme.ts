@@ -54,11 +54,21 @@ const LIGHT_PALETTE: ColorPalette = {
 };
 
 const DARK_BRACKET_COLORS: readonly string[] = [
-  '#f38ba8', '#fab387', '#f9e2af', '#a6e3a1', '#89dceb', '#cba6f7',
+  '#f38ba8',
+  '#fab387',
+  '#f9e2af',
+  '#a6e3a1',
+  '#89dceb',
+  '#cba6f7',
 ];
 
 const LIGHT_BRACKET_COLORS: readonly string[] = [
-  '#e03131', '#e8590c', '#f59f00', '#2f9e44', '#1098ad', '#7048e8',
+  '#e03131',
+  '#e8590c',
+  '#f59f00',
+  '#2f9e44',
+  '#1098ad',
+  '#7048e8',
 ];
 
 /** Returns the key color based on the value's type and theme mode */
@@ -71,8 +81,12 @@ export const getKeyColor = (value: JsonValue, darkMode: boolean): string => {
   if (isJsonBoolean(value)) return palette.boolean;
   if (isJsonDate(value)) return palette.date;
   if (isJsonRegExp(value)) return palette.regexp;
-  if (isJsonArray(value)) return value.length === 0 ? palette.arrayEmpty : palette.array;
-  if (isJsonObject(value)) return Object.keys(value).length === 0 ? palette.objectEmpty : palette.object;
+  if (isJsonArray(value))
+    return value.length === 0 ? palette.arrayEmpty : palette.array;
+  if (isJsonObject(value))
+    return Object.keys(value).length === 0
+      ? palette.objectEmpty
+      : palette.object;
   return palette.default;
 };
 

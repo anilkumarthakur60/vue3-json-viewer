@@ -111,7 +111,10 @@ const JsonNode = defineComponent({
           )}
           {isExpanded.value && !isEmpty && (
             <div class="jv-row">
-              <span class="jv-bracket" style={{ color: bracketColor }}>
+              <span
+                class="jv-bracket"
+                style={{ color: bracketColor }}
+              >
                 {closeBracket}
                 {props.isLast ? '' : ','}
               </span>
@@ -136,7 +139,8 @@ const JsonNode = defineComponent({
         },
       ];
 
-      const showRootControls = isRoot && (isJsonObject(data) || isJsonArray(data));
+      const showRootControls =
+        isRoot && (isJsonObject(data) || isJsonArray(data));
 
       if (isJsonObject(data)) {
         const entries = Object.entries(data);
@@ -155,8 +159,9 @@ const JsonNode = defineComponent({
       }
 
       if (isJsonArray(data)) {
-        const entries: ReadonlyArray<readonly [string, JsonValue]> =
-          data.map((item, i) => [String(i), item] as const);
+        const entries: ReadonlyArray<readonly [string, JsonValue]> = data.map(
+          (item, i) => [String(i), item] as const,
+        );
         return (
           <div class={nodeClass}>
             {showRootControls && (

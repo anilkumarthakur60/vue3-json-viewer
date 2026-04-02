@@ -1,7 +1,6 @@
 import type { JsonValue, JsonObject, JsonArray } from '../types';
 
-export const isJsonNull = (value: JsonValue): value is null =>
-  value === null;
+export const isJsonNull = (value: JsonValue): value is null => value === null;
 
 export const isJsonUndefined = (value: JsonValue): value is undefined =>
   value === undefined;
@@ -24,8 +23,9 @@ export const isJsonRegExp = (value: JsonValue): value is RegExp =>
 export const isJsonArray = (value: JsonValue): value is JsonArray =>
   Array.isArray(value);
 
-export const isJsonFunction = (value: JsonValue): value is (...args: unknown[]) => unknown =>
-  typeof value === 'function';
+export const isJsonFunction = (
+  value: JsonValue,
+): value is (...args: unknown[]) => unknown => typeof value === 'function';
 
 /** Returns true for plain objects (excludes Date, RegExp, Array, Function) */
 export const isJsonObject = (value: JsonValue): value is JsonObject =>
@@ -36,5 +36,6 @@ export const isJsonObject = (value: JsonValue): value is JsonObject =>
   !(value instanceof RegExp);
 
 /** Returns true for container types (object or array) that have expandable children */
-export const isContainer = (value: JsonValue): value is JsonObject | JsonArray =>
-  isJsonObject(value) || isJsonArray(value);
+export const isContainer = (
+  value: JsonValue,
+): value is JsonObject | JsonArray => isJsonObject(value) || isJsonArray(value);

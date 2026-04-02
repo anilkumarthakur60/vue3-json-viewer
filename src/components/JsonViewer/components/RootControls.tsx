@@ -49,11 +49,19 @@ export default defineComponent({
 
     return () => (
       <div class="jv-root-controls">
-        <button class={buttonClass(props.darkMode)} onClick={handleExpandAll} title="Expand All">
+        <button
+          class={buttonClass(props.darkMode)}
+          onClick={handleExpandAll}
+          title="Expand All"
+        >
           <ExpandIcon />
           Expand All
         </button>
-        <button class={buttonClass(props.darkMode)} onClick={handleCollapseAll} title="Collapse All">
+        <button
+          class={buttonClass(props.darkMode)}
+          onClick={handleCollapseAll}
+          title="Collapse All"
+        >
           <CollapseIcon />
           Collapse All
         </button>

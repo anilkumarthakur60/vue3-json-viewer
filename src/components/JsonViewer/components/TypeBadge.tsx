@@ -11,7 +11,12 @@ export default defineComponent({
   },
   setup(props: TypeBadgeProps, { slots }) {
     return () => (
-      <span class={['jv-type-badge', props.type === 'object' ? 'jv-type-object' : 'jv-type-array']}>
+      <span
+        class={[
+          'jv-type-badge',
+          props.type === 'object' ? 'jv-type-object' : 'jv-type-array',
+        ]}
+      >
         {slots['default']?.()}
       </span>
     );

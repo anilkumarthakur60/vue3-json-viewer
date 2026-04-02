@@ -1,6 +1,14 @@
 import { defineComponent, type PropType } from 'vue';
-import type { JsonValue, ContainerKind, ContainerRowProps } from '../../../types';
-import { getBrackets, getBadgeContent, getCountLabel } from '../../../utils/formatters';
+import type {
+  JsonValue,
+  ContainerKind,
+  ContainerRowProps,
+} from '../../../types';
+import {
+  getBrackets,
+  getBadgeContent,
+  getCountLabel,
+} from '../../../utils/formatters';
 import CopyButton from './CopyButton';
 import TypeBadge from './TypeBadge';
 
@@ -56,7 +64,11 @@ export default defineComponent({
 
     return () => {
       const [open, close] = getBrackets(props.kind);
-      const badgeContent = getBadgeContent(props.kind, props.isEmpty, props.size);
+      const badgeContent = getBadgeContent(
+        props.kind,
+        props.isEmpty,
+        props.size,
+      );
       const countLabel = getCountLabel(props.kind, props.size);
       const showKey = !props.isArrayItem && props.parentKey;
 
@@ -72,7 +84,10 @@ export default defineComponent({
             </span>
           )}
           {showKey && (
-            <span class="jv-colon jv-clickable" onClick={handleToggle}>
+            <span
+              class="jv-colon jv-clickable"
+              onClick={handleToggle}
+            >
               :
             </span>
           )}
@@ -83,20 +98,29 @@ export default defineComponent({
           >
             <TypeBadge type={props.kind}>{badgeContent}</TypeBadge>
             {props.isEmpty ? (
-              <span>{open}{close}</span>
+              <span>
+                {open}
+                {close}
+              </span>
             ) : (
               <span>{props.isExpanded ? open : `${open}...${close}`}</span>
             )}
           </span>
           {!props.isEmpty && !props.isExpanded && (
             <span
-              class={['jv-count', props.darkMode ? 'jv-count-dark' : 'jv-count-light']}
+              class={[
+                'jv-count',
+                props.darkMode ? 'jv-count-dark' : 'jv-count-light',
+              ]}
               onClick={handleToggle}
             >
               {countLabel}
             </span>
           )}
-          <CopyButton darkMode={props.darkMode} data={props.data} />
+          <CopyButton
+            darkMode={props.darkMode}
+            data={props.data}
+          />
         </div>
       );
     };
