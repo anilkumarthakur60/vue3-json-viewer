@@ -33,7 +33,7 @@ export default defineConfig([
     rules: {
       'no-console': 'off',
       'vue/multi-word-component-names': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-empty-object-type': 'off',
     },
   },

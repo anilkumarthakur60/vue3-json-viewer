@@ -7,45 +7,39 @@
  */
 
 import type { App, Plugin } from 'vue';
-import { JsonViewer, NestedComponent } from './components';
+import { JsonViewer, JsonNode } from './components';
 import type {
   JsonViewerProps,
-  NestedComponentProps,
+  JsonNodeProps,
   JsonValue,
   JsonPrimitive,
   JsonObject,
   JsonArray,
   JsonViewerTheme,
   ThemeColors,
+  ContainerKind,
 } from './types';
 
-/**
- * Vue plugin for global registration of JsonViewer components
- */
+/** Vue plugin for global registration of JsonViewer components */
 const JsonViewerPlugin: Plugin = {
   install(app: App): void {
     app.component('JsonViewer', JsonViewer);
-    app.component('NestedComponent', NestedComponent);
+    app.component('JsonNode', JsonNode);
   },
 };
 
-// Named exports for components
-export { JsonViewer, NestedComponent };
-
-// Named export for plugin
+export { JsonViewer, JsonNode };
 export { JsonViewerPlugin };
-
-// Default export is the plugin
 export default JsonViewerPlugin;
 
-// Type exports
 export type {
   JsonViewerProps,
-  NestedComponentProps,
+  JsonNodeProps,
   JsonValue,
   JsonPrimitive,
   JsonObject,
   JsonArray,
   JsonViewerTheme,
   ThemeColors,
+  ContainerKind,
 };

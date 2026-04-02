@@ -30,7 +30,6 @@ CONTRIBUTING.md
 NUXT_SUPPORT.md
 
 # Testing
-cypress/
 *.test.ts
 *.spec.ts
 

@@ -1,19 +1,12 @@
 import { defineComponent, type PropType } from 'vue';
 import type { JsonValue, JsonViewerProps } from '../../types';
-import NestedComponent from './NestedComponent';
+import JsonNode from './JsonNode';
 
 export default defineComponent({
   name: 'JsonViewer',
   props: {
     data: {
-      type: [
-        Object,
-        Array,
-        String,
-        Number,
-        Boolean,
-        null,
-      ] as PropType<JsonValue>,
+      type: [Object, Array, String, Number, Boolean] as PropType<JsonValue>,
       default: () => ({}),
     },
     level: {
@@ -21,7 +14,7 @@ export default defineComponent({
       default: 0,
     },
     parentKey: {
-      type: String,
+      type: [String, Number] as PropType<string | number>,
       default: '',
     },
     darkMode: {
@@ -35,7 +28,7 @@ export default defineComponent({
   },
   setup(props: JsonViewerProps) {
     return () => (
-      <NestedComponent
+      <JsonNode
         darkMode={props.darkMode ?? true}
         data={props.data ?? {}}
         level={props.level ?? 0}
