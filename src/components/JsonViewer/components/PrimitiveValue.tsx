@@ -7,8 +7,15 @@ export default defineComponent({
   name: 'PrimitiveValue',
   props: {
     data: {
-      type: [Object, Array, String, Number, Boolean] as PropType<JsonValue>,
-      required: true,
+      type: [
+        Object,
+        Array,
+        String,
+        Number,
+        Boolean,
+        Function,
+      ] as PropType<JsonValue>,
+      default: undefined,
     },
     parentKey: {
       type: [String, Number] as PropType<string | number>,

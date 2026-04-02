@@ -48,8 +48,15 @@ export default defineComponent({
       required: true,
     },
     data: {
-      type: [Object, Array, String, Number, Boolean] as PropType<JsonValue>,
-      required: true,
+      type: [
+        Object,
+        Array,
+        String,
+        Number,
+        Boolean,
+        Function,
+      ] as PropType<JsonValue>,
+      default: undefined,
     },
   },
   setup(props: CopyButtonProps) {
