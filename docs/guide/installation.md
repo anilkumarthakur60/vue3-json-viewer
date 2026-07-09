@@ -2,7 +2,7 @@
 
 ## Package Manager
 
-Install the package using your preferred package manager:
+Install with your preferred package manager:
 
 ::: code-group
 
@@ -24,9 +24,12 @@ bun add @anilkumarthakur/vue3-json-viewer
 
 :::
 
+**Requirements:** Vue **3.3.0+** (declared as a peer dependency).
+
 ## Importing Styles
 
-The component requires CSS to be imported. Add this to your main entry file or component:
+The component's CSS is **not** injected automatically. Import it once, anywhere
+in your app (entry file or a component):
 
 ```ts
 import '@anilkumarthakur/vue3-json-viewer/styles.css';
@@ -36,7 +39,7 @@ import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
 ### Local Registration (Recommended)
 
-Import and use the component directly in your Vue files:
+Import the component directly where you use it — this is tree-shakeable:
 
 ```vue
 <script setup lang="ts">
@@ -51,7 +54,7 @@ Import and use the component directly in your Vue files:
 
 ### Global Registration
 
-Register the component globally using the plugin:
+Register globally with the plugin (see the [Plugin API](/api/plugin)):
 
 ```ts
 // main.ts
@@ -65,33 +68,34 @@ app.use(JsonViewerPlugin);
 app.mount('#app');
 ```
 
-After global registration, you can use `<JsonViewer>` anywhere without importing:
-
-```vue
-<template>
-  <JsonViewer
-    :data="yourData"
-    :darkMode="true"
-  />
-</template>
-```
+After that you can use `<JsonViewer>` and `<JsonNode>` anywhere without importing.
 
 ## TypeScript Support
 
-The package includes TypeScript definitions out of the box. You can import types:
+Type definitions ship with the package. Import types from the package root:
 
 ```ts
 import type {
   JsonViewerProps,
+  JsonViewerEmits,
+  ToggleEventPayload,
+  CopyEventPayload,
   JsonValue,
   JsonObject,
   JsonArray,
 } from '@anilkumarthakur/vue3-json-viewer';
 ```
 
+See the full list in the [Types reference](/api/types).
+
+## SSR / Nuxt
+
+The component is SSR-safe. For Nuxt and Vue SSR specifics, see the
+[SSR & Nuxt guide](/guide/ssr).
+
 ## CDN Usage
 
-You can also use the component via CDN:
+Use the UMD build directly in the browser:
 
 ```html
 <script src="https://unpkg.com/vue@3"></script>
@@ -101,12 +105,12 @@ You can also use the component via CDN:
   href="https://unpkg.com/@anilkumarthakur/vue3-json-viewer/dist/vue3-json-viewer.css"
 />
 
+<div id="app"></div>
+
 <script>
   const app = Vue.createApp({
     data() {
-      return {
-        jsonData: { hello: 'world' },
-      };
+      return { jsonData: { hello: 'world' } };
     },
     template: '<json-viewer :data="jsonData" />',
   });
@@ -115,9 +119,12 @@ You can also use the component via CDN:
 </script>
 ```
 
-## Verifying Installation
+::: tip Global name
+The UMD global is `Vue3JsonViewer`, exposing `JsonViewer`, `JsonNode`, and
+`JsonViewerPlugin`.
+:::
 
-After installation, create a simple test:
+## Verifying Installation
 
 ```vue
 <script setup lang="ts">
@@ -133,9 +140,9 @@ After installation, create a simple test:
 <template>
   <JsonViewer
     :data="testData"
-    :darkMode="true"
+    :dark-mode="true"
   />
 </template>
 ```
 
-If you see a beautifully formatted JSON display, you're all set! 🎉
+If you see a formatted JSON tree, you're all set! 🎉

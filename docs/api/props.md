@@ -1,22 +1,23 @@
 # Props
 
-Complete reference for all JsonViewer component props.
+Complete reference for the `JsonViewer` (and `JsonNode`) props.
 
-## JsonViewer Props
+## Overview
 
-| Prop        | Type        | Default  | Description                          |
-| ----------- | ----------- | -------- | ------------------------------------ |
-| `data`      | `JsonValue` | Required | The JSON data to display             |
-| `darkMode`  | `boolean`   | `true`   | Enable dark mode theme               |
-| `expanded`  | `boolean`   | `true`   | Initial expanded state for all nodes |
-| `level`     | `number`    | `0`      | Nesting level (used internally)      |
-| `parentKey` | `string`    | `''`     | Parent key name (used internally)    |
+| Prop        | Type              | Default    | Description                          |
+| ----------- | ----------------- | ---------- | ------------------------------------ |
+| `data`      | `JsonValue`       | `{}`       | The value to display                 |
+| `darkMode`  | `boolean`         | `true`     | Use the dark theme                   |
+| `expanded`  | `boolean`         | `true`     | Initial expanded state for all nodes |
+| `level`     | `number`          | `0`        | Nesting level (internal)             |
+| `parentKey` | `string \| number`| `''`       | Parent key name (internal)           |
 
-## Detailed Prop Descriptions
+For events, see the [Events reference](/api/events).
 
-### data
+## `data`
 
-The JSON data to visualize. Accepts any valid JSON value.
+The value to visualize. Accepts any [`JsonValue`](/api/types#jsonvalue) —
+objects, arrays, primitives, `Date`, `RegExp`, and functions.
 
 ```ts
 type JsonValue =
@@ -32,8 +33,6 @@ type JsonValue =
   | JsonArray;
 ```
 
-**Examples:**
-
 ```vue
 <!-- Object -->
 <JsonViewer :data="{ name: 'John', age: 30 }" />
@@ -43,125 +42,82 @@ type JsonValue =
 
 <!-- Primitive -->
 <JsonViewer :data="'Hello World'" />
-
-<!-- Complex nested data -->
-<JsonViewer :data="complexApiResponse" />
 ```
 
-### darkMode
+## `darkMode`
 
-Controls the color theme of the viewer.
-
-- `true` (default): Dark theme with gradient background
-- `false`: Light theme with clean background
+Controls the theme. `true` (default) = dark, `false` = light.
 
 ```vue
-<!-- Dark mode (default) -->
-<JsonViewer :data="data" :darkMode="true" />
-
-<!-- Light mode -->
-<JsonViewer :data="data" :darkMode="false" />
-
-<!-- Reactive -->
-<JsonViewer :data="data" :darkMode="isDarkMode" />
+<JsonViewer :data="data" :dark-mode="true" />
+<JsonViewer :data="data" :dark-mode="false" />
+<JsonViewer :data="data" :dark-mode="isDarkMode" />
 ```
 
-### expanded
+## `expanded`
 
-Controls the initial expand/collapse state of all objects and arrays.
-
-- `true` (default): All nodes start expanded
-- `false`: All nodes start collapsed
+Initial expand/collapse state for all nodes. `true` (default) = expanded,
+`false` = collapsed. The prop is **reactive** — changing it re-seeds the tree.
 
 ```vue
-<!-- Expanded (default) -->
 <JsonViewer :data="data" :expanded="true" />
-
-<!-- Collapsed -->
 <JsonViewer :data="data" :expanded="false" />
 
-<!-- Reactive with key for re-render -->
-<JsonViewer :data="data" :expanded="isExpanded" :key="String(isExpanded)" />
+<!-- Reactive — no :key needed -->
+<JsonViewer :data="data" :expanded="isExpanded" />
 ```
 
-### level
-
-::: warning Internal Use
-This prop is used internally for recursion. You typically don't need to set this.
+::: warning No `:key` workaround
+Don't add `:key="String(isExpanded)"`. It was an old workaround for a fixed bug
+and it discards the [persistent expand state](/guide/expand-collapse). Just bind
+`:expanded`.
 :::
 
-The current nesting depth. Used for:
+## Internal Props
 
-- Rainbow bracket colors
-- Determining root level controls
+These exist for the internal recursion. You normally never set them.
 
-```vue
-<!-- Default, starts at root -->
-<JsonViewer :data="data" :level="0" />
-```
-
-### parentKey
+### `level`
 
 ::: warning Internal Use
-This prop is used internally for recursion. You typically don't need to set this.
+Used internally for recursion.
 :::
 
-The property name of the current node in its parent object.
+The current nesting depth. Drives rainbow bracket colors and whether the root
+controls render (`level === 0`).
+
+### `parentKey`
+
+::: warning Internal Use
+Used internally for recursion.
+:::
+
+The property name/index of the current node within its parent.
 
 ## TypeScript Interface
 
 ```ts
 interface JsonViewerProps {
-  /**
-   * The JSON data to display
-   */
+  /** The JSON data to display */
   data: JsonValue;
-
-  /**
-   * Enable dark mode theme
-   * @default true
-   */
+  /** Enable dark mode theme @default true */
   darkMode?: boolean;
-
-  /**
-   * Initial expanded state for all nodes
-   * @default true
-   */
+  /** Initial expanded state for all nodes @default true */
   expanded?: boolean;
-
-  /**
-   * Nesting level (internal use)
-   * @default 0
-   */
+  /** Nesting level (internal use) @default 0 */
   level?: number;
-
-  /**
-   * Parent key name (internal use)
-   * @default ''
-   */
+  /** Parent key name (internal use) @default '' */
   parentKey?: string | number;
 }
 ```
 
-## Usage Examples
-
-### Basic Usage
-
-```vue
-<JsonViewer :data="myData" />
-```
-
-### With All Props
-
-```vue
-<JsonViewer :data="jsonData" :darkMode="true" :expanded="true" :level="0" />
-```
-
-### Reactive Props
+## Reactive Example
 
 ```vue
 <script setup lang="ts">
   import { ref } from 'vue';
+  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
+  import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
   const isDark = ref(true);
   const isExpanded = ref(true);
@@ -171,9 +127,8 @@ interface JsonViewerProps {
 <template>
   <JsonViewer
     :data="data"
-    :darkMode="isDark"
+    :dark-mode="isDark"
     :expanded="isExpanded"
-    :key="`${isDark}-${isExpanded}`"
   />
 </template>
 ```

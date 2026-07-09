@@ -1,117 +1,91 @@
 # Copy to Clipboard
 
-Vue3 JSON Viewer includes a built-in copy to clipboard feature for easy data extraction.
+Every node has a copy button that copies its value as formatted JSON.
 
 ## How It Works
 
-Hover over any JSON node to reveal the copy button. Click it to copy the value to your clipboard.
+Hover over any row to reveal the copy button, then click it. The value is
+serialized with `JSON.stringify(value, null, 2)` and written to the clipboard.
 
-## What Gets Copied
-
-The copy function uses `JSON.stringify(value, null, 2)` to create a formatted, readable JSON string:
-
-```json
-{
-  "name": "John Doe",
-  "age": 30
-}
-```
+<Demo :json='`{
+  "user": { "name": "Ada", "email": "ada@example.com" },
+  "roles": ["admin", "editor"]
+}`' />
 
 ## Visual Feedback
 
-When you click the copy button:
+1. **Before copy** — a clipboard icon.
+2. **After a successful copy** — a checkmark ✓.
+3. **Auto-reset** — back to the clipboard icon after 1.5 seconds.
 
-1. **Before Copy**: Shows a clipboard icon
-2. **After Copy**: Shows a checkmark icon ✓
-3. **Auto-reset**: Returns to clipboard icon after 1.5 seconds
+The icon changes **only when the copy actually succeeds**.
 
-## Copy Different Node Types
+## Robust by Default
 
-### Copying Objects
+Copying is designed never to throw and to work in as many environments as
+possible:
 
-```json
-// Copies the entire object with formatting
-{
-  "user": {
-    "name": "John",
-    "email": "john@example.com"
-  }
-}
-```
+- Uses the async **Clipboard API** (`navigator.clipboard.writeText`) when
+  available.
+- Falls back to `document.execCommand('copy')` when the Clipboard API is
+  missing or rejects — so it also works in **non-secure (`http://`) contexts**
+  and older browsers.
+- If the value can't be serialized (for example a **circular reference**), the
+  copy fails gracefully: no icon change, no `copy` event, no thrown error.
 
-### Copying Arrays
+## The `copy` Event
 
-```json
-// Copies the full array
-["reading", "traveling", "coding"]
-```
-
-### Copying Primitives
-
-```json
-// String
-"Hello World"
-
-// Number
-42
-
-// Boolean
-true
-```
-
-## Example Usage
+A successful copy emits a typed [`copy` event](/api/events) so you can audit or
+react to it:
 
 ```vue
 <script setup lang="ts">
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
+  import type { CopyEventPayload } from '@anilkumarthakur/vue3-json-viewer';
 
-  const apiResponse = {
-    status: 200,
-    data: {
-      users: [
-        { id: 1, name: 'Alice' },
-        { id: 2, name: 'Bob' },
-      ],
-    },
-    timestamp: new Date().toISOString(),
+  const data = { name: 'John Doe', age: 30 };
+
+  const onCopy = (e: CopyEventPayload) => {
+    // { path: '$.name', key: 'name', value: 'John Doe' }
+    console.log('copied', e.path, e.value);
   };
 </script>
 
 <template>
-  <div>
-    <p>Hover over any value and click the copy icon to copy it!</p>
-    <JsonViewer
-      :data="apiResponse"
-      :darkMode="true"
-    />
-  </div>
+  <JsonViewer
+    :data="data"
+    @copy="onCopy"
+  />
 </template>
 ```
 
-## Browser Compatibility
+## What Gets Copied
 
-The copy feature uses the modern Clipboard API (`navigator.clipboard.writeText`). This is supported in:
+| Node       | Clipboard contents               |
+| ---------- | -------------------------------- |
+| Object     | the object, pretty-printed       |
+| Array      | the array, pretty-printed        |
+| String     | `"Hello World"`                  |
+| Number     | `42`                             |
+| Boolean    | `true`                           |
 
-- Chrome 66+
-- Firefox 63+
-- Safari 13.1+
-- Edge 79+
+Values that `JSON.stringify` drops (like `undefined` or functions at the top
+level) fall back to their `String()` form.
 
-::: warning HTTPS Required
-The Clipboard API requires a secure context (HTTPS) or localhost. It won't work on plain HTTP connections.
-:::
+## Styling the Copy Button
 
-## Styling
+The button uses the `jv-copy-btn` class (with `jv-copy-btn-dark` /
+`jv-copy-btn-light` variants). It's hidden until you hover the row — to always
+show it:
 
-The copy button styling adapts to the theme:
+```css
+.jv-copy-btn {
+  opacity: 0.4 !important;
+}
+.jv-copy-btn:hover {
+  opacity: 1 !important;
+}
+```
 
-### Dark Mode
-
-- Icon color: `#89b4fa` (blue)
-- Hover background: `rgba(137, 180, 250, 0.15)`
-
-### Light Mode
-
-- Icon color: `#1971c2` (blue)
-- Hover background: `rgba(25, 113, 194, 0.1)`
+See [Custom Styling](/guide/styling) for the full class reference.

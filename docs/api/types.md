@@ -1,94 +1,108 @@
 # Types
 
-Complete TypeScript type definitions exported by Vue3 JSON Viewer.
+All TypeScript types exported by Vue3 JSON Viewer.
 
 ## Importing Types
 
 ```ts
 import type {
+  // Props
   JsonViewerProps,
-  NestedComponentProps,
+  JsonNodeProps,
+  // Events
+  JsonViewerEmits,
+  ToggleEventPayload,
+  CopyEventPayload,
+  // Values
   JsonValue,
   JsonPrimitive,
   JsonObject,
   JsonArray,
+  ContainerKind,
+  // Theme
   ThemeColors,
   JsonViewerTheme,
 } from '@anilkumarthakur/vue3-json-viewer';
 ```
 
-## Core Types
+## Props Types
 
 ### JsonViewerProps
 
-Main props interface for the JsonViewer component.
+Props for the `JsonViewer` component.
 
 ```ts
 interface JsonViewerProps {
-  /**
-   * The JSON data to display. Can be any valid JSON value.
-   */
   data: JsonValue;
-
-  /**
-   * The nesting level of the current node
-   * @default 0
-   */
-  level?: number;
-
-  /**
-   * The key name of the current property
-   * @default ''
-   */
-  parentKey?: string | number;
-
-  /**
-   * Enable dark mode theme
-   * @default true
-   */
-  darkMode?: boolean;
-
-  /**
-   * Initial expanded state for all nodes
-   * @default true
-   */
-  expanded?: boolean;
+  level?: number; // internal, @default 0
+  parentKey?: string | number; // internal, @default ''
+  darkMode?: boolean; // @default true
+  expanded?: boolean; // @default true
 }
 ```
 
-### NestedComponentProps
+### JsonNodeProps
 
-Extended props for the internal recursive component.
+Props for the internal recursive `JsonNode` component. Extends
+`JsonViewerProps`.
 
 ```ts
-interface NestedComponentProps extends JsonViewerProps {
-  /**
-   * Whether this node is an array item
-   * @default false
-   */
+interface JsonNodeProps extends JsonViewerProps {
+  /** Whether this node is an array item (hides the key) @default false */
   isArrayItem?: boolean;
-
-  /**
-   * Whether this is the last item in parent
-   * @default true
-   */
+  /** Whether this is the last item in its parent @default true */
   isLast?: boolean;
+  /** Unique JSONPath-style path, e.g. `$.address.city` @default '$' */
+  path?: string;
 }
 ```
 
-## JSON Value Types
+## Event Types
+
+### ToggleEventPayload
+
+```ts
+interface ToggleEventPayload {
+  /** JSONPath-style path of the toggled node */
+  path: string;
+  /** Key/index within the parent */
+  key: string;
+  /** New expanded state */
+  expanded: boolean;
+}
+```
+
+### CopyEventPayload
+
+```ts
+interface CopyEventPayload {
+  /** JSONPath-style path of the copied node */
+  path: string;
+  /** Key/index within the parent */
+  key: string;
+  /** The copied value */
+  value: JsonValue;
+}
+```
+
+### JsonViewerEmits
+
+```ts
+interface JsonViewerEmits {
+  (event: 'toggle', payload: ToggleEventPayload): void;
+  (event: 'copy', payload: CopyEventPayload): void;
+}
+```
+
+## Value Types
 
 ### JsonPrimitive
-
-Represents any JSON primitive value.
 
 ```ts
 type JsonPrimitive = string | number | boolean | null | undefined;
 ```
 
 ### JsonObject
-
-Represents a JSON object with string keys.
 
 ```ts
 interface JsonObject {
@@ -98,15 +112,13 @@ interface JsonObject {
 
 ### JsonArray
 
-Represents a JSON array.
-
 ```ts
 type JsonArray = JsonValue[];
 ```
 
 ### JsonValue
 
-Union type representing any valid JSON value.
+The union of everything the viewer can render.
 
 ```ts
 type JsonValue =
@@ -118,141 +130,72 @@ type JsonValue =
   | ((...args: unknown[]) => unknown);
 ```
 
+### ContainerKind
+
+Discriminates the two expandable container types.
+
+```ts
+type ContainerKind = 'object' | 'array';
+```
+
 ## Theme Types
+
+These describe the shape of the built-in palettes. They are exported for
+reference; there is currently no prop to inject a custom theme (see
+[Custom Styling](/guide/styling)).
 
 ### ThemeColors
 
-Color configuration for a single theme.
-
 ```ts
 interface ThemeColors {
-  /** Background color */
   background: string;
-  /** Default text color */
   text: string;
-  /** Color for string values */
   string: string;
-  /** Color for number values */
   number: string;
-  /** Color for boolean values */
   boolean: string;
-  /** Color for null/undefined values */
   null: string;
-  /** Color for date values */
   date: string;
-  /** Color for regexp values */
   regexp: string;
-  /** Color for object keys */
   objectKey: string;
-  /** Color for array keys */
   arrayKey: string;
-  /** Color for brackets */
   bracket: string;
 }
 ```
 
 ### JsonViewerTheme
 
-Complete theme configuration with dark and light modes.
-
 ```ts
 interface JsonViewerTheme {
-  /** Dark mode color scheme */
   dark: ThemeColors;
-  /** Light mode color scheme */
   light: ThemeColors;
 }
 ```
 
-## Utility Types
-
-### IsPlainObject
-
-Type guard to check if a value is a plain object.
-
-```ts
-type IsPlainObject<T> = T extends object
-  ? T extends Array<unknown>
-    ? false
-    : T extends Date
-      ? false
-      : T extends RegExp
-        ? false
-        : T extends (...args: unknown[]) => unknown
-          ? false
-          : true
-  : false;
-```
-
-### JsonKeys
-
-Extract keys from a JSON object type.
-
-```ts
-type JsonKeys<T extends JsonObject> = keyof T & string;
-```
-
 ## Usage Examples
 
-### Type-Safe Data
+### Typed Data
 
 ```ts
-import type { JsonObject, JsonValue } from '@anilkumarthakur/vue3-json-viewer';
+import type { JsonValue } from '@anilkumarthakur/vue3-json-viewer';
 
-const userData: JsonObject = {
-  name: 'John Doe',
-  age: 30,
-  isActive: true,
-};
-
-const mixedData: JsonValue = {
+const data: JsonValue = {
   users: [
     { id: 1, name: 'Alice' },
     { id: 2, name: 'Bob' },
   ],
   count: 2,
+  fetchedAt: new Date(),
 };
 ```
 
-### Component Props Typing
-
-```vue
-<script setup lang="ts">
-  import { ref } from 'vue';
-  import type { JsonViewerProps } from '@anilkumarthakur/vue3-json-viewer';
-
-  const props: JsonViewerProps = {
-    data: { hello: 'world' },
-    darkMode: true,
-    expanded: true,
-  };
-</script>
-```
-
-### Creating Typed JSON Structures
+### Typed Event Handlers
 
 ```ts
-import type { JsonObject, JsonArray } from '@anilkumarthakur/vue3-json-viewer';
+import type {
+  ToggleEventPayload,
+  CopyEventPayload,
+} from '@anilkumarthakur/vue3-json-viewer';
 
-interface User extends JsonObject {
-  id: number;
-  name: string;
-  email: string;
-}
-
-interface ApiResponse extends JsonObject {
-  status: number;
-  data: {
-    users: User[];
-    total: number;
-  };
-}
-
-const response: ApiResponse = {
-  status: 200,
-  data: {
-    users: [{ id: 1, name: 'Alice', email: 'alice@example.com' }],
-    total: 1,
-  },
-};
+const onToggle = (e: ToggleEventPayload) => console.log(e.path, e.expanded);
+const onCopy = (e: CopyEventPayload) => console.log(e.path, e.value);
 ```

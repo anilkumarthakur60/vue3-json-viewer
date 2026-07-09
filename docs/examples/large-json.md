@@ -1,18 +1,28 @@
 # Large JSON
 
-Tips and examples for handling large JSON structures.
+Tips and patterns for large structures.
 
-## Performance Tips
+## Start Collapsed
 
-::: tip Start Collapsed
-For large JSON files, use `expanded="false"` to improve initial render time.
+::: tip Performance
+Collapsed subtrees aren't rendered at all, so for large payloads start with
+`:expanded="false"` for a fast initial paint.
 :::
 
 ```vue
 <JsonViewer :data="largeData" :expanded="false" />
 ```
 
-## Large Array Example
+<Demo controls :expanded="false" :json='`{
+  "total": 3,
+  "users": [
+    { "id": 1, "name": "User 1", "email": "user1@example.com", "meta": { "loginCount": 12 } },
+    { "id": 2, "name": "User 2", "email": "user2@example.com", "meta": { "loginCount": 34 } },
+    { "id": 3, "name": "User 3", "email": "user3@example.com", "meta": { "loginCount": 7 } }
+  ]
+}`' />
+
+## Generating a Large Dataset
 
 ```vue
 <script setup lang="ts">
@@ -20,52 +30,37 @@ For large JSON files, use `expanded="false"` to improve initial render time.
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
-  // Generate large dataset
-  const generateUsers = (count: number) => {
-    return Array.from({ length: count }, (_, i) => ({
+  const generateUsers = (count: number) =>
+    Array.from({ length: count }, (_, i) => ({
       id: i + 1,
       name: `User ${i + 1}`,
       email: `user${i + 1}@example.com`,
-      age: Math.floor(Math.random() * 50) + 18,
-      isActive: Math.random() > 0.3,
-      createdAt: new Date(
-        Date.now() - Math.random() * 10000000000,
-      ).toISOString(),
-      metadata: {
-        lastLogin: new Date().toISOString(),
-        loginCount: Math.floor(Math.random() * 100),
-      },
+      isActive: i % 3 !== 0,
+      meta: { loginCount: (i * 7) % 100 },
     }));
-  };
 
-  const largeData = ref({
-    total: 100,
-    users: generateUsers(100),
-  });
-
+  const largeData = ref({ total: 100, users: generateUsers(100) });
   const isExpanded = ref(false);
 </script>
 
 <template>
-  <div>
-    <p>Dataset with 100 users</p>
-    <button @click="isExpanded = !isExpanded">
-      {{ isExpanded ? 'Collapse All' : 'Expand All' }}
-    </button>
+  <button @click="isExpanded = !isExpanded">
+    {{ isExpanded ? 'Collapse All' : 'Expand All' }}
+  </button>
 
-    <JsonViewer
-      :data="largeData"
-      :darkMode="true"
-      :expanded="isExpanded"
-      :key="String(isExpanded)"
-    />
-  </div>
+  <!-- No :key needed — expanded is reactive and state persists -->
+  <JsonViewer
+    :data="largeData"
+    :dark-mode="true"
+    :expanded="isExpanded"
+  />
 </template>
 ```
 
-## Paginated Data
+## Paginating Very Large Data
 
-For very large datasets, consider pagination:
+There is no built-in virtualization. For thousands of rows, paginate the data
+yourself and show one page at a time:
 
 ```vue
 <script setup lang="ts">
@@ -73,7 +68,7 @@ For very large datasets, consider pagination:
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
-  const allData = Array.from({ length: 1000 }, (_, i) => ({
+  const all = Array.from({ length: 1000 }, (_, i) => ({
     id: i + 1,
     value: `Item ${i + 1}`,
   }));
@@ -81,189 +76,44 @@ For very large datasets, consider pagination:
   const page = ref(1);
   const pageSize = 20;
 
-  const paginatedData = computed(() => {
+  const pageData = computed(() => {
     const start = (page.value - 1) * pageSize;
     return {
       page: page.value,
-      pageSize,
-      total: allData.length,
-      totalPages: Math.ceil(allData.length / pageSize),
-      items: allData.slice(start, start + pageSize),
+      totalPages: Math.ceil(all.length / pageSize),
+      items: all.slice(start, start + pageSize),
     };
   });
-
-  const nextPage = () => {
-    if (page.value < Math.ceil(allData.length / pageSize)) {
-      page.value++;
-    }
-  };
-
-  const prevPage = () => {
-    if (page.value > 1) {
-      page.value--;
-    }
-  };
 </script>
 
 <template>
   <div>
-    <div class="pagination">
-      <button
-        @click="prevPage"
-        :disabled="page === 1"
-        >Previous</button
-      >
-      <span>Page {{ page }} of {{ Math.ceil(allData.length / pageSize) }}</span>
-      <button
-        @click="nextPage"
-        :disabled="page >= Math.ceil(allData.length / pageSize)"
-      >
-        Next
-      </button>
-    </div>
-
-    <JsonViewer
-      :data="paginatedData"
-      :darkMode="true"
-    />
+    <button
+      @click="page--"
+      :disabled="page === 1"
+    >
+      Previous
+    </button>
+    <button
+      @click="page++"
+      :disabled="page >= Math.ceil(all.length / pageSize)"
+    >
+      Next
+    </button>
   </div>
-</template>
-
-<style scoped>
-  .pagination {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-</style>
-```
-
-## Complex Nested Structure
-
-```vue
-<script setup lang="ts">
-  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
-  const complexData = {
-    company: {
-      name: 'TechCorp Inc.',
-      founded: 2010,
-      departments: {
-        engineering: {
-          teams: {
-            frontend: {
-              lead: 'Alice',
-              members: ['Bob', 'Charlie', 'Diana'],
-              projects: [
-                { name: 'Dashboard', status: 'active' },
-                { name: 'Mobile App', status: 'planning' },
-              ],
-            },
-            backend: {
-              lead: 'Eve',
-              members: ['Frank', 'Grace'],
-              projects: [
-                { name: 'API v2', status: 'active' },
-                { name: 'Migration', status: 'completed' },
-              ],
-            },
-            devops: {
-              lead: 'Henry',
-              members: ['Ivy'],
-              infrastructure: {
-                cloud: 'AWS',
-                containers: 'Kubernetes',
-                ci: 'GitHub Actions',
-              },
-            },
-          },
-        },
-        marketing: {
-          campaigns: [
-            { name: 'Q1 Launch', budget: 50000 },
-            { name: 'Summer Sale', budget: 30000 },
-          ],
-        },
-        hr: {
-          openPositions: 15,
-          hiring: true,
-        },
-      },
-    },
-  };
-</script>
-
-<template>
   <JsonViewer
-    :data="complexData"
-    :darkMode="true"
-    :expanded="false"
-  />
-</template>
-```
-
-## API Response with Metadata
-
-```vue
-<script setup lang="ts">
-  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
-  const apiResponse = {
-    status: 200,
-    headers: {
-      'content-type': 'application/json',
-      'x-request-id': 'req_abc123xyz',
-      'x-ratelimit-remaining': 99,
-    },
-    data: {
-      results: Array.from({ length: 50 }, (_, i) => ({
-        id: `item_${i + 1}`,
-        title: `Result Item ${i + 1}`,
-        score: Math.random().toFixed(4),
-        tags: ['tag1', 'tag2', 'tag3'].slice(
-          0,
-          Math.floor(Math.random() * 3) + 1,
-        ),
-      })),
-      facets: {
-        categories: { A: 15, B: 20, C: 15 },
-        status: { active: 40, inactive: 10 },
-      },
-    },
-    meta: {
-      query: 'search term',
-      took: 45,
-      total: 50,
-      page: 1,
-      perPage: 50,
-    },
-  };
-</script>
-
-<template>
-  <JsonViewer
-    :data="apiResponse"
-    :darkMode="true"
-    :expanded="false"
+    :data="pageData"
+    :dark-mode="true"
   />
 </template>
 ```
 
 ## Memory Considerations
 
-::: warning Large Datasets
-For JSON files larger than 1MB, consider:
+::: warning Very large files
+For JSON larger than ~1 MB, consider:
 
-1. Lazy loading portions of the data
-2. Virtual scrolling (not built-in)
-3. Collapsing by default with `expanded="false"`
-4. Server-side pagination
+1. Starting collapsed with `:expanded="false"`.
+2. Server-side pagination.
+3. Lazy-loading portions of the data.
    :::

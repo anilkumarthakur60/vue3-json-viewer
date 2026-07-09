@@ -20,10 +20,6 @@ yarn.lock
 pnpm-lock.yaml
 npm-shrinkwrap.json
 
-# Vite cache
-.vitepress/
-!docs/.vitepress/theme/
-
-# VitePress
+# VitePress build artifacts (keep config.ts and theme/ tracked)
 docs/.vitepress/cache
 docs/.vitepress/dist

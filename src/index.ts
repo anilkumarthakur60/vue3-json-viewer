@@ -18,6 +18,9 @@ import type {
   JsonViewerTheme,
   ThemeColors,
   ContainerKind,
+  JsonViewerEmits,
+  ToggleEventPayload,
+  CopyEventPayload,
 } from './types';
 
 /** Vue plugin for global registration of JsonViewer components */
@@ -42,4 +45,7 @@ export type {
   JsonViewerTheme,
   ThemeColors,
   ContainerKind,
+  JsonViewerEmits,
+  ToggleEventPayload,
+  CopyEventPayload,
 };

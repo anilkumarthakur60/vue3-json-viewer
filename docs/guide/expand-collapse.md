@@ -1,10 +1,11 @@
-# Expand/Collapse
+# Expand & Collapse
 
-Vue3 JSON Viewer provides multiple ways to control the expand/collapse state of objects and arrays.
+Objects and arrays are collapsible. State is tracked per node and **persists**,
+so exploring deep structures never loses your place.
 
 ## Initial State
 
-Control the initial expanded state with the `expanded` prop:
+The `expanded` prop sets the starting state for every node:
 
 ```vue
 <!-- Start expanded (default) -->
@@ -16,86 +17,47 @@ Control the initial expanded state with the `expanded` prop:
 
 ## Interactive Controls
 
-### Built-in Expand/Collapse All Buttons
+### Expand All / Collapse All
 
-At the root level, the component shows "Expand All" and "Collapse All" buttons:
+For a root object or array, the component shows **Expand All** and **Collapse
+All** buttons automatically:
 
 ```vue
 <JsonViewer :data="data" />
-<!-- Buttons appear automatically for objects and arrays -->
 ```
 
-### Click Interactions
+### Click to Toggle
 
-Users can click on multiple elements to toggle expand/collapse:
+Users can toggle a node by clicking any of:
 
-1. **Keys**: Click on property names (e.g., `"hobbies"`)
-2. **Brackets**: Click on `{...}` or `[...]`
-3. **Count badges**: Click on "3 keys" or "5 items"
-4. **Type badges**: Click on `obj` or array count badges
+1. the **key** (e.g. `"hobbies"`),
+2. the **type indicator** / brackets (`{`, `[…]`),
+3. the **count label** (`3 keys`, `5 items`),
+4. the **type badge** (`obj`, count).
+
+<Demo controls :json='`{
+  "users": [
+    { "id": 1, "name": "Alice", "role": "admin" },
+    { "id": 2, "name": "Bob", "role": "user" }
+  ],
+  "settings": { "theme": "dark", "notifications": { "email": true, "push": false } }
+}`' />
+
+## State Persists Across Collapse
+
+This is the important part. Expand a nested node, collapse one of its ancestors,
+then expand that ancestor again — the nested node is **exactly where you left
+it**. Node state is keyed by a stable path and stored above the part of the tree
+that unmounts, so collapsing a parent never destroys the state inside it.
+
+::: info Why this matters
+In many tree viewers, collapsing a parent throws away all the expand/collapse
+state inside it, forcing you to re-drill every time. Here it just works.
+:::
 
 ## Programmatic Control
 
-Control expand/collapse state from your component:
-
-```vue
-<script setup lang="ts">
-  import { ref, computed } from 'vue';
-  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
-  const isExpanded = ref(true);
-
-  const toggleExpanded = () => {
-    isExpanded.value = !isExpanded.value;
-  };
-
-  // Use computed key to force re-render
-  const viewerKey = computed(() =>
-    isExpanded.value ? 'expanded' : 'collapsed',
-  );
-</script>
-
-<template>
-  <button @click="toggleExpanded">
-    {{ isExpanded ? 'Collapse All' : 'Expand All' }}
-  </button>
-
-  <JsonViewer
-    :data="data"
-    :expanded="isExpanded"
-    :key="viewerKey"
-  />
-</template>
-```
-
-## Visual Indicators
-
-### Collapsed State
-
-When collapsed, objects and arrays show:
-
-- **Objects**: `{...}` with count badge (e.g., "3 keys")
-- **Arrays**: `[...]` with count badge (e.g., "5 items")
-
-### Expanded State
-
-When expanded:
-
-- **Objects**: Opening `{`, nested content, closing `}`
-- **Arrays**: Opening `[`, array items, closing `]`
-
-## Type Badges
-
-The component shows type badges for quick identification:
-
-| Type        | Badge   | Example             |
-| ----------- | ------- | ------------------- |
-| Object      | `obj`   | `"user": obj {...}` |
-| Array       | Count   | `"items": 5 [...]`  |
-| Empty Array | `empty` | `"list": empty []`  |
-
-## Example: Toggle Control
+Bind `expanded` to a ref. It's reactive — changing it re-seeds the whole tree.
 
 ```vue
 <script setup lang="ts">
@@ -103,44 +65,64 @@ The component shows type badges for quick identification:
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
-  const data = {
-    users: [
-      { id: 1, name: 'Alice', role: 'admin' },
-      { id: 2, name: 'Bob', role: 'user' },
-    ],
-    settings: {
-      theme: 'dark',
-      notifications: {
-        email: true,
-        push: false,
-      },
-    },
-  };
-
   const expanded = ref(true);
+  const data = {
+    /* … */
+  };
 </script>
 
 <template>
-  <div class="toolbar">
-    <button @click="expanded = true">📂 Expand All</button>
-    <button @click="expanded = false">📁 Collapse All</button>
-  </div>
+  <button @click="expanded = !expanded">
+    {{ expanded ? 'Collapse All' : 'Expand All' }}
+  </button>
 
   <JsonViewer
     :data="data"
     :expanded="expanded"
-    :darkMode="true"
-    :key="String(expanded)"
   />
 </template>
 ```
 
-## Tips
-
-::: tip Key Prop for Re-rendering
-When programmatically changing `expanded`, add a `:key` binding to force a complete re-render of the component tree.
+::: warning No `:key` hack needed
+Earlier versions of these docs recommended `:key="String(expanded)"` to force a
+remount. That was a workaround for a state-loss bug that is now fixed. **Remove
+it** — binding `:expanded` is enough, and the `:key` hack would throw away the
+persistence described above.
 :::
 
-::: tip Performance
-For very large JSON structures, consider starting with `expanded="false"` to improve initial render performance.
+## Reacting to Toggles
+
+To observe or persist toggles, listen to the [`toggle` event](/api/events):
+
+```vue
+<JsonViewer :data="data" @toggle="(e) => console.log(e.path, e.expanded)" />
+```
+
+See [Events & Persistence](/examples/events) for saving state across reloads.
+
+## Visual Indicators
+
+**Collapsed:**
+
+- Object → `{...}` + count badge (`3 keys`)
+- Array → `[...]` + count badge (`5 items`)
+
+**Expanded:**
+
+- Object → `{`, children, `}`
+- Array → `[`, items, `]`
+
+## Type Badges
+
+| Type        | Badge   | Collapsed example            |
+| ----------- | ------- | ---------------------------- |
+| Object      | `obj`   | `"user": obj {...} 3 keys`   |
+| Array       | count   | `"items": 5 [...] 5 items`   |
+| Empty array | `empty` | `"list": empty []`           |
+
+## Tips
+
+::: tip Large data
+For very large JSON, start with `:expanded="false"` — collapsed subtrees aren't
+rendered, so the initial paint is much faster. See [Large JSON](/examples/large-json).
 :::

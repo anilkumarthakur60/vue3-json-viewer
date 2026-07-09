@@ -1,0 +1,54 @@
+/* Give live demos a little breathing room and a subtle frame. */
+.live-demo {
+  margin: 16px 0 24px;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.live-demo-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+
+.demo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.demo-toolbar button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.demo-toolbar button:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.demo-event-log {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--vp-c-bg-alt);
+  border: 1px solid var(--vp-c-divider);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  max-height: 160px;
+  overflow: auto;
+}
+
+.demo-event-log .empty {
+  opacity: 0.5;
+}

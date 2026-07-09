@@ -1,6 +1,7 @@
 import { defineComponent, ref, type PropType } from 'vue';
 import type { JsonValue, CopyButtonProps } from '../../../types';
 import { copyJsonToClipboard } from '../../../utils/clipboard';
+import { useJsonViewerContext } from '../context';
 
 const COPY_SUCCESS_DURATION_MS = 1500;
 
@@ -58,14 +59,31 @@ export default defineComponent({
       ] as PropType<JsonValue>,
       default: undefined,
     },
+    path: {
+      type: String,
+      default: '$',
+    },
+    parentKey: {
+      type: [String, Number] as PropType<string | number>,
+      default: '',
+    },
   },
   setup(props: CopyButtonProps) {
     const copySuccess = ref(false);
+    const ctx = useJsonViewerContext();
 
     const handleCopy = (event: Event): void => {
       event.stopPropagation();
-      copyJsonToClipboard(props.data).then((): void => {
+      copyJsonToClipboard(props.data).then((succeeded: boolean): void => {
+        // Only reflect success and emit `copy` if the write actually happened.
+        if (!succeeded) return;
         copySuccess.value = true;
+        // Surface the copy to consumers via the JsonViewer `copy` event.
+        ctx?.notifyCopy(
+          props.path ?? '$',
+          String(props.parentKey ?? ''),
+          props.data,
+        );
         setTimeout((): void => {
           copySuccess.value = false;
         }, COPY_SUCCESS_DURATION_MS);

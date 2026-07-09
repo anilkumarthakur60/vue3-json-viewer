@@ -2,9 +2,7 @@
 
 Get up and running with Vue3 JSON Viewer in minutes.
 
-## Basic Setup
-
-### 1. Import the Component
+## 1. Import the Component and Styles
 
 ```vue
 <script setup lang="ts">
@@ -13,7 +11,11 @@ Get up and running with Vue3 JSON Viewer in minutes.
 </script>
 ```
 
-### 2. Prepare Your Data
+::: tip Import the CSS once
+The stylesheet isn't auto-injected. Import it once (here or in your entry file).
+:::
+
+## 2. Prepare Your Data
 
 ```ts
 const jsonData = {
@@ -30,19 +32,33 @@ const jsonData = {
 };
 ```
 
-### 3. Use the Component
+## 3. Render It
 
 ```vue
 <template>
   <JsonViewer
     :data="jsonData"
-    :darkMode="true"
+    :dark-mode="true"
     :expanded="true"
   />
 </template>
 ```
 
+Result:
+
+<Demo controls :json='`{
+  "name": "John Doe",
+  "age": 30,
+  "email": "john@example.com",
+  "isActive": true,
+  "hobbies": ["reading", "traveling", "coding"],
+  "address": { "street": "123 Main St", "city": "New York", "country": "USA" }
+}`' />
+
 ## Complete Example
+
+A theme toggle plus expand/collapse control. Note there's **no `:key` hack** —
+the `expanded` prop is reactive and node state persists on its own.
 
 ```vue
 <script setup lang="ts">
@@ -54,86 +70,54 @@ const jsonData = {
   const isExpanded = ref(true);
 
   const jsonData = {
-    user: {
-      id: 1,
-      name: 'John Doe',
-      email: 'john@example.com',
-    },
+    user: { id: 1, name: 'John Doe', email: 'john@example.com' },
     posts: [
       { id: 1, title: 'Hello World' },
-      { id: 2, title: 'Vue3 is awesome' },
+      { id: 2, title: 'Vue 3 is awesome' },
     ],
-    metadata: {
-      createdAt: new Date(),
-      version: '1.0.0',
-    },
-  };
-
-  const toggleTheme = () => {
-    isDarkMode.value = !isDarkMode.value;
-  };
-
-  const toggleExpanded = () => {
-    isExpanded.value = !isExpanded.value;
+    metadata: { version: '1.0.0' },
   };
 </script>
 
 <template>
-  <div>
-    <div class="controls">
-      <button @click="toggleTheme">
-        {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
-      </button>
-      <button @click="toggleExpanded">
-        {{ isExpanded ? '📁 Collapse All' : '📂 Expand All' }}
-      </button>
-    </div>
-
-    <JsonViewer
-      :data="jsonData"
-      :darkMode="isDarkMode"
-      :expanded="isExpanded"
-      :key="isExpanded ? 'expanded' : 'collapsed'"
-    />
+  <div class="controls">
+    <button @click="isDarkMode = !isDarkMode">
+      {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    </button>
+    <button @click="isExpanded = !isExpanded">
+      {{ isExpanded ? '📁 Collapse All' : '📂 Expand All' }}
+    </button>
   </div>
+
+  <JsonViewer
+    :data="jsonData"
+    :dark-mode="isDarkMode"
+    :expanded="isExpanded"
+  />
 </template>
-
-<style scoped>
-  .controls {
-    margin-bottom: 16px;
-    display: flex;
-    gap: 8px;
-  }
-
-  button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-</style>
 ```
 
 ## Working with API Data
 
-A common use case is displaying API responses:
+A common use case is displaying a fetched response:
 
 ```vue
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
+  import type { JsonValue } from '@anilkumarthakur/vue3-json-viewer';
 
-  const apiData = ref(null);
+  const apiData = ref<JsonValue>(null);
   const loading = ref(true);
-  const error = ref(null);
+  const error = ref<string | null>(null);
 
   onMounted(async () => {
     try {
       const response = await fetch('https://api.example.com/data');
       apiData.value = await response.json();
     } catch (e) {
-      error.value = e.message;
+      error.value = (e as Error).message;
     } finally {
       loading.value = false;
     }
@@ -141,18 +125,19 @@ A common use case is displaying API responses:
 </script>
 
 <template>
-  <div v-if="loading">Loading...</div>
+  <div v-if="loading">Loading…</div>
   <div v-else-if="error">Error: {{ error }}</div>
   <JsonViewer
     v-else
     :data="apiData"
-    :darkMode="true"
+    :dark-mode="true"
   />
 </template>
 ```
 
 ## Next Steps
 
-- Learn about [theming](/guide/theming) to customize colors
-- Explore [expand/collapse](/guide/expand-collapse) features
-- See the [API reference](/api/props) for all available props
+- [Theming](/guide/theming) — dark & light mode
+- [Expand & Collapse](/guide/expand-collapse) — controls and persistence
+- [Events](/guide/events) — `@toggle` and `@copy`
+- [API Reference](/api/props) — every prop and event

@@ -55,6 +55,10 @@ export default defineComponent({
       type: String as PropType<ContainerKind>,
       required: true,
     },
+    path: {
+      type: String,
+      required: true,
+    },
   },
   emits: ['toggle'],
   setup(props: ContainerRowProps, { emit }) {
@@ -120,6 +124,8 @@ export default defineComponent({
           <CopyButton
             darkMode={props.darkMode}
             data={props.data}
+            path={props.path}
+            parentKey={props.parentKey}
           />
         </div>
       );

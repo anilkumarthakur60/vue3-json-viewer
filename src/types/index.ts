@@ -58,6 +58,12 @@ export interface JsonNodeProps extends JsonViewerProps {
   isArrayItem?: boolean;
   /** Whether this is the last item in the parent container @default true */
   isLast?: boolean;
+  /**
+   * Unique path identifying this node within the tree (JSONPath-style, e.g.
+   * `$.address.city` or `$.items[0]`). Used as the key for shared
+   * expand/collapse state so it survives collapse of an ancestor. @default '$'
+   */
+  path?: string;
 }
 
 /** Props for ContainerRow (unified object/array header) */
@@ -72,6 +78,8 @@ export interface ContainerRowProps {
   bracketColor: string;
   data: JsonValue;
   kind: ContainerKind;
+  /** Path of this container node, forwarded to CopyButton for copy events. */
+  path: string;
 }
 
 /** Props for PrimitiveValue */
@@ -82,12 +90,18 @@ export interface PrimitiveValueProps {
   isLast: boolean;
   darkMode: boolean;
   keyColor: string;
+  /** Path of this primitive node, forwarded to CopyButton for copy events. */
+  path: string;
 }
 
 /** Props for CopyButton */
 export interface CopyButtonProps {
   darkMode: boolean;
   data: JsonValue;
+  /** Path of the node this button copies (used for the `copy` event). @default '$' */
+  path?: string;
+  /** Key of the node this button copies (used for the `copy` event). @default '' */
+  parentKey?: string | number;
 }
 
 /** Props for TypeBadge */
@@ -129,10 +143,30 @@ export interface JsonViewerTheme {
 // Component Events
 // ============================================================================
 
+/** Payload emitted when a node is expanded or collapsed */
+export interface ToggleEventPayload {
+  /** JSONPath-style path of the toggled node (e.g. `$.address`) */
+  path: string;
+  /** Key/index of the toggled node within its parent */
+  key: string;
+  /** The node's new expanded state */
+  expanded: boolean;
+}
+
+/** Payload emitted when a node's value is copied to the clipboard */
+export interface CopyEventPayload {
+  /** JSONPath-style path of the copied node */
+  path: string;
+  /** Key/index of the copied node within its parent */
+  key: string;
+  /** The copied value */
+  value: JsonValue;
+}
+
 /** Events emitted by the JsonViewer component */
 export interface JsonViewerEmits {
-  (event: 'toggle', payload: { key: string; expanded: boolean }): void;
-  (event: 'copy', payload: { key: string; value: JsonValue }): void;
+  (event: 'toggle', payload: ToggleEventPayload): void;
+  (event: 'copy', payload: CopyEventPayload): void;
 }
 
 // ============================================================================

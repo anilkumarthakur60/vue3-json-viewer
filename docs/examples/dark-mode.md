@@ -1,10 +1,15 @@
 # Dark Mode
 
-Examples of using the dark and light themes.
+Using the dark and light themes. See the [theming guide](/guide/theming) for the
+full color reference.
 
-## Theme Toggle
+## Interactive Toggle
 
-Interactive theme switching:
+<Demo controls :json='`{
+  "theme": "toggle me with the button above",
+  "colors": { "primary": "#646cff", "secondary": "#42b883" },
+  "values": { "string": "text", "number": 42, "boolean": true, "null": null }
+}`' />
 
 ```vue
 <script setup lang="ts">
@@ -13,107 +18,37 @@ Interactive theme switching:
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
   const isDarkMode = ref(true);
-
-  const data = {
-    theme: 'Toggle me!',
-    darkMode: true,
-    colors: {
-      primary: '#646cff',
-      secondary: '#42b883',
-    },
-  };
-
-  const toggleTheme = () => {
-    isDarkMode.value = !isDarkMode.value;
-  };
+  const data = { theme: 'Toggle me!' };
 </script>
 
 <template>
-  <div>
-    <button
-      @click="toggleTheme"
-      class="theme-btn"
-    >
-      {{ isDarkMode ? '☀️ Switch to Light' : '🌙 Switch to Dark' }}
-    </button>
-
-    <JsonViewer
-      :data="data"
-      :darkMode="isDarkMode"
-    />
-  </div>
-</template>
-
-<style scoped>
-  .theme-btn {
-    margin-bottom: 16px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-  }
-</style>
-```
-
-## Dark Mode Only
-
-```vue
-<script setup lang="ts">
-  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
-  const data = {
-    mode: 'dark',
-    background: 'gradient #1e1e2e → #2d2d3f',
-    colors: {
-      string: '#a6e3a1',
-      number: '#fab387',
-      boolean: '#f9e2af',
-      null: '#f38ba8',
-    },
-  };
-</script>
-
-<template>
+  <button @click="isDarkMode = !isDarkMode">
+    {{ isDarkMode ? '☀️ Light' : '🌙 Dark' }}
+  </button>
   <JsonViewer
     :data="data"
-    :darkMode="true"
+    :dark-mode="isDarkMode"
   />
 </template>
 ```
 
-## Light Mode Only
+## Dark Mode
+
+<Demo :dark="true" :json='`{ "mode": "dark", "string": "green", "number": 42, "boolean": true, "null": null }`' />
 
 ```vue
-<script setup lang="ts">
-  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
-  const data = {
-    mode: 'light',
-    background: 'gradient #f8f9fa → #e9ecef',
-    colors: {
-      string: '#2f9e44',
-      number: '#e8590c',
-      boolean: '#f59f00',
-      null: '#e03131',
-    },
-  };
-</script>
-
-<template>
-  <JsonViewer
-    :data="data"
-    :darkMode="false"
-  />
-</template>
+<JsonViewer :data="data" :dark-mode="true" />
 ```
 
-## System Preference
+## Light Mode
 
-Auto-detect user's system theme preference:
+<Demo :dark="false" :json='`{ "mode": "light", "string": "green", "number": 42, "boolean": true, "null": null }`' />
+
+```vue
+<JsonViewer :data="data" :dark-mode="false" />
+```
+
+## Following System Preference
 
 ```vue
 <script setup lang="ts">
@@ -122,105 +57,30 @@ Auto-detect user's system theme preference:
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
   const isDarkMode = ref(true);
-  let mediaQuery: MediaQueryList | null = null;
-
-  const updateTheme = (e: MediaQueryListEvent | MediaQueryList) => {
+  let mq: MediaQueryList | null = null;
+  const update = (e: MediaQueryListEvent | MediaQueryList) => {
     isDarkMode.value = e.matches;
   };
 
   onMounted(() => {
-    mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    updateTheme(mediaQuery);
-    mediaQuery.addEventListener('change', updateTheme);
+    mq = window.matchMedia('(prefers-color-scheme: dark)');
+    update(mq);
+    mq.addEventListener('change', update);
   });
+  onUnmounted(() => mq?.removeEventListener('change', update));
 
-  onUnmounted(() => {
-    mediaQuery?.removeEventListener('change', updateTheme);
-  });
-
-  const data = {
-    system: 'Follows your OS theme preference',
-    instruction: 'Change your system theme to see this update',
-  };
+  const data = { system: 'Follows your OS theme preference' };
 </script>
 
 <template>
-  <div>
-    <p
-      >Current theme: {{ isDarkMode ? 'Dark' : 'Light' }} (system preference)</p
-    >
-    <JsonViewer
-      :data="data"
-      :darkMode="isDarkMode"
-    />
-  </div>
+  <JsonViewer
+    :data="data"
+    :dark-mode="isDarkMode"
+  />
 </template>
 ```
 
-## Side by Side Comparison
-
-Compare both themes:
-
-```vue
-<script setup lang="ts">
-  import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
-  import '@anilkumarthakur/vue3-json-viewer/styles.css';
-
-  const data = {
-    string: 'Hello World',
-    number: 42,
-    float: 3.14159,
-    boolean: true,
-    null: null,
-    array: [1, 2, 3],
-    object: {
-      nested: 'value',
-    },
-  };
-</script>
-
-<template>
-  <div class="comparison">
-    <div class="panel">
-      <h3>🌙 Dark Mode</h3>
-      <JsonViewer
-        :data="data"
-        :darkMode="true"
-      />
-    </div>
-
-    <div class="panel">
-      <h3>☀️ Light Mode</h3>
-      <JsonViewer
-        :data="data"
-        :darkMode="false"
-      />
-    </div>
-  </div>
-</template>
-
-<style scoped>
-  .comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .panel h3 {
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 768px) {
-    .comparison {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-```
-
-## Persisting Theme Choice
-
-Save theme preference to localStorage:
+## Persisting the Choice
 
 ```vue
 <script setup lang="ts">
@@ -228,35 +88,24 @@ Save theme preference to localStorage:
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
-  const STORAGE_KEY = 'json-viewer-theme';
+  const KEY = 'json-viewer-theme';
   const isDarkMode = ref(true);
 
   onMounted(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved !== null) {
-      isDarkMode.value = saved === 'dark';
-    }
+    const saved = localStorage.getItem(KEY);
+    if (saved !== null) isDarkMode.value = saved === 'dark';
   });
 
-  watch(isDarkMode, (newValue) => {
-    localStorage.setItem(STORAGE_KEY, newValue ? 'dark' : 'light');
-  });
+  watch(isDarkMode, (v) => localStorage.setItem(KEY, v ? 'dark' : 'light'));
 
-  const data = {
-    message: 'Your theme preference is saved!',
-    storage: 'localStorage',
-  };
+  const data = { message: 'Your theme preference is saved!' };
 </script>
 
 <template>
-  <div>
-    <button @click="isDarkMode = !isDarkMode">
-      Toggle Theme (persisted)
-    </button>
-    <JsonViewer
-      :data="data"
-      :darkMode="isDarkMode"
-    />
-  </div>
+  <button @click="isDarkMode = !isDarkMode">Toggle Theme (persisted)</button>
+  <JsonViewer
+    :data="data"
+    :dark-mode="isDarkMode"
+  />
 </template>
 ```

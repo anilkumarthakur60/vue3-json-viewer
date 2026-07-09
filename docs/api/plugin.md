@@ -1,10 +1,8 @@
 # Plugin
 
-Vue3 JSON Viewer can be registered globally using the Vue plugin system.
+Register the components globally with the Vue plugin.
 
 ## Installation
-
-### Using the Plugin
 
 ```ts
 import { createApp } from 'vue';
@@ -13,57 +11,62 @@ import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';
 import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
 const app = createApp(App);
-
-// Register the plugin
 app.use(JsonViewerPlugin);
-
 app.mount('#app');
 ```
 
 ### What Gets Registered
 
-The plugin registers the following components globally:
-
-| Component         | Usage                              |
-| ----------------- | ---------------------------------- |
-| `JsonViewer`      | Main component for displaying JSON |
-| `NestedComponent` | Internal recursive component       |
+| Component    | Usage                                        |
+| ------------ | -------------------------------------------- |
+| `JsonViewer` | The main component for displaying JSON       |
+| `JsonNode`   | The recursive node (see [Components](/guide/components)) |
 
 ## Usage After Registration
 
-Once registered, you can use the components anywhere without importing:
+Use the components anywhere without importing:
 
 ```vue
-<template>
-  <JsonViewer
-    :data="myData"
-    :darkMode="true"
-  />
-</template>
-
 <script setup lang="ts">
   const myData = { hello: 'world' };
 </script>
+
+<template>
+  <JsonViewer
+    :data="myData"
+    :dark-mode="true"
+  />
+</template>
 ```
 
-## Plugin API
-
-### JsonViewerPlugin
+## Plugin Definition
 
 ```ts
-import type { Plugin } from 'vue';
+import type { App, Plugin } from 'vue';
+import { JsonViewer, JsonNode } from '@anilkumarthakur/vue3-json-viewer';
 
 const JsonViewerPlugin: Plugin = {
   install(app: App): void {
     app.component('JsonViewer', JsonViewer);
-    app.component('NestedComponent', NestedComponent);
+    app.component('JsonNode', JsonNode);
   },
 };
 ```
 
+## Default Export
+
+The plugin is also the package's default export:
+
+```ts
+import JsonViewerPlugin from '@anilkumarthakur/vue3-json-viewer';
+// identical to:
+import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';
+```
+
 ## Alternative: Direct Import
 
-If you prefer not to use global registration, import components directly:
+Prefer not to register globally? Import the component where you use it — this is
+tree-shakeable:
 
 ```vue
 <script setup lang="ts">
@@ -76,19 +79,15 @@ If you prefer not to use global registration, import components directly:
 </template>
 ```
 
-## Comparison
-
 | Approach            | Pros                                  | Cons                                   |
 | ------------------- | ------------------------------------- | -------------------------------------- |
-| **Plugin (Global)** | No imports needed in components       | Registers components you might not use |
-| **Direct Import**   | Tree-shakeable, explicit dependencies | Import required in each component      |
+| **Plugin (global)** | No imports needed in components       | Registers components you may not use   |
+| **Direct import**   | Tree-shakeable, explicit dependencies | Import required in each component      |
 
-## Nuxt.js Integration
-
-For Nuxt 3, create a plugin file:
+## Nuxt 3
 
 ```ts
-// plugins/json-viewer.client.ts
+// plugins/json-viewer.ts
 import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';
 import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
@@ -97,28 +96,15 @@ export default defineNuxtPlugin((nuxtApp) => {
 });
 ```
 
-::: tip Client-Side Only
-The component uses browser APIs (like `navigator.clipboard`), so register it as a client-side plugin (`.client.ts` suffix).
-:::
+The component is SSR-safe, so a `.client` suffix isn't required. See the
+[SSR & Nuxt guide](/guide/ssr) for details.
 
-## TypeScript Support
+## TypeScript
 
-The plugin is fully typed. No additional configuration needed:
-
-```ts
-// The plugin type is correctly inferred
-import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';
-
-app.use(JsonViewerPlugin); // ✓ Type-safe
-```
-
-## Default Export
-
-The package also exports the plugin as the default export:
+The plugin is fully typed — no extra configuration needed:
 
 ```ts
-import JsonViewerPlugin from '@anilkumarthakur/vue3-json-viewer';
-
-// Same as
 import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';
+
+app.use(JsonViewerPlugin); // ✓ type-safe
 ```
