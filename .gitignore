@@ -15,9 +15,11 @@ dist-ssr
 # Editor directories and files
 .vscode
 .idea
+.DS_Store
+# This project uses pnpm — pnpm-lock.yaml is committed; other lockfiles are not.
 bun.lockb
 yarn.lock
-pnpm-lock.yaml
+package-lock.json
 npm-shrinkwrap.json
 
 # VitePress build artifacts (keep config.ts and theme/ tracked)

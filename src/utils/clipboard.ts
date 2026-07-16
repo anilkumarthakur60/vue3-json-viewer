@@ -28,7 +28,7 @@ const legacyCopyText = (text: string): boolean => {
   try {
     succeeded = document.execCommand('copy') === true;
   } catch {
-    succeeded = false;
+    // execCommand can throw in some browsers; leave succeeded as false.
   }
 
   document.body.removeChild(textarea);
