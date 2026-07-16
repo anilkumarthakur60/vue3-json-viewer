@@ -1,21 +1,33 @@
 import { defineConfig } from 'vitepress';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
-
   base: '/vue3-json-viewer/',
   title: 'Vue3 JSON Viewer',
   description:
-    'A beautiful, customizable JSON viewer component for Vue 3 with TypeScript support',
+    'A beautiful, customizable JSON viewer component for Vue 3 with TypeScript support, expand/collapse persistence, dark/light mode, events, and copy-to-clipboard.',
+
+  lastUpdated: true,
+  cleanUrls: true,
+
+  // The component is authored in TSX, so the docs build needs the JSX plugin
+  // to import it directly from source for the live demos.
+  vite: {
+    plugins: [vueJsx()],
+  },
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+    [
+      'link',
+      { rel: 'icon', type: 'image/svg+xml', href: '/vue3-json-viewer/logo.svg' },
+    ],
     ['meta', { name: 'theme-color', content: '#646cff' }],
     [
       'meta',
       {
         name: 'keywords',
         content:
-          'vue3, json viewer, json, vue component, typescript, dark mode, syntax highlighting',
+          'vue3, json viewer, json, vue component, typescript, dark mode, syntax highlighting, expand collapse, copy to clipboard',
       },
     ],
   ],
@@ -28,12 +40,17 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'API', link: '/api/props' },
       { text: 'Examples', link: '/examples/basic' },
+      { text: 'Playground', link: '/examples/playground' },
       {
-        text: 'v0.2.0',
+        text: 'v0.5.1',
         items: [
           {
             text: 'Changelog',
             link: 'https://github.com/anilkumarthakur60/vue3-json-viewer/releases',
+          },
+          {
+            text: 'npm',
+            link: 'https://www.npmjs.com/package/@anilkumarthakur/vue3-json-viewer',
           },
           {
             text: 'Contributing',
@@ -54,11 +71,27 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Features',
+          text: 'Core Concepts',
           items: [
-            { text: 'Dark/Light Mode', link: '/guide/theming' },
-            { text: 'Expand/Collapse', link: '/guide/expand-collapse' },
+            { text: 'Data Types', link: '/guide/data-types' },
+            { text: 'Expand & Collapse', link: '/guide/expand-collapse' },
+            { text: 'Events', link: '/guide/events' },
             { text: 'Copy to Clipboard', link: '/guide/copy' },
+          ],
+        },
+        {
+          text: 'Styling',
+          items: [
+            { text: 'Dark / Light Mode', link: '/guide/theming' },
+            { text: 'Custom Styling', link: '/guide/styling' },
+          ],
+        },
+        {
+          text: 'Advanced',
+          items: [
+            { text: 'Components', link: '/guide/components' },
+            { text: 'SSR & Nuxt', link: '/guide/ssr' },
+            { text: 'FAQ & Troubleshooting', link: '/guide/faq' },
           ],
         },
       ],
@@ -67,6 +100,7 @@ export default defineConfig({
           text: 'API Reference',
           items: [
             { text: 'Props', link: '/api/props' },
+            { text: 'Events', link: '/api/events' },
             { text: 'Types', link: '/api/types' },
             { text: 'Plugin', link: '/api/plugin' },
           ],
@@ -77,9 +111,12 @@ export default defineConfig({
           text: 'Examples',
           items: [
             { text: 'Basic Usage', link: '/examples/basic' },
+            { text: 'Data Types', link: '/examples/data-types' },
             { text: 'Dark Mode', link: '/examples/dark-mode' },
-            { text: 'Large JSON', link: '/examples/large-json' },
             { text: 'Nested Objects', link: '/examples/nested' },
+            { text: 'Large JSON', link: '/examples/large-json' },
+            { text: 'Events & Persistence', link: '/examples/events' },
+            { text: 'Playground', link: '/examples/playground' },
           ],
         },
       ],

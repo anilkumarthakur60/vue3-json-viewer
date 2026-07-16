@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Vue3 JSON Viewer
   text: Beautiful JSON visualization for Vue 3
-  tagline: A customizable, TypeScript-ready JSON viewer with dark/light mode, expand/collapse controls, and syntax highlighting.
+  tagline: A customizable, TypeScript-first JSON viewer with persistent expand/collapse, dark & light themes, typed events, and copy-to-clipboard.
   image:
     src: /logo.svg
     alt: Vue3 JSON Viewer
@@ -13,48 +13,55 @@ hero:
       text: Get Started
       link: /guide/getting-started
     - theme: alt
+      text: Playground
+      link: /examples/playground
+    - theme: alt
       text: View on GitHub
       link: https://github.com/anilkumarthakur60/vue3-json-viewer
 
 features:
   - icon: 🎨
     title: Beautiful UI
-    details: Modern, gradient-based design with syntax highlighting for all JSON data types.
+    details: Modern, gradient-based design with syntax highlighting for every JSON data type.
   - icon: 🌙
-    title: Dark/Light Mode
-    details: Built-in dark and light themes with Catppuccin-inspired color palette.
+    title: Dark & Light Mode
+    details: Two built-in themes with a Catppuccin-inspired palette, switchable via a single prop.
   - icon: 📦
-    title: TypeScript Ready
-    details: Full TypeScript support with comprehensive type definitions included.
+    title: TypeScript-First
+    details: Authored in TSX with complete, exported type definitions for props, events, and values.
   - icon: 🔄
-    title: Expand/Collapse
-    details: Interactive expand/collapse controls for objects and arrays at any level.
+    title: Persistent Expand/Collapse
+    details: Node state is keyed by path and survives collapsing an ancestor — your place is never lost.
+  - icon: 📡
+    title: Typed Events
+    details: Listen to @toggle and @copy with fully typed payloads to sync or persist view state.
   - icon: 📋
     title: Copy to Clipboard
-    details: One-click copy functionality for any JSON node with visual feedback.
+    details: One-click copy on any node, with a graceful fallback for non-secure contexts.
   - icon: 🌈
     title: Rainbow Nesting
-    details: Color-coded nesting levels make it easy to navigate deep structures.
+    details: Color-coded bracket levels make deep structures easy to scan.
+  - icon: 🪶
+    title: Lightweight
+    details: ~3.7 KB gzipped, zero runtime dependencies, tree-shakeable ESM & UMD builds.
 ---
 
-## Preview
+## Try it live
 
-<div style="text-align: center; margin: 2rem 0;">
-  <img src="/images/demo.png" alt="Vue3 JSON Viewer Demo" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
-</div>
+<Demo controls events />
 
 ## Quick Start
 
-### Installation
+Install the package:
 
 ```bash
 npm install @anilkumarthakur/vue3-json-viewer
 ```
 
-### Basic Usage
+Use it in a component:
 
 ```vue
-<script setup>
+<script setup lang="ts">
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
@@ -68,21 +75,17 @@ npm install @anilkumarthakur/vue3-json-viewer
 <template>
   <JsonViewer
     :data="data"
-    :darkMode="true"
+    :dark-mode="true"
   />
 </template>
 ```
 
 ## Why Vue3 JSON Viewer?
 
-<div class="feature-grid">
-
-| Feature                  | Description                                   |
-| ------------------------ | --------------------------------------------- |
-| 🎯 **Zero Dependencies** | No external dependencies besides Vue 3        |
-| 📱 **Responsive**        | Works on all screen sizes                     |
-| ♿ **Accessible**        | Keyboard navigable and screen reader friendly |
-| 🚀 **Performant**        | Efficiently handles large JSON structures     |
-| 🔧 **Customizable**      | Easy to customize with props                  |
-
-</div>
+| Feature                    | Description                                                |
+| -------------------------- | ---------------------------------------------------------- |
+| 🎯 **Zero dependencies**   | Only Vue 3 as a peer dependency                            |
+| 📱 **Responsive**          | The root container scrolls; works on any screen size       |
+| 🧠 **State that persists** | Expand/collapse survives collapsing a parent node          |
+| 🚀 **Efficient**           | Collapsed subtrees aren't rendered at all                  |
+| 🔧 **Customizable**        | Props for theme & initial state, CSS classes for the rest  |

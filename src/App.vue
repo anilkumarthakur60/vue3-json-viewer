@@ -1,8 +1,9 @@
 <script setup lang="ts">
   import Moment from 'moment';
 
-  import { computed, ref } from 'vue';
+  import { ref } from 'vue';
   import { JsonViewer } from './components';
+  import type { ToggleEventPayload, CopyEventPayload } from './types';
   const jsonData = {
     name: 'John Doe',
     age: 30,
@@ -69,9 +70,12 @@
     isExpanded.value = !isExpanded.value;
   };
 
-  const computedExpanded = computed(() => {
-    return isExpanded.value ? 'expanded' : 'collapsed';
-  });
+  const onToggle = (payload: ToggleEventPayload) => {
+    console.log('toggle', payload);
+  };
+  const onCopy = (payload: CopyEventPayload) => {
+    console.log('copy', payload);
+  };
 </script>
 
 <template>
@@ -80,9 +84,10 @@
   <JsonViewer
     :data="jsonData"
     :level="0"
-    :key="computedExpanded"
     :expanded="isExpanded"
     :darkMode="isDarkMode"
+    @toggle="onToggle"
+    @copy="onCopy"
   />
 
   <pre>{{ jsonData }}</pre>

@@ -1,20 +1,28 @@
 # Getting Started
 
-Vue3 JSON Viewer is a beautiful, customizable JSON viewer component for Vue 3 applications. It provides an intuitive way to display and interact with JSON data.
+Vue3 JSON Viewer is a beautiful, customizable JSON viewer component for Vue 3.
+It gives you an interactive, syntax-highlighted tree for any JSON-like value —
+ideal for debugging panels, API explorers, admin tools, and docs.
 
 ## Features
 
-- 🎨 **Beautiful UI** - Modern design with gradient backgrounds and syntax highlighting
-- 🌙 **Dark/Light Mode** - Built-in theme support
-- 📦 **TypeScript Ready** - Full type definitions included
-- 🔄 **Interactive** - Expand/collapse objects and arrays
-- 📋 **Copy Support** - One-click copy to clipboard
-- 🌈 **Rainbow Nesting** - Color-coded nesting levels
+- 🎨 **Beautiful UI** — gradient backgrounds and per-type syntax highlighting
+- 🌙 **Dark & light mode** — switchable with a single prop
+- 📦 **TypeScript-first** — authored in TSX with complete, exported types
+- 🔄 **Persistent expand/collapse** — node state survives collapsing an ancestor
+- 📡 **Typed events** — `@toggle` and `@copy` with typed payloads
+- 📋 **Copy to clipboard** — one click, with a fallback for non-secure contexts
+- 🌈 **Rainbow nesting** — color-coded bracket levels
+- 🪶 **Lightweight** — ~3.7 KB gzipped, Vue 3 as the only peer dependency
+
+## Live Preview
+
+<Demo controls />
 
 ## Prerequisites
 
-- Vue 3.3.0 or higher
-- Node.js 18 or higher (for development)
+- **Vue 3.3.0** or higher
+- A bundler that imports CSS (Vite, webpack, etc.), or a CDN setup
 
 ## Installation
 
@@ -32,6 +40,10 @@ yarn add @anilkumarthakur/vue3-json-viewer
 pnpm add @anilkumarthakur/vue3-json-viewer
 ```
 
+```bash [bun]
+bun add @anilkumarthakur/vue3-json-viewer
+```
+
 :::
 
 ## Quick Example
@@ -43,15 +55,15 @@ pnpm add @anilkumarthakur/vue3-json-viewer
 
   const jsonData = {
     name: 'Vue3 JSON Viewer',
-    version: '0.2.0',
-    features: ['dark mode', 'expand/collapse', 'copy'],
+    version: '0.5.1',
+    features: ['dark mode', 'expand/collapse', 'events', 'copy'],
   };
 </script>
 
 <template>
   <JsonViewer
     :data="jsonData"
-    :darkMode="true"
+    :dark-mode="true"
     :expanded="true"
   />
 </template>
@@ -59,7 +71,9 @@ pnpm add @anilkumarthakur/vue3-json-viewer
 
 ## What's Next?
 
-- [Installation Guide](/guide/installation) - Detailed installation instructions
-- [Quick Start](/guide/quick-start) - Get up and running quickly
-- [API Reference](/api/props) - Complete props documentation
-- [Examples](/examples/basic) - See it in action
+- [Installation](/guide/installation) — package managers, CDN, SSR
+- [Quick Start](/guide/quick-start) — get running in minutes
+- [Data Types](/guide/data-types) — what each value looks like
+- [Events](/guide/events) — react to toggles and copies
+- [API Reference](/api/props) — props, events, and types
+- [Playground](/examples/playground) — experiment live

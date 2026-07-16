@@ -1,10 +1,9 @@
-# Dark/Light Mode
+# Dark / Light Mode
 
-Vue3 JSON Viewer comes with beautiful built-in dark and light themes.
+Vue3 JSON Viewer ships two built-in themes. Switch between them with the
+`darkMode` prop.
 
 ## Basic Usage
-
-Toggle between themes using the `darkMode` prop:
 
 ```vue
 <script setup lang="ts">
@@ -13,87 +12,88 @@ Toggle between themes using the `darkMode` prop:
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
   const isDarkMode = ref(true);
-  const data = { message: 'Hello World' };
+  const data = { message: 'Hello World', count: 42, active: true };
 </script>
 
 <template>
   <button @click="isDarkMode = !isDarkMode">Toggle Theme</button>
   <JsonViewer
     :data="data"
-    :darkMode="isDarkMode"
+    :dark-mode="isDarkMode"
   />
 </template>
 ```
 
+Try the toggle:
+
+<Demo controls :json='`{
+  "message": "Hello World",
+  "count": 42,
+  "active": true,
+  "nested": { "colors": ["green", "peach", "yellow"] }
+}`' />
+
 ## Dark Mode (Default)
 
 ```vue
-<JsonViewer :data="data" :darkMode="true" />
+<JsonViewer :data="data" :dark-mode="true" />
 ```
 
-Features a Catppuccin-inspired color palette:
+A Catppuccin-inspired palette:
 
-- **Background**: Gradient from `#1e1e2e` to `#2d2d3f`
-- **Text**: Soft white `#cdd6f4`
-- **Strings**: Green `#a6e3a1`
-- **Numbers**: Peach `#fab387`
-- **Booleans**: Yellow `#f9e2af`
-- **Null**: Pink `#f38ba8`
+- **Background** — gradient `#1e1e2e → #2d2d3f`
+- **Text** — `#cdd6f4`
+- **Strings** — `#a6e3a1` · **Numbers** — `#fab387` · **Booleans** — `#f9e2af`
+- **Null** — `#f38ba8`
 
 ## Light Mode
 
 ```vue
-<JsonViewer :data="data" :darkMode="false" />
+<JsonViewer :data="data" :dark-mode="false" />
 ```
 
-Clean, professional light theme:
+A clean, high-contrast palette:
 
-- **Background**: Gradient from `#f8f9fa` to `#e9ecef`
-- **Text**: Dark gray `#343a40`
-- **Strings**: Green `#2f9e44`
-- **Numbers**: Orange `#e8590c`
-- **Booleans**: Amber `#f59f00`
-- **Null**: Red `#e03131`
+- **Background** — gradient `#f8f9fa → #e9ecef`
+- **Text** — `#343a40`
+- **Strings** — `#2f9e44` · **Numbers** — `#e8590c` · **Booleans** — `#f59f00`
+- **Null** — `#e03131`
 
-## System Preference Detection
-
-Match the user's system preference:
+## Following System Preference
 
 ```vue
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, onUnmounted } from 'vue';
   import { JsonViewer } from '@anilkumarthakur/vue3-json-viewer';
   import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
   const isDarkMode = ref(true);
+  let mq: MediaQueryList | null = null;
+  const update = (e: MediaQueryListEvent | MediaQueryList) => {
+    isDarkMode.value = e.matches;
+  };
 
   onMounted(() => {
-    // Check system preference
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    isDarkMode.value = prefersDark;
-
-    // Listen for changes
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', (e) => {
-        isDarkMode.value = e.matches;
-      });
+    mq = window.matchMedia('(prefers-color-scheme: dark)');
+    update(mq);
+    mq.addEventListener('change', update);
   });
+  onUnmounted(() => mq?.removeEventListener('change', update));
+
+  const data = { theme: 'follows your OS setting' };
 </script>
 
 <template>
   <JsonViewer
     :data="data"
-    :darkMode="isDarkMode"
+    :dark-mode="isDarkMode"
   />
 </template>
 ```
 
-## Color Reference
+## Full Color Reference
 
-### Dark Mode Colors
+### Dark Mode
 
 | Data Type  | Color  | Hex       |
 | ---------- | ------ | --------- |
@@ -106,7 +106,7 @@ Match the user's system preference:
 | Object Key | Pink   | `#f5c2e7` |
 | Array Key  | Blue   | `#89b4fa` |
 
-### Light Mode Colors
+### Light Mode
 
 | Data Type  | Color  | Hex       |
 | ---------- | ------ | --------- |
@@ -119,10 +119,14 @@ Match the user's system preference:
 | Object Key | Pink   | `#c2255c` |
 | Array Key  | Blue   | `#1971c2` |
 
-## Rainbow Nesting Colors
+## Rainbow Nesting
 
-Bracket colors cycle through a rainbow pattern based on nesting level:
+Bracket colors cycle by nesting depth:
 
-**Dark Mode**: Red → Peach → Yellow → Green → Sky → Mauve
+- **Dark:** Red → Peach → Yellow → Green → Sky → Mauve
+- **Light:** Red → Orange → Yellow → Green → Cyan → Purple
 
-**Light Mode**: Red → Orange → Yellow → Green → Cyan → Purple
+## Custom Colors
+
+There is no color-theme prop yet. To recolor values, override the `jv-*` classes
+— see [Custom Styling](/guide/styling).

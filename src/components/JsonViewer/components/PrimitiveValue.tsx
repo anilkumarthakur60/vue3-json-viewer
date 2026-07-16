@@ -37,6 +37,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    path: {
+      type: String,
+      required: true,
+    },
   },
   setup(props: PrimitiveValueProps) {
     return () => {
@@ -61,6 +65,8 @@ export default defineComponent({
             <CopyButton
               darkMode={props.darkMode}
               data={props.data}
+              path={props.path}
+              parentKey={props.parentKey}
             />
           </div>
         </div>
