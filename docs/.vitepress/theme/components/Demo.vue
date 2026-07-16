@@ -22,7 +22,7 @@ const props = withDefaults(
     editable?: boolean;
   }>(),
   {
-    json: '{\n  "name": "Vue3 JSON Viewer",\n  "version": "0.5.1",\n  "features": ["dark mode", "expand/collapse", "events", "copy"],\n  "stats": { "stars": 128, "downloads": 42000, "typescript": true },\n  "createdAt": "2024-01-01T00:00:00.000Z",\n  "maintainer": null\n}',
+    json: '{\n  "name": "Vue3 JSON Viewer",\n  "version": "0.6.0",\n  "features": ["dark mode", "expand/collapse", "events", "copy"],\n  "stats": { "stars": 128, "downloads": 42000, "typescript": true },\n  "createdAt": "2024-01-01T00:00:00.000Z",\n  "maintainer": null\n}',
     dark: true,
     expanded: true,
     controls: false,
