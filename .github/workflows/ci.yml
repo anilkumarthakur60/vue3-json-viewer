@@ -25,7 +25,7 @@ jobs:
       matrix:
         # pnpm 11 requires Node.js >= 22.13, and Node 20 is deprecated on
         # GitHub Actions runners.
-        node-version: [22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
