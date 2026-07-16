@@ -42,7 +42,7 @@ export default defineConfig({
       { text: 'Examples', link: '/examples/basic' },
       { text: 'Playground', link: '/examples/playground' },
       {
-        text: 'v0.5.1',
+        text: 'v0.6.0',
         items: [
           {
             text: 'Changelog',

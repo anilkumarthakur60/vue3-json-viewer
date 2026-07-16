@@ -55,7 +55,7 @@ bun add @anilkumarthakur/vue3-json-viewer
 
   const jsonData = {
     name: 'Vue3 JSON Viewer',
-    version: '0.5.1',
+    version: '0.6.0',
     features: ['dark mode', 'expand/collapse', 'events', 'copy'],
   };
 </script>
