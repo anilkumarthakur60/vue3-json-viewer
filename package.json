@@ -74,6 +74,7 @@
     "test": "vitest",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "build:app": "vite build --config vite.config.prod.ts --outDir dist-app",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\" --fix",
     "prepublishOnly": "pnpm run build",
