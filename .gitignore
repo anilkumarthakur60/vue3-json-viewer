@@ -26,3 +26,5 @@ npm-shrinkwrap.json
 # VitePress build artifacts (keep config.ts and theme/ tracked)
 docs/.vitepress/cache
 docs/.vitepress/dist
+# Demo/landing build (Vercel)
+demo-dist

@@ -2,6 +2,7 @@
 build
 coverage
 dist
+demo-dist
 node_modules
 package-lock.json
 # Ignore logs:
