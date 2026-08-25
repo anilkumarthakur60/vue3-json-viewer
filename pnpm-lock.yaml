@@ -41,7 +41,7 @@ importers:
         version: 14.9.0(eslint-plugin-vue@10.10.0(@typescript-eslint/parser@8.67.0(eslint@10.9.0)(typescript@6.0.3))(eslint@10.9.0)(vue-eslint-parser@10.4.1(eslint@10.9.0)))(eslint@10.9.0)(typescript@6.0.3)
       '@vue/language-core':
         specifier: ^3.3.7
-        version: 3.3.10
+        version: 3.3.11
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.11(@vue/compiler-dom@3.5.41)(@vue/server-renderer@3.5.40)(vue@3.5.40(typescript@6.0.3))
@@ -86,7 +86,7 @@ importers:
         version: 8.2.1(@types/node@26.2.0)(sass@1.103.1)
       vite-plugin-dts:
         specifier: ^5.0.3
-        version: 5.0.3(@vue/language-core@3.3.10)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1))
+        version: 5.0.3(@vue/language-core@3.3.11)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1))
       vite-plugin-vue-devtools:
         specifier: ^8.1.1
         version: 8.2.1(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1))(vue@3.5.40(typescript@6.0.3))
@@ -3445,7 +3445,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.5
+      picomatch: 4.0.7
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.6.0
       '@parcel/watcher-darwin-arm64': 2.6.0
@@ -4072,7 +4072,17 @@ snapshots:
       alien-signals: 3.2.1
       muggle-string: 0.4.1
       path-browserify: 1.0.1
-      picomatch: 4.0.5
+      picomatch: 4.0.7
+
+  '@vue/language-core@3.3.11':
+    dependencies:
+      '@volar/language-core': 2.4.28
+      '@vue/compiler-dom': 3.5.41
+      '@vue/shared': 3.5.41
+      alien-signals: 3.2.1
+      muggle-string: 0.4.1
+      path-browserify: 1.0.1
+      picomatch: 4.0.7
 
   '@vue/language-core@3.3.11':
     dependencies:
@@ -5247,7 +5257,7 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  unplugin-dts@1.0.3(@vue/language-core@3.3.10)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1)):
+  unplugin-dts@1.0.3(@vue/language-core@3.3.11)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1)):
     dependencies:
       '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
       '@volar/typescript': 2.4.28
@@ -5259,7 +5269,7 @@ snapshots:
       typescript: 6.0.3
       unplugin: 2.3.11
     optionalDependencies:
-      '@vue/language-core': 3.3.10
+      '@vue/language-core': 3.3.11
       rolldown: 1.2.3
       rollup: 4.62.2
       vite: 8.2.1(@types/node@26.2.0)(sass@1.103.1)
@@ -5310,9 +5320,9 @@ snapshots:
     dependencies:
       vite: 8.2.1(@types/node@26.2.0)(sass@1.103.1)
 
-  vite-plugin-dts@5.0.3(@vue/language-core@3.3.10)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1)):
+  vite-plugin-dts@5.0.3(@vue/language-core@3.3.11)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1)):
     dependencies:
-      unplugin-dts: 1.0.3(@vue/language-core@3.3.10)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1))
+      unplugin-dts: 1.0.3(@vue/language-core@3.3.11)(rolldown@1.2.3)(rollup@4.62.2)(typescript@6.0.3)(vite@8.2.1(@types/node@26.2.0)(sass@1.103.1))
     optionalDependencies:
       rollup: 4.62.2
       vite: 8.2.1(@types/node@26.2.0)(sass@1.103.1)
