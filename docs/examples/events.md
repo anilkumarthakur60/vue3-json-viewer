@@ -1,11 +1,11 @@
 # Events & Persistence
 
-Two things people often get wrong about expand/collapse — both handled here.
+Two things people often get wrong about expand/collapse  both handled here.
 
 ## State Persists Automatically
 
 Expand a nested node, collapse its parent, then expand the parent again. The
-nested node keeps the state you left it in — nothing resets. This works out of
+nested node keeps the state you left it in  nothing resets. This works out of
 the box, no code required.
 
 <Demo controls :json='`{
@@ -19,7 +19,7 @@ the box, no code required.
 
 ## Reacting to Toggles
 
-Listen to `@toggle` to mirror interaction into your own state — here into a
+Listen to `@toggle` to mirror interaction into your own state  here into a
 live log:
 
 <Demo controls events :json='`{

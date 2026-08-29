@@ -41,10 +41,10 @@ Try the toggle:
 
 A Catppuccin-inspired palette:
 
-- **Background** — gradient `#1e1e2e → #2d2d3f`
-- **Text** — `#cdd6f4`
-- **Strings** — `#a6e3a1` · **Numbers** — `#fab387` · **Booleans** — `#f9e2af`
-- **Null** — `#f38ba8`
+- **Background**  gradient `#1e1e2e → #2d2d3f`
+- **Text**  `#cdd6f4`
+- **Strings**  `#a6e3a1` · **Numbers**  `#fab387` · **Booleans**  `#f9e2af`
+- **Null**  `#f38ba8`
 
 ## Light Mode
 
@@ -54,10 +54,10 @@ A Catppuccin-inspired palette:
 
 A clean, high-contrast palette:
 
-- **Background** — gradient `#f8f9fa → #e9ecef`
-- **Text** — `#343a40`
-- **Strings** — `#2f9e44` · **Numbers** — `#e8590c` · **Booleans** — `#f59f00`
-- **Null** — `#e03131`
+- **Background**  gradient `#f8f9fa → #e9ecef`
+- **Text**  `#343a40`
+- **Strings**  `#2f9e44` · **Numbers**  `#e8590c` · **Booleans**  `#f59f00`
+- **Null**  `#e03131`
 
 ## Following System Preference
 
@@ -129,4 +129,4 @@ Bracket colors cycle by nesting depth:
 ## Custom Colors
 
 There is no color-theme prop yet. To recolor values, override the `jv-*` classes
-— see [Custom Styling](/guide/styling).
+ see [Custom Styling](/guide/styling).

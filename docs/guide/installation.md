@@ -39,7 +39,7 @@ import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
 ### Local Registration (Recommended)
 
-Import the component directly where you use it — this is tree-shakeable:
+Import the component directly where you use it  this is tree-shakeable:
 
 ```vue
 <script setup lang="ts">

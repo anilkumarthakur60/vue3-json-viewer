@@ -65,7 +65,7 @@ import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';
 
 ## Alternative: Direct Import
 
-Prefer not to register globally? Import the component where you use it — this is
+Prefer not to register globally? Import the component where you use it  this is
 tree-shakeable:
 
 ```vue
@@ -101,7 +101,7 @@ The component is SSR-safe, so a `.client` suffix isn't required. See the
 
 ## TypeScript
 
-The plugin is fully typed — no extra configuration needed:
+The plugin is fully typed  no extra configuration needed:
 
 ```ts
 import { JsonViewerPlugin } from '@anilkumarthakur/vue3-json-viewer';

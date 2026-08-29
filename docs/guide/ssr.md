@@ -1,6 +1,6 @@
 # SSR & Nuxt
 
-`JsonViewer` renders cleanly on the server — its render logic touches no
+`JsonViewer` renders cleanly on the server  its render logic touches no
 browser globals. Browser APIs (`navigator.clipboard`, `document`) are only used
 inside the copy handler, which runs on click in the browser.
 
@@ -50,7 +50,7 @@ import '@anilkumarthakur/vue3-json-viewer/styles.css';
 ## Hydration Notes
 
 - The initial expand/collapse state is derived purely from the `expanded` prop,
-  so the server-rendered markup matches the client's first render — no
+  so the server-rendered markup matches the client's first render  no
   hydration mismatch.
 - Avoid passing values that differ between server and client (for example a bare
   `new Date()` created in `setup`) as `data`, or you may see a hydration
@@ -59,5 +59,5 @@ import '@anilkumarthakur/vue3-json-viewer/styles.css';
 ## This Documentation
 
 These docs are built with VitePress (which is SSR-rendered) and embed the real
-component on nearly every page — a live demonstration that server rendering
+component on nearly every page  a live demonstration that server rendering
 works.

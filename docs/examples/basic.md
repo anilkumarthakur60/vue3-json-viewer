@@ -51,7 +51,7 @@ The simplest ways to use Vue3 JSON Viewer.
 
 ## API Response
 
-A very common use case — display a fetched response:
+A very common use case  display a fetched response:
 
 <Demo controls :json='`{
   "status": 200,

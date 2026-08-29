@@ -41,7 +41,7 @@ See the [Events API reference](/api/events) for full payload details.
 </template>
 ```
 
-Try it — the log below updates as you toggle nodes and copy values:
+Try it  the log below updates as you toggle nodes and copy values:
 
 <Demo controls events :json='`{
   "user": { "name": "Ada", "roles": ["admin", "editor"] },
@@ -64,11 +64,11 @@ state (see below).
 ## Persisting Expand/Collapse State
 
 Expand/collapse state already **persists across collapse/re-expand within a
-single `JsonViewer` instance** — you don't need events for that (see
+single `JsonViewer` instance**  you don't need events for that (see
 [Expand & Collapse](/guide/expand-collapse)).
 
-Use the `toggle` event when you want state to survive something bigger — a route
-change, a remount, or a page reload — by recording it yourself:
+Use the `toggle` event when you want state to survive something bigger  a route
+change, a remount, or a page reload  by recording it yourself:
 
 ```vue
 <script setup lang="ts">

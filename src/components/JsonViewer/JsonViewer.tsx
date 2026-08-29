@@ -47,7 +47,7 @@ export default defineComponent({
   },
   setup(props: JsonViewerProps, { emit }) {
     // The baseline lives here, at the root, which is never unmounted when a
-    // child collapses — this is what makes per-node expand state persist.
+    // child collapses  this is what makes per-node expand state persist.
     const defaultExpanded = ref(props.expanded ?? true);
 
     const ctx = createJsonViewerContext({

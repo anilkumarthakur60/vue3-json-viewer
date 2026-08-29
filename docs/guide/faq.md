@@ -12,7 +12,7 @@ import '@anilkumarthakur/vue3-json-viewer/styles.css';
 
 **No.** Older examples used `:key="String(expanded)"` to force a remount. That
 was a workaround for a bug where collapsing a parent wiped nested state. It's
-fixed — the `expanded` prop is reactive and node state persists on its own.
+fixed  the `expanded` prop is reactive and node state persists on its own.
 Remove the `:key` hack:
 
 ```vue
@@ -30,14 +30,14 @@ the async Clipboard API when available and falls back to `execCommand('copy')`
 otherwise. If both fail (rare), nothing is copied and no `copy` event fires.
 Common causes:
 
-- Some browsers restrict clipboard writes to user-initiated events — the button
+- Some browsers restrict clipboard writes to user-initiated events  the button
   click qualifies, so this is usually fine.
 - A value that can't be serialized (a circular reference) resolves to a failed
   copy by design. See [Copy to Clipboard](/guide/copy).
 
 ## Does it emit an event when I expand/collapse?
 
-Yes — the [`toggle` event](/api/events). There's also a [`copy` event](/api/events).
+Yes  the [`toggle` event](/api/events). There's also a [`copy` event](/api/events).
 Both are fully typed.
 
 ## My object shows as `{}` even though it has data

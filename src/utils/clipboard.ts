@@ -44,9 +44,9 @@ const legacyCopyText = (text: string): boolean => {
 /**
  * Serializes a JSON value and copies it to the clipboard.
  *
- * Resolves to `true` on success and `false` on any failure — a serialization
+ * Resolves to `true` on success and `false` on any failure  a serialization
  * error (e.g. a circular reference), a missing Clipboard API in insecure or
- * older environments, or a rejected write — so callers can react without an
+ * older environments, or a rejected write  so callers can react without an
  * unhandled promise rejection. Falls back to `execCommand('copy')` when the
  * async Clipboard API is unavailable.
  */
@@ -72,7 +72,7 @@ export const copyJsonToClipboard = async (
       await navigator.clipboard.writeText(text);
       return true;
     } catch {
-      // Permission denied or insecure context — try the legacy fallback.
+      // Permission denied or insecure context  try the legacy fallback.
     }
   }
 

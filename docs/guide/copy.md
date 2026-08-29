@@ -14,9 +14,9 @@ serialized with `JSON.stringify(value, null, 2)` and written to the clipboard.
 
 ## Visual Feedback
 
-1. **Before copy** — a clipboard icon.
-2. **After a successful copy** — a checkmark ✓.
-3. **Auto-reset** — back to the clipboard icon after 1.5 seconds.
+1. **Before copy**  a clipboard icon.
+2. **After a successful copy**  a checkmark ✓.
+3. **Auto-reset**  back to the clipboard icon after 1.5 seconds.
 
 The icon changes **only when the copy actually succeeds**.
 
@@ -28,7 +28,7 @@ possible:
 - Uses the async **Clipboard API** (`navigator.clipboard.writeText`) when
   available.
 - Falls back to `document.execCommand('copy')` when the Clipboard API is
-  missing or rejects — so it also works in **non-secure (`http://`) contexts**
+  missing or rejects  so it also works in **non-secure (`http://`) contexts**
   and older browsers.
 - If the value can't be serialized (for example a **circular reference**), the
   copy fails gracefully: no icon change, no `copy` event, no thrown error.
@@ -76,7 +76,7 @@ level) fall back to their `String()` form.
 ## Styling the Copy Button
 
 The button uses the `jv-copy-btn` class (with `jv-copy-btn-dark` /
-`jv-copy-btn-light` variants). It's hidden until you hover the row — to always
+`jv-copy-btn-light` variants). It's hidden until you hover the row  to always
 show it:
 
 ```css

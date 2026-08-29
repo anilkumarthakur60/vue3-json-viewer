@@ -37,7 +37,7 @@ exported so you can use it directly in advanced scenarios, but note:
 
 - When rendered **without** a `JsonViewer` ancestor, the root `JsonNode`
   creates its own internal expand/collapse store, so state still persists.
-- It does **not** emit the `toggle` / `copy` events — those are surfaced by
+- It does **not** emit the `toggle` / `copy` events  those are surfaced by
   `JsonViewer`. If you need events, use `JsonViewer`.
 
 ```vue

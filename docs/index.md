@@ -31,7 +31,7 @@ features:
     details: Authored in TSX with complete, exported type definitions for props, events, and values.
   - icon: 🔄
     title: Persistent Expand/Collapse
-    details: Node state is keyed by path and survives collapsing an ancestor — your place is never lost.
+    details: Node state is keyed by path and survives collapsing an ancestor  your place is never lost.
   - icon: 📡
     title: Typed Events
     details: Listen to @toggle and @copy with fully typed payloads to sync or persist view state.

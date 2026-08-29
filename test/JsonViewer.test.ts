@@ -37,7 +37,7 @@ describe('JsonViewer expand/collapse state', () => {
     await toggleContainer(wrapper, 'b');
     expect(collapsedCount(wrapper)).toBe(1);
 
-    // Collapse the ancestor $.a — this unmounts the subtree containing b.
+    // Collapse the ancestor $.a  this unmounts the subtree containing b.
     await toggleContainer(wrapper, 'a');
     expect(collapsedCount(wrapper)).toBe(1); // only $.a's own label is visible
 
@@ -113,7 +113,7 @@ describe('JsonViewer events', () => {
 
     // Toggle the array element container ($.items[0]). Its key is hidden in the
     // UI, so click its type indicator rather than a key label. Containers are
-    // $, $.items, $.items[0] — the deepest one is the array element.
+    // $, $.items, $.items[0]  the deepest one is the array element.
     const rows = wrapper.findAll('.jv-toggle');
     await rows[rows.length - 1]!.trigger('click');
 
@@ -128,7 +128,7 @@ describe('JsonViewer events', () => {
 
   it('emits a `copy` event when a value is copied', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
-    // jsdom has no clipboard by default — provide a minimal stub.
+    // jsdom has no clipboard by default  provide a minimal stub.
     Object.assign(navigator, { clipboard: { writeText } });
 
     const wrapper = mount(JsonViewer, {

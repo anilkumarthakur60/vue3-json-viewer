@@ -86,7 +86,7 @@ export interface CreateContextOptions {
  *
  * State model: a per-node override map layered over a single baseline value.
  * A node with no override falls back to the baseline, so "expand all" /
- * "collapse all" is just clearing overrides and flipping the baseline — no need
+ * "collapse all" is just clearing overrides and flipping the baseline  no need
  * to enumerate every node in the tree.
  */
 export function createJsonViewerContext(

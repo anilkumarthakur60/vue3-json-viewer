@@ -1,8 +1,8 @@
 # Data Types
 
 `JsonViewer` renders far more than plain JSON. It understands every JavaScript
-value you are likely to inspect while debugging — including `Date`, `RegExp`,
-`undefined`, and functions — and gives each its own color and formatting.
+value you are likely to inspect while debugging  including `Date`, `RegExp`,
+`undefined`, and functions  and gives each its own color and formatting.
 
 ## Supported Types
 

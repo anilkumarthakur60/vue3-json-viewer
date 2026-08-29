@@ -16,7 +16,7 @@ For events, see the [Events reference](/api/events).
 
 ## `data`
 
-The value to visualize. Accepts any [`JsonValue`](/api/types#jsonvalue) —
+The value to visualize. Accepts any [`JsonValue`](/api/types#jsonvalue) 
 objects, arrays, primitives, `Date`, `RegExp`, and functions.
 
 ```ts
@@ -57,13 +57,13 @@ Controls the theme. `true` (default) = dark, `false` = light.
 ## `expanded`
 
 Initial expand/collapse state for all nodes. `true` (default) = expanded,
-`false` = collapsed. The prop is **reactive** — changing it re-seeds the tree.
+`false` = collapsed. The prop is **reactive**  changing it re-seeds the tree.
 
 ```vue
 <JsonViewer :data="data" :expanded="true" />
 <JsonViewer :data="data" :expanded="false" />
 
-<!-- Reactive — no :key needed -->
+<!-- Reactive  no :key needed -->
 <JsonViewer :data="data" :expanded="isExpanded" />
 ```
 

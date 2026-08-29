@@ -48,7 +48,7 @@ Collapsed subtrees aren't rendered at all, so for large payloads start with
     {{ isExpanded ? 'Collapse All' : 'Expand All' }}
   </button>
 
-  <!-- No :key needed — expanded is reactive and state persists -->
+  <!-- No :key needed  expanded is reactive and state persists -->
   <JsonViewer
     :data="largeData"
     :dark-mode="true"

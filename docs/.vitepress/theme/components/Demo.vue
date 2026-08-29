@@ -109,7 +109,7 @@ const showLog = computed(() => props.events);
         v-if="!log.length"
         class="empty"
       >
-        Interact with the viewer — toggle a node or copy a value — to see events
+        Interact with the viewer  toggle a node or copy a value  to see events
         here.
       </div>
       <div

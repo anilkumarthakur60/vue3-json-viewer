@@ -4,7 +4,7 @@ title: Playground
 
 # Playground
 
-Edit the JSON below and tweak the options — the viewer updates live. Everything
+Edit the JSON below and tweak the options  the viewer updates live. Everything
 on this page runs the real `@anilkumarthakur/vue3-json-viewer` component, and
 the event log shows the `@toggle` / `@copy` events as you interact.
 

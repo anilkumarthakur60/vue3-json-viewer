@@ -57,7 +57,7 @@ Result:
 
 ## Complete Example
 
-A theme toggle plus expand/collapse control. Note there's **no `:key` hack** —
+A theme toggle plus expand/collapse control. Note there's **no `:key` hack** 
 the `expanded` prop is reactive and node state persists on its own.
 
 ```vue
@@ -137,7 +137,7 @@ A common use case is displaying a fetched response:
 
 ## Next Steps
 
-- [Theming](/guide/theming) — dark & light mode
-- [Expand & Collapse](/guide/expand-collapse) — controls and persistence
-- [Events](/guide/events) — `@toggle` and `@copy`
-- [API Reference](/api/props) — every prop and event
+- [Theming](/guide/theming)  dark & light mode
+- [Expand & Collapse](/guide/expand-collapse)  controls and persistence
+- [Events](/guide/events)  `@toggle` and `@copy`
+- [API Reference](/api/props)  every prop and event

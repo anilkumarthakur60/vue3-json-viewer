@@ -20,7 +20,7 @@ Bracket colors cycle by depth, making nesting easy to follow:
 
 ## Keys That Aren't Plain Identifiers
 
-Keys with dots, spaces, or leading symbols are handled correctly — internally
+Keys with dots, spaces, or leading symbols are handled correctly  internally
 their [path](/api/events#the-path-format) is bracket-quoted so they never
 collide with nested paths:
 

@@ -16,7 +16,7 @@ dist-ssr
 .vscode
 .idea
 .DS_Store
-# This project uses pnpm — pnpm-lock.yaml is committed; other lockfiles are not.
+# This project uses pnpm  pnpm-lock.yaml is committed; other lockfiles are not.
 bun.lockb
 bun.lock
 yarn.lock

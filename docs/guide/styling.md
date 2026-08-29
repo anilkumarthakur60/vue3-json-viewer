@@ -5,7 +5,7 @@ The viewer ships a single stylesheet and exposes stable, prefixed CSS classes
 
 ## Importing the Stylesheet
 
-The component's styles are **not** injected automatically — import them once,
+The component's styles are **not** injected automatically  import them once,
 anywhere in your app:
 
 ```ts

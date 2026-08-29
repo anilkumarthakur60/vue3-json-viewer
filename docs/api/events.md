@@ -108,6 +108,6 @@ interface JsonViewerEmits {
 
 - The `toggle` event fires only for the specific node a user toggles. "Expand
   All" / "Collapse All" reset the shared baseline and clear per-node overrides
-  in a single operation — they do **not** emit a `toggle` per node.
+  in a single operation  they do **not** emit a `toggle` per node.
 - `copy` does not fire on failure (e.g. a circular value that can't be
   serialized). See [Copy to Clipboard](/guide/copy).
